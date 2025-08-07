@@ -26,7 +26,6 @@
             <p class="text-dark text-align-left"> 
                 <img src="./assets/img/icon.jpg" style="width: 40px; height: 40px;" alt="[icon]"> RealArt team </p>
             <div class="container justify-content-center w-auto">
-                
                 <ul class="nav navbar-expand-sm navbar-nav ">
                     <li class="nav-item">
                         <a class="nav-link active" href="pocetna.html">Pocetna</a>
@@ -44,7 +43,6 @@
                         <a class="nav-link" href="galerija.html">Radovi</a>
                     </li>
                 </ul>
-
             </div>
             <div class="">
                 <a class="fs-5 text-danger" href="login.html">Log in</a> &nbsp &nbsp
@@ -52,16 +50,56 @@
             </div>
         </nav>
     </header>
-    <h4>iskljucicu da ovo ne radi al neka ostane ko god da pravi funkcionalnost za dodavanje slika</h4>
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-        <input type="file" name="image" accept="image/*" required />
-        <input type="submit" value="Upload Image" />
-    </form>
 
+    <div class="container-fluid mt-5">
+        <button class="btn btn-primary mb-3" onclick="toggleFormu()">Napravi izložbu</button>
+        <div class="container-fluid mt-5" id="napravi-izlozbu" style="display: none;">
+            <h2>Nova izložba</h2>
+            <form action="/napravi-izlozbu" method="POST">
+                <div class="mb-3">
+                    <label for="imeIzlozbe" class="form-label">Ime izložbe</label>
+                    <input type="text" class="form-control" id="imeIzlozbe" name="imeIzlozbe" required>
+                </div>
+                <div class="mb-3">
+                    <label for="temaIzlozbe" class="form-label">Tema izložbe</label>
+                    <select class="form-select" id="temaIzlozbe" name="temaIzlozbe" required>
+                        <option value="">-- Izaberi temu --</option>
+                        <option value="priroda">Priroda</option>
+                        <option value="portret">Portret</option>
+                        <option value="arhitektura">Arhitektura</option>
+                        <option value="slobodna">Slobodna tema</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="trajanje" class="form-label">Trajanje izložbe (u satima, max 168)</label>
+                    <input type="number" class="form-control" id="trajanje" name="trajanje" min="1" max="168" required>
+                </div>
+                <button type="submit" class="btn btn-success">Potvrdi izložbu</button>
+            </form>
+        </div>
+    
+        <h4>iskljucicu da ovo ne radi al neka ostane ko god da pravi funkcionalnost za dodavanje slika</h4>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required />
+            <input type="submit" value="Upload Image" />
+        </form>
+    
+        <h1>[Funkcionalnost pregleda izlozbi - aktivnih i ne-aktivnih]</h1>
+        <h1>[kada se izabere izlozba - unutra sve funkcionalnosti za pregled slika, ocenjivanje, komentarisanje, slide show, zoom...]</h1>
+    </div>
+    
+    <script>
+        function toggleFormu() {
+        const forma = document.getElementById("napravi-izlozbu");
 
-    <h1>[Funkcionalnost pregleda izlozbi - aktivnih i ne-aktivnih]</h1>
-    <h1>[kada se izabere izlozba - unutra sve funkcionalnosti za pregled slika, ocenjivanje, komentarisanje, slide show, zoom...]</h1>
-
+        if (forma.style.display === "none" || forma.style.display === "") {
+            forma.style.display = "block";
+            forma.scrollIntoView({ behavior: "smooth" });
+        } else {
+            forma.style.display = "none";
+        }
+    }
+    </script>
 </body>
 
 </html>
