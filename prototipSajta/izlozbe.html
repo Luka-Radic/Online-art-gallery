@@ -5,8 +5,6 @@
     <title>PSI projekat - prototip</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    
 </head>
 
 <body>
@@ -20,13 +18,13 @@
         </div>
     </nav>
 
-
     <header>
         <nav class="container navbar navbar-expand-lg navbar-light fs-4">
             <p class="text-dark text-align-left"> 
-                <img src="./assets/img/icon.jpg" style="width: 40px; height: 40px;" alt="[icon]"> RealArt team </p>
+                <img src="./assets/img/icon.jpg" style="width: 40px; height: 40px;" alt="[icon]"> RealArt team 
+            </p>
             <div class="container justify-content-center w-auto">
-                <ul class="nav navbar-expand-sm navbar-nav ">
+                <ul class="nav navbar-expand-sm navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link active" href="pocetna.html">Pocetna</a>
                     </li>
@@ -45,7 +43,7 @@
                 </ul>
             </div>
             <div class="">
-                <a class="fs-5 text-danger" href="login.html">Log in</a> &nbsp &nbsp
+                <a class="fs-5 text-danger" href="login.html">Log in</a> &nbsp;&nbsp;
                 <a class="fs-5 text-danger" href="signup.html">Sign up</a>
             </div>
         </nav>
@@ -83,23 +81,134 @@
             <input type="file" name="image" accept="image/*" required />
             <input type="submit" value="Upload Image" />
         </form>
-    
-        <h1>[Funkcionalnost pregleda izlozbi - aktivnih i ne-aktivnih]</h1>
-        <h1>[kada se izabere izlozba - unutra sve funkcionalnosti za pregled slika, ocenjivanje, komentarisanje, slide show, zoom...]</h1>
+
+        <style>
+            .gallery-card {
+                width: 400px;
+                margin: 30px auto;
+                border: 1px solid #ccc;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                background-color: white;
+            }
+
+            .gallery-title {
+                text-align: center;
+                padding: 12px;
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
+
+            .gallery-title a {
+                text-decoration: none;
+                color: #0d6efd;
+                border-bottom: 2px solid #0d6efd;
+                padding-bottom: 2px;
+            }
+
+            .gallery-img {
+                width: 100%;
+                height: 400px;
+                object-fit: cover;
+            }
+
+            .gallery-meta, .gallery-status {
+                padding: 0 15px 5px;
+                font-size: 0.95rem;
+                color: gray;
+            }
+
+            .gallery-status.aktivna {
+                color: green;
+            }
+
+            .gallery-status.zatvorena {
+                color: red;
+            }
+        </style>
+
+        <div class="container-fluid">
+            <div class="mb-4 text-center">
+                <label class="form-label fw-bold">Prikaži izložbe:</label><br>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="filterAktivne" checked onchange="filterExhibitions()">
+                    <label class="form-check-label" for="filterAktivne">Aktivne</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="filterZatvorene" checked onchange="filterExhibitions()">
+                    <label class="form-check-label" for="filterZatvorene">Zatvorene</label>
+                </div>
+            </div>
+
+            <div class="gallery-card" data-status="aktivna">
+                <div class="gallery-title">
+                    <a href="izlozba1.html">Priroda u pokretu</a>
+                </div>
+                <img class="gallery-img" src="./assets/img/priroda1.jpg" alt="Priroda izložba">
+                <p class="gallery-status aktivna">Aktivna do 12. avgusta</p>
+                <p class="gallery-meta">15 radova · 6 umetnika</p>
+            </div>
+
+            <div class="gallery-card" data-status="zatvorena">
+                <div class="gallery-title">
+                    <a href="izlozba2.html">Portreti duše</a>
+                </div>
+                <img class="gallery-img" src="./assets/img/portret1.jpg" alt="Portret izložba">
+                <p class="gallery-status zatvorena">Zatvorena 21. jula</p>
+                <p class="gallery-meta">8 radova · 3 umetnika</p>
+            </div>
+
+            <div class="gallery-card" data-status="aktivna">
+                <div class="gallery-title">
+                    <a href="izlozba3.html">Geometrija grada</a>
+                </div>
+                <img class="gallery-img" src="./assets/img/arhitektura1.jpg" alt="Arhitektura izložba">
+                <p class="gallery-status aktivna">Aktivna do 15. avgusta</p>
+                <p class="gallery-meta">20 radova · 5 umetnika</p>
+            </div>
+
+            <div class="gallery-card" data-status="zatvorena">
+                <div class="gallery-title">
+                    <a href="izlozba4.html">Slobodna ekspresija</a>
+                </div>
+                <img class="gallery-img" src="./assets/img/slobodna1.jpg" alt="Slobodna tema izložba">
+                <p class="gallery-status zatvorena">Zatvorena 1. avgusta</p>
+                <p class="gallery-meta">9 radova · 4 umetnika</p>
+            </div>
+        </div>
     </div>
-    
+
     <script>
         function toggleFormu() {
-        const forma = document.getElementById("napravi-izlozbu");
+            const forma = document.getElementById("napravi-izlozbu");
 
-        if (forma.style.display === "none" || forma.style.display === "") {
-            forma.style.display = "block";
-            forma.scrollIntoView({ behavior: "smooth" });
-        } else {
-            forma.style.display = "none";
+            if (forma.style.display === "none" || forma.style.display === "") {
+                forma.style.display = "block";
+                forma.scrollIntoView({ behavior: "smooth" });
+            } else {
+                forma.style.display = "none";
+            }
         }
-    }
+
+        function filterExhibitions() {
+            const showAktivne = document.getElementById("filterAktivne").checked;
+            const showZatvorene = document.getElementById("filterZatvorene").checked;
+            const cards = document.querySelectorAll(".gallery-card");
+
+            cards.forEach(card => {
+                const status = card.getAttribute("data-status");
+
+                if ((status === "aktivna" && showAktivne) || 
+                    (status === "zatvorena" && showZatvorene)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
     </script>
 </body>
-
 </html>
