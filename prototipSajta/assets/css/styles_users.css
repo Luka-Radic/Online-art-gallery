@@ -29,26 +29,27 @@ body::before {
     margin: 2%;
     border: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    display: block;
 }
 
-.navbar {
-    background-color: white;
-}
 
 .card-img-top{
   width: 100%;
-  aspect-ratio: 1 / 1; /* Blago pravougaoni (možeš 1 / 1 za kockasti) */
-  object-fit: cover;   /* Seče višak slike da popuni prostor */
-  border-radius: 6px;  /* Opcionalno: za blago zaobljene ivice */
+  aspect-ratio: 1 / 1; 
+  object-fit: cover;   
+  border-radius: 6px;  
   display: block;
 }
+
 
 .search-container {
   display: flex;
 
   width: 100%;
   max-width: 400px;
-  margin: 20px auto; /* centriranje */
+  margin: 20px auto; 
   border: 1px solid #ccc;
   border-radius: 30px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -67,6 +68,7 @@ body::before {
   background-color: white;
   font-size: large;
 }
+
 
 .user-img {
     padding: 10%;
