@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PSI Projekat - prototip</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+     <link rel="stylesheet" href="./assets/css/style_izlozbi.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-dark navbar-light">
+        <div class="container text-light">
+            <div class="w-100 d-flex justify-content-between">
+                <span class="">realart@gmail.com</span>
+                <span class="">[nesto]</span>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <nav class="cointer navbar navbar-expand-lg navbar-light fs-4">
+            <p class="text-dark text-align-left">
+                <img src="./assets/img/icon.jpg" style="width: 40px; height: 40px;" alt="[icon]">RealArt team</p>
+            <div class="container justify-content-center w-auto">
+                
+                <ul class="nav navbar-expand-sm navbar-nav ">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="pocetna.html">Pocetna</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">O nama</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="izlozbe.html">Izlozbe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="korisnici.html">Korisnici</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="galerija.html">Radovi</a>
+                    </li>    
+                </ul>
+            </div>
+            <div class="">
+                <a class="fs-5 text-danger" href="login.html">Log in</a>
+                <a class="fs-5 text-danger" href="signup.html">Sign up</a>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="container my-5">
+        <div class="row g-4">
+            <!-- Leva strana: velika kvadratna slika -->
+            <div class="col-12 col-md-7">
+            <div class="preview-image-wrap">
+                <img id="previewImage" class="preview-image" src="./assets/img/priroda1.jpg" alt="Glavni rad">
+            </div>
+            </div>
+
+            <!-- Desna strana: opis, umetnik i zvezdice, komentari -->
+            <div class="col-12 col-md-5">
+            <div class="card p-3 shadow-sm h-100">
+                <!-- umetnik + avatar + rating -->
+                <div class="d-flex align-items-center mb-3">
+                <img src="./assets/img/musko2.jpg" alt="avatar" class="artist-avatar">
+                <div class="ms-3">
+                    <div class="artist-name fw-bold" id="artistName">Nikola Jovic</div>
+                    <div class="artist-meta text-muted small">2025 · Amater</div>
+                </div>
+
+                <div class="ms-auto d-flex align-items-center">
+                    <div id="starRating" class="star-rating" aria-label="Oceni rad">
+                    <span class="star" data-value="1">☆</span>
+                    <span class="star" data-value="2">☆</span>
+                    <span class="star" data-value="3">☆</span>
+                    <span class="star" data-value="4">☆</span>
+                    <span class="star" data-value="5">☆</span>
+                    </div>
+                    <div class="ms-2 small text-muted" id="ratingValue">0/5</div>
+                </div>
+                </div>
+
+                <!-- naslov/kratak opis -->
+                <h4 class="mb-2" id="workTitle">Priroda u pokretu</h4>
+                <p class="text-muted" id="workDescription">
+                Prelep pejzaž koji sam video dok sam planinario kroz Zapadnu Srbiju. Prosto sam morao da ga stavim na platno.
+                </p>
+
+                <hr>
+
+                <!-- Komentari -->
+                <div class="mb-3">
+                <h6 class="mb-2">Komentari</h6>
+                <div id="commentsList" class="list-group">
+                    <!-- Dynamically added comments will appear here --><div class="comment-item d-flex mb-3 align-items-start">
+  <img src="./assets/img/zensko1.jpg" alt="avatar korisnika" class="comment-avatar me-3">
+  <div>
+    <div class="comment-username mb-1">Marina Kovacevic</div>
+    <div class="comment-text">Ovo je remek delo! Bravo!</div>
+  </div>
+</div>
+                    <div class="list-group-item small text-muted">Komentar 1</div>
+  <div class="list-group-item small text-muted">Komentar 2</div>
+  <div class="list-group-item small text-muted">Komentar 3</div>
+  <div class="list-group-item small text-muted">Komentar 4</div>
+  <div class="list-group-item small text-muted">Komentar 5</div>
+  <div class="list-group-item small text-muted">Komentar 6</div>
+  <div class="list-group-item small text-muted">Komentar 7</div>
+  <div class="list-group-item small text-muted">Komentar 8</div>
+  <div class="list-group-item small text-muted">Komentar 9</div>
+  <div class="list-group-item small text-muted">Komentar 10</div>
+  <div class="list-group-item small text-muted">Komentar 1</div>
+  <div class="list-group-item small text-muted">Komentar 2</div>
+  <div class="list-group-item small text-muted">Komentar 3</div>
+  <div class="list-group-item small text-muted">Komentar 4</div>
+  <div class="list-group-item small text-muted">Komentar 5</div>
+  <div class="list-group-item small text-muted">Komentar 6</div>
+  <div class="list-group-item small text-muted">Komentar 7</div>
+  <div class="list-group-item small text-muted">Komentar 8</div>
+  <div class="list-group-item small text-muted">Komentar 9</div>
+  <div class="list-group-item small text-muted">Komentar 10</div>
+                </div>
+                </div>
+
+                <!-- Dodaj komentar -->
+                <div class="input-group">
+                <input id="commentInput" type="text" class="form-control" placeholder="Napiši komentar..." aria-label="Komentar">
+                <button id="addCommentBtn" class="btn btn-primary" type="button">Dodaj</button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>  
+    
+</body>
+
+</html>
