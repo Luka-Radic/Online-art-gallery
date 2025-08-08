@@ -1,0 +1,46 @@
+.gallery-card {
+    width: 400px;
+    margin: 30px auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: white;
+}
+
+.gallery-title {
+    text-align: center;
+    padding: 12px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.gallery-title a {
+    text-decoration: none;
+    color: #0d6efd;
+    border-bottom: 2px solid #0d6efd;
+    padding-bottom: 2px;
+}
+
+.gallery-img {
+    width: 100% !important;
+    height: 400px !important;
+    object-fit: cover !important;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.gallery-meta, 
+.gallery-status {
+    padding: 0 15px 5px;
+    font-size: 0.95rem;
+    color: gray;
+}
+
+.gallery-status.aktivna {
+    color: green;
+}
+
+.gallery-status.zatvorena {
+    color: red;
+}
