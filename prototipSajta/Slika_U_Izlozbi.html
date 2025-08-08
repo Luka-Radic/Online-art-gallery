@@ -64,28 +64,28 @@
             <div class="card p-3 shadow-sm h-100">
                 <!-- umetnik + avatar + rating -->
                 <div class="d-flex align-items-center mb-3">
-                <img src="./assets/img/musko2.jpg" alt="avatar" class="artist-avatar">
-                <div class="ms-3">
-                    <div class="artist-name fw-bold" id="artistName">Nikola Jovic</div>
-                    <div class="artist-meta text-muted small">2025 · Amater</div>
-                </div>
-
-                <div class="ms-auto d-flex align-items-center">
-                    <div id="starRating" class="star-rating" aria-label="Oceni rad">
-                    <span class="star" data-value="1">☆</span>
-                    <span class="star" data-value="2">☆</span>
-                    <span class="star" data-value="3">☆</span>
-                    <span class="star" data-value="4">☆</span>
-                    <span class="star" data-value="5">☆</span>
+                    <img src="./assets/img/musko2.jpg" alt="avatar" class="artist-avatar">
+                    <div class="ms-3">
+                        <div class="artist-name fw-bold" id="artistName">Nikola Jovic</div>
+                        <div class="artist-meta text-muted small">2025 · Amater</div>
                     </div>
-                    <div class="ms-2 small text-muted" id="ratingValue">0/5</div>
-                </div>
+
+                    <div class="ms-auto d-flex align-items-center">
+                        <div id="starRating" class="star-rating" aria-label="Oceni rad">
+                        <span class="star" data-value="1">☆</span>
+                        <span class="star" data-value="2">☆</span>
+                        <span class="star" data-value="3">☆</span>
+                        <span class="star" data-value="4">☆</span>
+                        <span class="star" data-value="5">☆</span>
+                        </div>
+                        <div class="ms-2 small text-muted" id="ratingValue">0/5</div>
+                    </div>
                 </div>
 
                 <!-- naslov/kratak opis -->
                 <h4 class="mb-2" id="workTitle">Priroda u pokretu</h4>
                 <p class="text-muted" id="workDescription">
-                Prelep pejzaž koji sam video dok sam planinario kroz Zapadnu Srbiju. Prosto sam morao da ga stavim na platno.
+                Prelepi pejzaž koji sam video dok sam planinario kroz Zapadnu Srbiju. Morao sam da ga odmah stavim na platno.
                 </p>
 
                 <hr>
@@ -94,37 +94,47 @@
                 <div class="mb-3">
                 <h6 class="mb-2">Komentari</h6>
                 <div id="commentsList" class="list-group">
-                    <!-- Dynamically added comments will appear here --><div class="comment-item d-flex mb-3 align-items-start">
-  <img src="./assets/img/zensko1.jpg" alt="avatar korisnika" class="comment-avatar me-3">
-  <div>
-    <div class="comment-username mb-1">Marina Kovacevic</div>
-    <div class="comment-text">Ovo je remek delo! Bravo!</div>
-  </div>
-</div>
-                    <div class="list-group-item small text-muted">Komentar 1</div>
-  <div class="list-group-item small text-muted">Komentar 2</div>
-  <div class="list-group-item small text-muted">Komentar 3</div>
-  <div class="list-group-item small text-muted">Komentar 4</div>
-  <div class="list-group-item small text-muted">Komentar 5</div>
-  <div class="list-group-item small text-muted">Komentar 6</div>
-  <div class="list-group-item small text-muted">Komentar 7</div>
-  <div class="list-group-item small text-muted">Komentar 8</div>
-  <div class="list-group-item small text-muted">Komentar 9</div>
-  <div class="list-group-item small text-muted">Komentar 10</div>
-  <div class="list-group-item small text-muted">Komentar 1</div>
-  <div class="list-group-item small text-muted">Komentar 2</div>
-  <div class="list-group-item small text-muted">Komentar 3</div>
-  <div class="list-group-item small text-muted">Komentar 4</div>
-  <div class="list-group-item small text-muted">Komentar 5</div>
-  <div class="list-group-item small text-muted">Komentar 6</div>
-  <div class="list-group-item small text-muted">Komentar 7</div>
-  <div class="list-group-item small text-muted">Komentar 8</div>
-  <div class="list-group-item small text-muted">Komentar 9</div>
-  <div class="list-group-item small text-muted">Komentar 10</div>
+                    <!-- Dinamicki komentari treba da udju ovde ali to cu kasnije//LUKA --><div class="comment-item d-flex mb-3 align-items-start">
+                <a href="umetnik.html"><img src="./assets/img/zensko1.jpg" alt="avatar korisnika" class="comment-avatar me-3"></a>
+                <div>
+                    <div class="comment-username mb-1">
+                        <a href="umetnik.html" class="text-decoration-none" style="color: #555;">Marina Kovacevic</a>
+                    </div>    
+                    <div class="comment-text">Ovo je remek delo! Bravo!</div>
+                </div>
+                </div>
+                <div class="comment-item d-flex mb-3 align-items-start">
+                <a href="ziri.html"><img src="./assets/img/musko1.jpg" alt="avatar korisnika" class="comment-avatar me-3"></a>
+                <div>
+                    <div class="comment-username mb-1">
+                    <a href="ziri.html" class="text-decoration-none" style="color: #555;">Aleksandar Marovic</a>
+                    </div>
+                    <div class="comment-text">Sa ovakvim radom ozbiljno pretendujes na pobednika! Svaka cast Nikola!</div>
+                </div>
+                </div>
+                <div class="list-group-item small text-muted">Komentar 1</div>
+                <div class="list-group-item small text-muted">Komentar 2</div>
+                <div class="list-group-item small text-muted">Komentar 3</div>
+                <div class="list-group-item small text-muted">Komentar 4</div>
+                <div class="list-group-item small text-muted">Komentar 5</div>
+                <div class="list-group-item small text-muted">Komentar 6</div>
+                <div class="list-group-item small text-muted">Komentar 7</div>
+                <div class="list-group-item small text-muted">Komentar 8</div>
+                <div class="list-group-item small text-muted">Komentar 9</div>
+                <div class="list-group-item small text-muted">Komentar 10</div>
+                <div class="list-group-item small text-muted">Komentar 1</div>
+                <div class="list-group-item small text-muted">Komentar 2</div>
+                <div class="list-group-item small text-muted">Komentar 3</div>
+                <div class="list-group-item small text-muted">Komentar 4</div>
+                <div class="list-group-item small text-muted">Komentar 5</div>
+                <div class="list-group-item small text-muted">Komentar 6</div>
+                <div class="list-group-item small text-muted">Komentar 7</div>
+                <div class="list-group-item small text-muted">Komentar 8</div>
+                <div class="list-group-item small text-muted">Komentar 9</div>
+                <div class="list-group-item small text-muted">Komentar 10</div>
                 </div>
                 </div>
 
-                <!-- Dodaj komentar -->
                 <div class="input-group">
                 <input id="commentInput" type="text" class="form-control" placeholder="Napiši komentar..." aria-label="Komentar">
                 <button id="addCommentBtn" class="btn btn-primary" type="button">Dodaj</button>
