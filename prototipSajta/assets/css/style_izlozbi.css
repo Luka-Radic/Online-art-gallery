@@ -135,3 +135,102 @@
 .legend-portret { background-color: red; }
 .legend-arhitektura { background-color: blue; }
 .legend-slobodna { background-color: gold; }
+
+.preview-image-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #f5f5f5;
+}
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.artist-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #eee;
+}
+
+.star-rating .star {
+  font-size: 1.25rem;
+  cursor: pointer;
+  user-select: none;
+  color: #f1c40f;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.star-rating .star {
+  color: #dcdcdc;
+}
+
+.star-rating .star.filled {
+  color: #f1c40f;
+}
+
+#commentsList .list-group-item {
+  font-size: 0.95rem;
+}
+
+@media (max-width: 767px) {
+  .preview-image-wrap {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.col-md-5 > .card {
+  max-height: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+#commentsList {
+  flex-grow: 1;
+  min-height: 200px;
+  max-height: 380px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+.input-group {
+  margin-top: auto;
+}
+
+.comment-item > div {
+  padding-right: 10px;
+}
+.comment-avatar {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.comment-username {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.comment-text {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #222;
+
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+.image-description-container {
+  min-height: 100px;
+  max-height: 100px;   /* ili koliko želiš */
+  overflow-y: auto;    /* pojaviće se skrol ako treba */
+  padding-right: 8px;  /* da tekst ne lepi skrol */
+}
