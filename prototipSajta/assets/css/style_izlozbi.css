@@ -103,28 +103,24 @@
 
 .gallery-title a.tema-priroda:hover {
     color: darkgreen;
-    /* border-bottom-color: darkgreen;  <-- ukloni ili zakomentariši ako ne želiš ivicu */
     transform: scale(1.1);
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .gallery-title a.tema-portret:hover {
     color: darkred;
-    /* border-bottom-color: darkred; */
     transform: scale(1.1);
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .gallery-title a.tema-arhitektura:hover {
     color: darkblue;
-    /* border-bottom-color: darkblue; */
     transform: scale(1.1);
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .gallery-title a.tema-slobodna:hover {
     color: darkgoldenrod;
-    /* border-bottom-color: darkgoldenrod; */
     transform: scale(1.1);
     transition: transform 0.3s ease, color 0.3s ease;
 }
