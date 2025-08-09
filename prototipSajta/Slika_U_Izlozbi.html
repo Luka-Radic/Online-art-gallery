@@ -20,12 +20,12 @@
     </nav>
 
     <header>
-        <nav class="cointer navbar navbar-expand-lg navbar-light fs-4">
-            <p class="text-dark text-align-left">
-                <img src="./assets/img/icon.jpg" style="width: 40px; height: 40px;" alt="[icon]">RealArt team</p>
+        <nav class="container navbar navbar-expand-lg navbar-light fs-4">
+            <p class="text-dark text-align-left"> 
+                <img src="./assets/img/icon.jpg" style="width: 40px; height: 40px;" alt="[icon]"> RealArt team 
+            </p>
             <div class="container justify-content-center w-auto">
-                
-                <ul class="nav navbar-expand-sm navbar-nav ">
+                <ul class="nav navbar-expand-sm navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link active" href="pocetna.html">Pocetna</a>
                     </li>
@@ -40,11 +40,11 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="galerija.html">Radovi</a>
-                    </li>    
+                    </li>
                 </ul>
             </div>
             <div class="">
-                <a class="fs-5 text-danger" href="login.html">Log in</a>
+                <a class="fs-5 text-danger" href="login.html">Log in</a> &nbsp;&nbsp;
                 <a class="fs-5 text-danger" href="signup.html">Sign up</a>
             </div>
         </nav>
@@ -84,15 +84,18 @@
 
                 <!-- naslov/kratak opis -->
                 <h4 class="mb-2" id="workTitle">Priroda u pokretu</h4>
-                <p class="text-muted" id="workDescription">
-                Prelepi pejzaž koji sam video dok sam planinario kroz Zapadnu Srbiju. Morao sam da ga odmah stavim na platno.
-                </p>
+
+                <div class="image-description-container">
+                    <p class="text-muted" id="workDescription">
+                        Prelepi pejzaž koji sam video dok sam planinario kroz Zapadnu Srbiju. Morao sam da ga odmah stavim na platno.
+                    </p>
+                </div>
 
                 <hr>
 
                 <!-- Komentari -->
                 <div class="mb-3">
-                <h6 class="mb-2">Komentari</h6>
+                <h6 class="mb-2 fs-5">Komentari</h6>
                 <div id="commentsList" class="list-group">
                     <!-- Dinamicki komentari treba da udju ovde ali to cu kasnije//LUKA --><div class="comment-item d-flex mb-3 align-items-start">
                 <a href="umetnik.html"><img src="./assets/img/zensko1.jpg" alt="avatar korisnika" class="comment-avatar me-3"></a>
@@ -109,10 +112,64 @@
                     <div class="comment-username mb-1">
                     <a href="ziri.html" class="text-decoration-none" style="color: #555;">Aleksandar Marovic</a>
                     </div>
-                    <div class="comment-text">Sa ovakvim radom ozbiljno pretendujes na pobednika! Svaka cast Nikola!</div>
+                    <div class="comment-text">Sa ovakvim radom ozbiljno pretendujes na pobednika izlozbe! Svaka cast Nikola!</div>
                 </div>
                 </div>
-                <div class="list-group-item small text-muted">Komentar 1</div>
+                <div class="comment-item d-flex mb-3 align-items-start">
+                <a href="umetnik.html"><img src="./assets/img/zensko1.jpg" alt="avatar korisnika" class="comment-avatar me-3"></a>
+                <div>
+                    <div class="comment-username mb-1">
+                    <a href="umetnik.html" class="text-decoration-none" style="color: #555;">Marina Kovacevic</a>
+                    </div>    
+                    <div class="comment-text">Slazem se sa tobom Aleksandre, ovo bas zasluzuje pobedu.</div>
+                </div>
+                </div>
+                <div class="comment-item d-flex mb-3 align-items-start">
+                <img src="./assets/img/musko2.jpg" alt="avatar korisnika" class="comment-avatar me-3">
+                <div>
+                    <div class="comment-username mb-1">
+                    <a class="text-decoration-none" style="color: #555;">Nikola Jovic</a>
+                    </div>
+                    <div class="comment-text">Hvala na lepim komentarima. Stvarno puno znace :)</div>
+                </div>
+                </div>
+                <div class="comment-item d-flex mb-3 align-items-start">
+                <a href="umetnik.html"><img src="./assets/img/zensko1.jpg" alt="avatar korisnika" class="comment-avatar me-3"></a>
+                <div>
+                    <div class="comment-username mb-1">
+                    <a href="umetnik.html" class="text-decoration-none" style="color: #555;">Marina Kovacevic</a>
+                    </div>    
+                    <div class="comment-text">Nema na cemu Nikola. Uvek sam tu da podrzim kolegu umetnika ;)</div>
+                </div>
+                </div>
+                <div class="comment-item d-flex mb-3 align-items-start">
+                <img src="./assets/img/musko2.jpg" alt="avatar korisnika" class="comment-avatar me-3">
+                <div>
+                    <div class="comment-username mb-1">
+                    <a class="text-decoration-none" style="color: #555;">Nikola Jovic</a>
+                    </div>
+                    <div class="comment-text">Hoces na date Marina? Znam jedno bas cool mesto.</div>
+                </div>
+                </div>
+                <div class="comment-item d-flex mb-3 align-items-start">
+                <a href="umetnik.html"><img src="./assets/img/zensko1.jpg" alt="avatar korisnika" class="comment-avatar me-3"></a>
+                <div>
+                    <div class="comment-username mb-1">
+                    <a href="umetnik.html" class="text-decoration-none" style="color: #555;">Marina Kovacevic</a>
+                    </div>    
+                    <div class="comment-text">Ne svidja mi se bas toliko tvoj rad...</div>
+                </div>
+                </div>
+                <div class="comment-item d-flex mb-3 align-items-start">
+                <img src="./assets/img/musko2.jpg" alt="avatar korisnika" class="comment-avatar me-3">
+                <div>
+                    <div class="comment-username mb-1">
+                    <a class="text-decoration-none" style="color: #555;">Nikola Jovic</a>
+                    </div>
+                    <div class="comment-text">:(</div>
+                </div>
+                </div>
+                <!--<div class="list-group-item small text-muted">Komentar 1</div>
                 <div class="list-group-item small text-muted">Komentar 2</div>
                 <div class="list-group-item small text-muted">Komentar 3</div>
                 <div class="list-group-item small text-muted">Komentar 4</div>
@@ -131,7 +188,7 @@
                 <div class="list-group-item small text-muted">Komentar 7</div>
                 <div class="list-group-item small text-muted">Komentar 8</div>
                 <div class="list-group-item small text-muted">Komentar 9</div>
-                <div class="list-group-item small text-muted">Komentar 10</div>
+                <div class="list-group-item small text-muted">Komentar 10</div>-->
                 </div>
                 </div>
 
