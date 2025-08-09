@@ -56,12 +56,17 @@ body::before {
   border: none;
   outline: none;
   font-size: 16px;
+  border-radius: 25px;
 }
 
 .search-button {
   border: none;
   background-color: white;
   font-size: large;
+}
+
+.filter-button{
+  border-radius: 50px;
 }
 
 
