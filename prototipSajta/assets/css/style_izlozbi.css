@@ -136,11 +136,8 @@
 .legend-arhitektura { background-color: blue; }
 .legend-slobodna { background-color: gold; }
 
-
-
 .preview-image-wrap {
   width: 100%;
-  /* Pravi kvadratnu površinu koja se širi u visinu prema širini kolone */
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 8px;
@@ -153,7 +150,6 @@
   display: block;
 }
 
-/* Artist avatar */
 .artist-avatar {
   width: 48px;
   height: 48px;
@@ -162,67 +158,61 @@
   border: 2px solid #eee;
 }
 
-/* Stars */
 .star-rating .star {
   font-size: 1.25rem;
   cursor: pointer;
   user-select: none;
-  color: #f1c40f; /* zvezdice su zlatne kada su pune */
+  color: #f1c40f;
   margin-left: 2px;
   margin-right: 2px;
 }
 
-/* Ensure empty star color is subtle */
 .star-rating .star {
   color: #dcdcdc;
 }
 
-/* When filled we replace char with ★; JS toggles textContent */
 .star-rating .star.filled {
   color: #f1c40f;
 }
 
-/* Comments list style */
 #commentsList .list-group-item {
   font-size: 0.95rem;
 }
 
-/* Responsive tweaks */
 @media (max-width: 767px) {
   .preview-image-wrap {
-    aspect-ratio: 4 / 3; /* na malim ekranima možda više visine, prilagodi po želji */
+    aspect-ratio: 4 / 3;
   }
 }
 
 .col-md-5 > .card {
-  max-height: 800px;       /* ili height ako želiš fiksno */
+  max-height: 800px;
   display: flex;
   flex-direction: column;
 }
 
 #commentsList {
-  flex-grow: 1;            /* zauzima sav preostali prostor */
-  min-height: 150px;       /* minimalna visina */
-  max-height: 400px;       /* maksimalna visina */
+  flex-grow: 1;
+  min-height: 150px;
+  max-height: 400px;
   overflow-y: auto;
   margin-bottom: 1rem;
 }
 
 .input-group {
-  margin-top: auto; /* gura textbox na dno unutar fleks kontejnjera */
+  margin-top: auto;
 }
 
-.comment-item {
-  /* fleks kontejner, vertikalno poravnanje */
+.comment-item > div {
+  padding-right: 10px;
 }
-
 .comment-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 48px;
+  height: 48px;
   object-fit: cover;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
-
 .comment-username {
   font-size: 0.85rem;
   font-weight: 600;
@@ -230,7 +220,11 @@
 }
 
 .comment-text {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 400;
   color: #222;
+
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
