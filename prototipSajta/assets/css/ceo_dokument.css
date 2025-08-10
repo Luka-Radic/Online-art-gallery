@@ -7,7 +7,35 @@ Ovo je back dugme ako treba negde stavite isto ovo: <a href="prikaz_izlozbe.html
     border: 1px solid black;
  }
 
-pozadina ako se odlucimo da dodamo preko celog sajta
+
+.search-container {
+  display: flex;
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  border-radius: 25px;
+}
+
+.search-button {
+  border: none;
+  background-color: white;
+  font-size: large;
+  border-radius: 30px;
+}
+
+
 body {
     margin: 0;
     font-family: sans-serif;
