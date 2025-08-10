@@ -104,3 +104,30 @@ body::before {
 .user-chip:hover .chip-avatar {
   border-color: #0d6efd;
 }
+
+.upload-form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-radius: 50px;
+  box-shadow: 0 2px 8px rgba(141, 171, 219, 0.1);
+}
+
+.upload-input {
+  flex-grow: 1;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 50px;
+}
+
+.upload-btn {
+  max-width: 150px;
+  width: 100%;
+  border-radius: 50px;
+}
+

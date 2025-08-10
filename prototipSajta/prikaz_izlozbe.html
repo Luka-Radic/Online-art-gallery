@@ -202,6 +202,22 @@
             </div>
         </div>
     </div>
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 class="fst-italic text-muted text-center mt-4">Zelite da dodate Vašu sliku?</h3>
+            </div>
+        </div>
+        <div class="row mt-4 mb-4">
+            <div class="col-sm-12">
+                <form action="/upload" method="POST" enctype="multipart/form-data"
+                    class="upload-form d-flex align-items-center gap-3 p-3 shadow-sm bg-light">
+                    <input type="file" name="image" accept="image/*" required class="form-control upload-input" />
+                    <button type="submit" class="btn btn-secondary upload-btn">Dodaj sliku</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
