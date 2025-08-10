@@ -1,26 +1,3 @@
-/*
-body {
-    background: rgba(151, 131, 123, 0.5) url("../img/galerija_pozadina.webp");
-    background-size: cover;
-    font-family: sans-serif;
-}
-
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background:
-    linear-gradient(rgba(253, 253, 253, 0.7), rgba(255, 255, 255, 0.7)),
-    url('assets/img/background.jpg') no-repeat center center;
-    background-size: cover;
-    filter: brightness(100%) blur(100%); 
-    z-index: -1;
-}
-*/
-
 
 /*----------Stranica prikaza svih korisnika-----------*/
 .card {
