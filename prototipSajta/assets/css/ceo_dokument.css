@@ -6,3 +6,29 @@ Ovo je back dugme ako treba negde stavite isto ovo: <a href="prikaz_izlozbe.html
 .back-button:hover {
     border: 1px solid black;
  }
+
+pozadina ako se odlucimo da dodamo preko celog sajta
+body {
+    margin: 0;
+    font-family: sans-serif;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Pozadina sa belim providnim slojem */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background: 
+        linear-gradient(rgba(253, 253, 253, 0.5), rgba(255, 255, 255, 0.5)),
+        url("../img/galerija_pozadina.webp") no-repeat center center;
+    background-size: cover;
+
+    filter: brightness(100%) blur(5px); /* Blur smanjen na 5px */
+    z-index: -1; /* Iza sadržaja */
+}
