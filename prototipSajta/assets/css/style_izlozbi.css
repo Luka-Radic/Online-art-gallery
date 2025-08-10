@@ -194,7 +194,7 @@
 #commentsList {
   flex-grow: 1;
   min-height: 200px;
-  max-height: 380px;
+  max-height: 365px;
   overflow-y: auto;
   margin-bottom: 1rem;
 }
