@@ -57,9 +57,19 @@
             <div class="col-12 col-md-7">
             <div class="preview-image-wrap">
                 <img id="previewImage" class="preview-image" src="./assets/img/priroda1.jpg" alt="Glavni rad">
+                <button class="fullscreen-button" data-bs-toggle="modal" data-bs-target="#myModal">⛶</button>
             </div>
             </div>
-
+            <!-- Fullscreen Image Modal -->
+            <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                <div class="modal-body">
+                    <img src="./assets/img/priroda1.jpg" alt="Fullscreen Image">
+                </div>
+                </div>
+            </div>
+            </div>
             <!-- Desna strana: opis, umetnik i zvezdice, komentari -->
             <div class="col-12 col-md-5">
             <div class="card p-3 shadow-sm h-100">
@@ -202,7 +212,6 @@
         </div>
         <a href="prikaz_izlozbe.html" class="btn btn-light back-button">⟸ Nazad</a>
     </div>  
-    
 </body>
 
 </html>
