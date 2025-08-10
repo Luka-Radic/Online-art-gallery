@@ -1,0 +1,8 @@
+/*
+Stavljajte ovde stilove koji se odnose na ceo dokument, ja sam stavila nesto za back dugme da bi bilo konzistentno kroz ceo sajt
+Ovo je back dugme ako treba negde stavite isto ovo: <a href="prikaz_izlozbe.html" class="btn btn-light back-button">⟸ Nazad</a>
+*/
+
+.back-button:hover {
+    border: 1px solid black;
+ }
