@@ -3,10 +3,9 @@
 
 <head>
     <title>PSI projekat - prototip</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    
+    <link rel="stylesheet" href="assets/css/styles_users.css">
 </head>
 
 <body>
@@ -23,10 +22,11 @@
 
     <header>
         <nav class="container navbar navbar-expand-lg navbar-light fs-4">
-            <p class="text-dark text-align-left"> 
-                <img src="./assets/img/icon.jpg" style="width: 40px; height: 40px;" alt="[icon]"> RealArt team </p>
+            <p class="text-dark text-align-left">
+                <img src="./assets/img/icon.jpg" style="width: 40px; height: 40px;" alt="[icon]"> RealArt team
+            </p>
             <div class="container justify-content-center w-auto">
-                
+
                 <ul class="nav navbar-expand-sm navbar-nav ">
                     <li class="nav-item">
                         <a class="nav-link active" href="pocetna.html">Pocetna</a>
@@ -53,10 +53,291 @@
         </nav>
     </header>
 
+    <div class="container fluid mt-4">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 class="fst-italic text-muted text-center mt-4">Najskoriji radovi</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 mx-auto d-flex align-items-stretch">
+                <div class="card m-4 h-100 d-flex flex-column">
+                    <img src="assets/img/slika1.jpg" alt="slika1" class="card-img-top img-fluid">
+                    <div class="card-body d-flex flex-column">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <button type="button" class="badge bg-success">Novo</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4 class="card-title">Puls prirode</h4>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-sm-12">
+                                <p class="card-text">Marina Kovačević</p>
+                            </div>
+                        </div>
+                        <div class="row mt-auto">
+                            <div class="col-sm-6 d-flex flex-column justify-content-between">
+                                <a href="umetnik.html" class="btn btn-secondary">Pogledaj profil</a>
+                            </div>
+                            <div class="col-sm-6 d-flex flex-column justify-content-between">
+                                <a href="#" class="btn btn-secondary">Pogledaj sliku</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <h3>pregled najskorije objavljenih radova</h3>
-    <h1>[Funkcionalnost pregled po umetniku]</h1>
-    <h1>[Funkcionalnost pregled po temi]</h1>
+    <div class="container fluid mt-4 mb-4">
+        <div class="row">
+            <div class="fst-italic text-muted text-center mt-5">
+                <h3>Zanima Vas odredjen umetnik?</h3>
+            </div>
+        </div>
+        <div class="container-fluid mt-4">
+            <div class="row text-center">
+                <div class="search-container">
+                    <input type="text" id="artistSearchInput" class="search-input" placeholder="Search...(npr. Marina ili Nikola)">
+                    <button class="search-button" id="artistSearchBtn">⌕</button>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-4 d-flex align-items-stretch">
+                <div class="card artist-card m-4 h-100 d-flex flex-column hidden" data-artist="nikola"
+                    data-tema="priroda">
+                    <img src="assets/img/priroda1.jpg" alt="priroda1" class="card-img-top img-fluid">
+                    <div class="card-body d-flex flex-column">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <button type="button" class="badge bg-warning">Nosilac</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4 class="card-title">Šapat obale</h4>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-sm-12">
+                                <p class="card-text">Nikola Jović</p>
+                            </div>
+                        </div>
+                        <div class="row mt-auto">
+                            <div class="col-sm-6 d-flex flex-column justify-content-between">
+                                <a href="#" class="btn btn-secondary">Pogledaj profil</a>
+                            </div>
+                            <div class="col-sm-6 d-flex flex-column justify-content-between">
+                                <a href="SlikaIzl2.html" class="btn btn-secondary">Pogledaj sliku</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4 justify-content-center">
+                <div class="col-sm-4 d-flex align-items-stretch">
+                    <div class="card artist-card m-4 h-100 d-flex flex-column hidden" data-artist="marina"
+                        data-tema="priroda">
+                        <img src="assets/img/slika1.jpg" alt="slika2" class="card-img-top img-fluid">
+                        <div class="card-body d-flex flex-column">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h4 class="card-title">Puls prirode</h4>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-sm-12">
+                                    <p class="card-text">Marina Kovačević</p>
+                                </div>
+                            </div>
+                            <div class="row mt-auto">
+                                <div class="col-sm-6 d-flex flex-column justify-content-between">
+                                    <a href="umetnik.html" class="btn btn-secondary">Pogledaj profil</a>
+                                </div>
+                                <div class="col-sm-6 d-flex flex-column justify-content-between">
+                                    <a href="#" class="btn btn-secondary">Pogledaj sliku</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4 justify-content-center">
+                <div class="col-sm-4 d-flex align-items-stretch">
+                    <div class="card artist-card m-4 h-100 d-flex flex-column hidden" data-artist="marina"
+                        data-tema="priroda">
+                        <img src="assets/img/slika2.jpg" alt="slika2" class="card-img-top img-fluid">
+                        <div class="card-body d-flex flex-column">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h4 class="card-title">Plamen šume - realizam</h4>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-sm-12">
+                                    <p class="card-text">Marina Kovačević</p>
+                                </div>
+                            </div>
+                            <div class="row mt-auto">
+                                <div class="col-sm-6 d-flex flex-column justify-content-between">
+                                    <a href="umetnik.html" class="btn btn-secondary">Pogledaj profil</a>
+                                </div>
+                                <div class="col-sm-6 d-flex flex-column justify-content-between">
+                                    <a href="#" class="btn btn-secondary">Pogledaj sliku</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="row">
+                <div class="fst-italic text-muted text-center mt-4">
+                    <h3>Zanima Vas odredjena tema?</h3>
+                </div>
+            </div>
+            <div class="container-fluid mt-4">
+                <div class="row text-center">
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="temaSearchInput" placeholder="Search..(npr. Priroda)">
+                        <button class="search-button" id="temaSearchBtn">⌕</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-4 d-flex align-items-stretch">
+                <div class="card tema-card m-4 h-100 d-flex flex-column hidden" data-artist="nikola"
+                    data-tema="priroda">
+                    <img src="assets/img/priroda1.jpg" alt="priroda1" class="card-img-top img-fluid">
+                    <div class="card-body d-flex flex-column">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <button type="button" class="badge bg-warning">Nosilac</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4 class="card-title">Šapat obale</h4>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-sm-12">
+                                <p class="card-text">Nikola Jović</p>
+                            </div>
+                        </div>
+                        <div class="row mt-auto">
+                            <div class="col-sm-6 d-flex flex-column justify-content-between">
+                                <a href="#" class="btn btn-secondary">Pogledaj profil</a>
+                            </div>
+                            <div class="col-sm-6 d-flex flex-column justify-content-between">
+                                <a href="SlikaIzl2.html" class="btn btn-secondary">Pogledaj sliku</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4 justify-content-center">
+                <div class="col-sm-4 d-flex align-items-stretch">
+                    <div class="card tema-card m-4 h-100 d-flex flex-column hidden" data-artist="marina"
+                        data-tema="priroda">
+                        <img src="assets/img/slika1.jpg" alt="slika2" class="card-img-top img-fluid">
+                        <div class="card-body d-flex flex-column">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h4 class="card-title">Puls prirode</h4>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-sm-12">
+                                    <p class="card-text">Marina Kovačević</p>
+                                </div>
+                            </div>
+                            <div class="row mt-auto">
+                                <div class="col-sm-6 d-flex flex-column justify-content-between">
+                                    <a href="umetnik.html" class="btn btn-secondary">Pogledaj profil</a>
+                                </div>
+                                <div class="col-sm-6 d-flex flex-column justify-content-between">
+                                    <a href="#" class="btn btn-secondary">Pogledaj sliku</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4 justify-content-center">
+                <div class="col-sm-4 mb-4 d-flex align-items-stretch">
+                    <div class="card tema-card m-4 h-100 d-flex flex-column hidden" data-artist="marina"
+                        data-tema="priroda">
+                        <img src="assets/img/slika2.jpg" alt="slika2" class="card-img-top img-fluid">
+                        <div class="card-body d-flex flex-column">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h4 class="card-title">Plamen šume - realizam</h4>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-sm-12">
+                                    <p class="card-text">Marina Kovačević</p>
+                                </div>
+                            </div>
+                            <div class="row mt-auto">
+                                <div class="col-sm-6 d-flex flex-column justify-content-between">
+                                    <a href="umetnik.html" class="btn btn-secondary">Pogledaj profil</a>
+                                </div>
+                                <div class="col-sm-6 d-flex flex-column justify-content-between">
+                                    <a href="#" class="btn btn-secondary">Pogledaj sliku</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('artistSearchBtn').addEventListener('click', function () {
+            const query = document.getElementById('artistSearchInput').value.trim().toLowerCase();
+
+            const cards = document.querySelectorAll('.artist-card');
+            cards.forEach(card => {
+                const artistName = card.querySelector('.card-text')?.textContent.toLowerCase() || '';
+                const matches = artistName.includes(query);
+
+                card.classList.toggle('hidden', !matches);
+            });
+        });
+
+        document.getElementById('artistSearchInput').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                document.getElementById('artistSearchBtn').click();
+            }
+        });
+
+        document.getElementById('temaSearchBtn').addEventListener('click', function () {
+            const query = document.getElementById('temaSearchInput').value.trim().toLowerCase();
+
+            const cards = document.querySelectorAll('.tema-card');
+            cards.forEach(card => {
+                const tema = card.getAttribute('data-tema')?.toLowerCase() || '';
+                const matches = tema.includes(query);
+
+                card.classList.toggle('hidden', !matches);
+            });
+        });
+
+        document.getElementById('temaSearchInput').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                document.getElementById('temaSearchBtn').click();
+            }
+        });
+    </script>
 
 </body>
 
