@@ -77,25 +77,18 @@
                 <button type="submit" class="btn btn-success">Potvrdi izložbu</button>
             </form>
         </div>
-    
-        <!--<h4>iskljucicu da ovo ne radi al neka ostane ko god da pravi funkcionalnost za dodavanje slika</h4>
-        <form action="/upload" method="POST" enctype="multipart/form-data">
-            <input type="file" name="image" accept="image/*" required />
-            <input type="submit" value="Upload Image" />
-        </form>-->
 
-        <div class="container-fluid">
-            <div class="mb-4 text-center">
-                <label class="form-label fw-bold">Prikaži izložbe:</label><br>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="filterAktivne" checked onchange="filterExhibitions()">
-                    <label class="form-check-label" for="filterAktivne">Aktivne</label>
-                </div>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="filterZatvorene" checked onchange="filterExhibitions()">
-                    <label class="form-check-label" for="filterZatvorene">Zatvorene</label>
+            <div class="search-container d-flex gap-2 align-items-center">
+                <input type="text" id="artistSearchInput" class="search-input" placeholder="Pretražite izložbu">
+                <div class="btn-group">
+                    <button class="search-button" id="artistSearchBtn">⌕</button>
+                    <button type="button" class="search-button filter-button dropdown-toggle"
+                        data-bs-toggle="dropdown">≡</button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item filter-option" data-filter="sve" href="#">Sve izložbe</a></li>
+                        <li><a class="dropdown-item filter-option" data-filter="aktivna" href="#">Aktivne izložbe</a></li>
+                        <li><a class="dropdown-item filter-option" data-filter="zatvorena" href="#">Zatvorene izložbe</a></li>
+                    </ul>
                 </div>
             </div>
 
@@ -171,22 +164,49 @@
             }
         }
 
-        function filterExhibitions() {
-            const showAktivne = document.getElementById("filterAktivne").checked;
-            const showZatvorene = document.getElementById("filterZatvorene").checked;
-            const cards = document.querySelectorAll(".gallery-card");
+        const searchInput = document.getElementById('artistSearchInput');
+        const filterOptions = document.querySelectorAll('.filter-option');
+        let currentStatusFilter = 'sve'; // default prikazuje sve
+
+        function filterCards() {
+            const searchText = searchInput.value.toLowerCase();
+            const cards = document.querySelectorAll('.gallery-card');
 
             cards.forEach(card => {
-                const status = card.getAttribute("data-status");
+                const title = card.querySelector('.gallery-title a').textContent.toLowerCase();
+                const status = card.getAttribute('data-status'); // očekuje se "aktivna" ili "zatvorena"
 
-                if ((status === "aktivna" && showAktivne) || 
-                    (status === "zatvorena" && showZatvorene)) {
-                    card.style.display = "block";
-                } else {
-                    card.style.display = "none";
-                }
+                const matchesText = title.includes(searchText);
+                const matchesStatus = (currentStatusFilter === 'sve') || (status === currentStatusFilter);
+
+                card.style.display = (matchesText && matchesStatus) ? '' : 'none';
             });
         }
+
+searchInput.addEventListener('input', filterCards);
+
+filterOptions.forEach(option => {
+    option.addEventListener('click', e => {
+        e.preventDefault();
+        currentStatusFilter = option.getAttribute('data-filter');
+        filterCards();
+    });
+});
+
+        document.getElementById('artistSearchInput').addEventListener('input', function() {
+            const filter = this.value.toLowerCase();
+            const cards = document.querySelectorAll('.gallery-card');
+
+            cards.forEach(card => {
+                const title = card.querySelector('.gallery-title a').textContent.toLowerCase();
+
+                if (title.includes(filter)) {
+                    card.style.display = '';  // prikaži karticu
+                } else {
+                    card.style.display = 'none';  // sakrij karticu
+                }
+            });
+        });
     </script>
 </body>
 </html>
