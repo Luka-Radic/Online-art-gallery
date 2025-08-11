@@ -214,7 +214,7 @@
 }
 
 .col-md-5 > .card {
-  max-height: 800px;
+  max-height: 747px;
   display: flex;
   flex-direction: column;
 }
@@ -257,8 +257,8 @@
   word-break: break-word;
 }
 .image-description-container {
-  min-height: 100px;
-  max-height: 100px;
+  min-height: 85px;
+  max-height: 85px;
   overflow-y: auto;
   padding-right: 8px; 
 }
@@ -288,4 +288,17 @@
   background-color: white;
   font-size: large;
   border-radius: 30px;
+}
+
+.star {
+    cursor: pointer;
+    font-size: 24px;
+    color: transparent; 
+    -webkit-text-stroke: 1px #ccc;
+    transition: color 0.3s;
+}
+
+.star.selected {
+    color: gold;
+    -webkit-text-stroke: 0;
 }
