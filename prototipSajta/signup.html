@@ -55,7 +55,7 @@
     </header>
 
     <div class="container mt-5">
-    <form>
+    <form id="registracijaForm">
         <div class="mb-3">
             <label for="ime" class="form-label">Ime</label>
             <input type="text" class="form-control" id="ime" name="ime" required>
@@ -77,7 +77,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="potvrdaLozinke" class="form-label">Potvrdi lozinku</label>
+            <label for="potvrdaLozinke" class="form-label">Potvrda lozinke</label>
             <input type="password" class="form-control" id="potvrdaLozinke" name="potvrdaLozinke" minlength="8" required>
         </div>
 
@@ -104,3 +104,21 @@
 </body>
 
 </html>
+
+<script>
+    document.getElementById("registracijaForm").addEventListener("submit", function(event) {
+        let lozinka = document.getElementById("lozinka").value;
+        let potvrda = document.getElementById("potvrdaLozinke").value;
+
+        if (lozinka.length < 8) {
+            alert("Lozinka mora imati najmanje 8 karaktera!");
+            event.preventDefault();
+            return;
+        }
+
+        if (lozinka !== potvrda) {
+            alert("Lozinke se ne poklapaju!");
+            event.preventDefault();
+        }
+    });
+</script>
