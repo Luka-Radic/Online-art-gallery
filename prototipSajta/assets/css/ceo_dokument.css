@@ -67,6 +67,15 @@ body::before {
   border-radius: 50px;
 }
 
+a {
+  display: inline-block;             
+}
+
+a:hover {
+  color: rgb(70, 0, 0);
+  transform: scale(1.02);
+}
+
 /*
 .fancy-button {
   display: inline-block;
