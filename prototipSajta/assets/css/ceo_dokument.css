@@ -3,10 +3,38 @@ Stavljajte ovde stilove koji se odnose na ceo dokument, ja sam stavila nesto za 
 Ovo je back dugme ako treba negde stavite isto ovo: <a href="prikaz_izlozbe.html" class="btn btn-light back-button">⟸ Nazad</a>
 */
 
+body {
+    margin: 0;
+    font-family: sans-serif;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Pozadina sa belim providnim slojem */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background: 
+        linear-gradient(rgba(253, 253, 253, 0.5), rgba(255, 255, 255, 0.5)),
+        url("../img/galerija_pozadina.webp") no-repeat center center;
+    background-size: cover;
+
+    filter: brightness(100%) blur(5px); 
+    z-index: -1; 
+}
+
 .back-button:hover {
     border: 1px solid black;
- }
+}
 
+.hidden{
+  display: none !important;
+}
 
 .search-container {
   display: flex;
@@ -35,75 +63,41 @@ Ovo je back dugme ako treba negde stavite isto ovo: <a href="prikaz_izlozbe.html
   border-radius: 30px;
 }
 
-
-body {
-    margin: 0;
-    font-family: sans-serif;
-    position: relative;
-    min-height: 100vh;
+.filter-button {
+  border-radius: 50px;
 }
 
-/* Pozadina sa belim providnim slojem */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    
-    background: 
-        linear-gradient(rgba(253, 253, 253, 0.5), rgba(255, 255, 255, 0.5)),
-        url("../img/galerija_pozadina.webp") no-repeat center center;
-    background-size: cover;
-
-    filter: brightness(100%) blur(5px); /* Blur smanjen na 5px */
-    z-index: -1; /* Iza sadržaja */
-}
-
-.user-chip {
-  background-color: #f8f9fa;
-  border: 1px solid #ced4da;
-  border-radius: 999px;
-  gap: 8px;
-  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
-  transition: all 0.25s ease;
+/*
+.fancy-button {
+  display: inline-block;
+  padding: 0.6em 1.2em;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #444;
+  background-color: #90dae6;
+  border: 2px solid #ccc;
+  border-radius: 0.5em;
   cursor: pointer;
-  padding-right: 0.6rem;
-  padding-left: 0.6rem;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', sans-serif;
+  letter-spacing: 0.4px;
 }
 
-.user-chip:hover {
-  background-color: #e2f0ff; /* light blue on hover */
-  border-color: #80bdff;     /* match the hover tone */
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
-  transform: translateY(-1px); /* slight lift on hover */
+.fancy-button:hover {
+  background-color: #6a7ade;
+  border-color: #9450ed;
 }
 
-.chip-label {
-  font-weight: 600;
-  font-style: italic;
-  font-size: 0.85rem;
-  color: #495057;
-  transition: color 0.2s ease;
+.fancy-button.active {
+  background-color: #d0d8e8;
+  border-color: #6e7f9c;
+  color: #2c3e50;
+  box-shadow: 0 0 0 3px rgba(110, 127, 156, 0.2);
 }
+*/
 
-.user-chip:hover .chip-label {
-  color: #0d6efd; /* Bootstrap primary blue on hover */
-}
 
-.chip-avatar {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid #dee2e6;
-  transition: border-color 0.3s ease;
-}
-
-.user-chip:hover .chip-avatar {
-  border-color: #0d6efd;
-}
+/* --------------Upload forma : Stranica Prikaz Izlozbe-------------- */
 
 .upload-form {
   max-width: 600px;

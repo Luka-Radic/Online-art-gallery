@@ -17,60 +17,8 @@
   display: block;
 }
 
-
-.filter-button {
-  border-radius: 50px;
-}
-
-
-.fancy-button {
-  display: inline-block;
-  padding: 0.6em 1.2em;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #444;
-  background-color: #90dae6;
-  border: 2px solid #ccc;
-  border-radius: 0.5em;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: 'Segoe UI', sans-serif;
-  letter-spacing: 0.4px;
-}
-
-.fancy-button:hover {
-  background-color: #6a7ade;
-  border-color: #9450ed;
-}
-
-.fancy-button.active {
-  background-color: #d0d8e8;
-  border-color: #6e7f9c;
-  color: #2c3e50;
-  box-shadow: 0 0 0 3px rgba(110, 127, 156, 0.2);
-}
-
-.hidden{
-  display: none !important;
-}
-
-.artist-card.hidden-artist,
-.artist-card.hidden-tema {
-    display: none;
-}
-
-.artist-card.show {
-  display: flex;
-}
-
-.artist-card {
-  transition: opacity 0.3s ease-in-out;
-}
-
-.artist-card.hidden {
-  opacity: 0;
-  pointer-events: none;
-  position: absolute;
+.text-shadow {
+  text-shadow: 0.5px 0.5px 0px rgb(46, 39, 39);
 }
 
 
@@ -113,4 +61,26 @@
 
 .painting:hover {
   transform: scale(1.01);
+}
+
+
+/* ------------- Stranica Galerija -------------- */
+
+.artist-card.hidden-artist,
+.artist-card.hidden-tema {
+    display: none;
+}
+
+.artist-card.show {
+  display: flex;
+}
+
+.artist-card {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.artist-card.hidden {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
 }

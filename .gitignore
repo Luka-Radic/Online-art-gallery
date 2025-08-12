@@ -1,3 +1,6 @@
 gerrit_generisana_sifra.txt
-.tmp
 SSU_primer.docx
+*.tmp
+.*.docx
+~*.docx
+
