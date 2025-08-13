@@ -1,5 +1,6 @@
+/* Mina Sljivic i Ranko Stanojevic */
 
-/*----------Stranica prikaza svih korisnika-----------*/
+/*----------Stranica prikaza svih korisnika (Mina)-----------*/
 .card {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease;
@@ -18,7 +19,7 @@
 }
 
 
-/*---------Stranice Umetnika i Zirija----------- */
+/*---------Stranice Umetnika i Zirija (Mina)----------- */
 .user-img-container {
   display: flex;
   align-items: center;
@@ -70,7 +71,7 @@
 }
 
 
-/* ------------- Stranica Galerija -------------- */
+/* ------------- Stranica Galerija (Ranko)-------------- */
 
 .artist-card.hidden-artist,
 .artist-card.hidden-tema {

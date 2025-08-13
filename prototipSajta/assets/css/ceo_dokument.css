@@ -1,3 +1,4 @@
+/* ceo tim ima delove ovde */
 /*
 Stavljajte ovde stilove koji se odnose na ceo dokument, ja sam stavila nesto za back dugme da bi bilo konzistentno kroz ceo sajt
 Ovo je back dugme ako treba negde stavite isto ovo: <a href="prikaz_izlozbe.html" class="btn btn-light back-button">⟸ Nazad</a>
@@ -106,7 +107,7 @@ a:hover {
 */
 
 
-/* --------------Upload forma : Stranica Prikaz Izlozbe-------------- */
+/* -------------- Upload forma : Stranica Prikaz Izlozbe (Ranko)-------------- */
 
 .upload-form {
   max-width: 600px;
