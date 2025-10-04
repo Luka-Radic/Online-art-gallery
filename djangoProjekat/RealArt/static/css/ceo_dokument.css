@@ -1,0 +1,137 @@
+/* ceo tim ima delove ovde */
+/*
+Stavljajte ovde stilove koji se odnose na ceo dokument, ja sam stavila nesto za back dugme da bi bilo konzistentno kroz ceo sajt
+Ovo je back dugme ako treba negde stavite isto ovo: <a href="prikaz_izlozbe.html" class="btn btn-light back-button">⟸ Nazad</a>
+*/
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Pozadina sa belim providnim slojem */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background: 
+        linear-gradient(rgba(253, 253, 253, 0.5), rgba(255, 255, 255, 0.5)),
+        url("../img/galerija_pozadina.webp") no-repeat center center;
+    background-size: cover;
+
+    filter: brightness(100%) blur(5px); 
+    z-index: -1; 
+}
+
+.back-button:hover {
+    border: 1px solid black;
+}
+
+.hidden{
+  display: none !important;
+}
+
+.search-container {
+  display: flex;
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  border-radius: 25px;
+}
+
+.search-button {
+  border: none;
+  background-color: white;
+  font-size: large;
+  border-radius: 30px;
+}
+
+.filter-button {
+  border-radius: 50px;
+}
+
+a {
+  display: inline-block;             
+}
+
+a:hover {
+  color: rgb(70, 0, 0);
+  transform: scale(1.02);
+}
+
+/*
+.fancy-button {
+  display: inline-block;
+  padding: 0.6em 1.2em;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #444;
+  background-color: #90dae6;
+  border: 2px solid #ccc;
+  border-radius: 0.5em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', sans-serif;
+  letter-spacing: 0.4px;
+}
+
+.fancy-button:hover {
+  background-color: #6a7ade;
+  border-color: #9450ed;
+}
+
+.fancy-button.active {
+  background-color: #d0d8e8;
+  border-color: #6e7f9c;
+  color: #2c3e50;
+  box-shadow: 0 0 0 3px rgba(110, 127, 156, 0.2);
+}
+*/
+
+
+/* -------------- Upload forma : Stranica Prikaz Izlozbe (Ranko)-------------- */
+
+.upload-form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-radius: 50px;
+  box-shadow: 0 2px 8px rgba(141, 171, 219, 0.1);
+}
+
+.upload-input {
+  flex-grow: 1;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 50px;
+}
+
+.upload-btn {
+  max-width: 150px;
+  width: 100%;
+  border-radius: 50px;
+}
+

@@ -1,0 +1,93 @@
+/* Mina Sljivic i Ranko Stanojevic */
+
+/*----------Stranica prikaza svih korisnika (Mina)-----------*/
+.card {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card-img-top {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+
+/*---------Stranice Umetnika i Zirija (Mina)----------- */
+.user-img-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-img {
+  height: 80%;
+  max-height: 500px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+  margin: 5px;
+  border: 5px solid whitesmoke;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.user-description {
+  padding: 100px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.text-shadow {
+  text-shadow: 0.5px 0.5px 0px rgb(46, 39, 39);
+}
+
+.gallery-container {
+  align-items: flex-end;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  align-items: center;
+ /* mt-3 align-items-center p-4 shadow rounded bg-white*/
+}
+
+.gallery-container img {
+  margin: 2%;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  display: block;
+}
+
+.painting:hover {
+  transform: scale(1.01);
+}
+
+
+/* ------------- Stranica Galerija (Ranko)-------------- */
+
+.artist-card.hidden-artist,
+.artist-card.hidden-tema {
+    display: none;
+}
+
+.artist-card.show {
+  display: flex;
+}
+
+.artist-card {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.artist-card.hidden {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+}

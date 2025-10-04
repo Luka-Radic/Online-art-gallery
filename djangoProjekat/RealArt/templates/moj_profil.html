@@ -1,0 +1,53 @@
+{% extends "template.html" %}
+
+{% load static %}
+{% block title %}Moj profil{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 user-img-container">
+                <img src="{% static 'img/musko2.jpg' %}" alt="Slika korisnika" class="img-fluid user-img">
+            </div>
+            <div class="col-sm-6 user-description">
+                <h1>Nikola Jović</h1>
+                <p class="pb-4">username: nikola</p>
+                <h4>Status: Umetnik</h4>
+                
+                <div>Zelis da konkurises za zirija? 
+                    <a href="postani_ziri.html" class="text-danger"> Prijava</a>
+                </div>
+                
+                <br>
+                <h4>Prosečna ocena: 4.21/5</h4>
+                <h5>Zarađeno dosad: 6.08$</h5>
+                <br> <br>
+                <a href="{% url 'users' %}" class="btn btn-light back-button">⟸ Nazad</a>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="container gallery-container">
+        <div class="row">
+            <h4>Pregled radova:</h4>
+            <div class="col-sm-3">
+                <a href="Slika.html">
+                    <img src="{% static 'img/priroda1.jpg' %}" class="img-fluid painting" alt="slika1" name="slika1">
+                    <label for="slika1">Šapat obale</label>
+                </a>
+            </div>
+            <div class="col-sm-3"></div>
+            <div class="col-sm-3"></div>
+            <div class="col-sm-3"></div>
+        </div>
+    </div>
+
+    <br><br>
+
+{% endblock %}
+
+</body>
+
+</html>
+

@@ -1,0 +1,24 @@
+{% extends "template.html" %}
+
+{% load static %}
+{% block title %}Pocetna stranica{% endblock %}
+
+{% block content %}
+    <div class="container pt-0">
+        <div class="row p-5">
+            <div class="col-lg-6 d-flex align-items-center">
+                <div class="text-align-left align-self-center">
+                    <h1 class="text-danger"><b>RealArt</b></h1>
+                    <h2 class="">Mesto gde umetnost živi i diše</h2>
+                    <p>
+                        Uzivanje u umetnosti nikada nije bilo lakse — podelite svoj rad, istražite izložbe i povežite se sa umetničkom zajednicom :)
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-8 col-lg-6 ">
+                <img class="img-fluid img-thumbnail shadow" src="{% static 'img/main_painting.jpg' %}" alt="">
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
