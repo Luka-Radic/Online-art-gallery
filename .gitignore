@@ -4,4 +4,8 @@ SSU_primer.docx
 *.tmp
 .*.docx
 ~*.docx
-
+*.pyc
+__pycache__/
+.venv/
+**/migrations/*.py
+!**/migrations/__init__.py

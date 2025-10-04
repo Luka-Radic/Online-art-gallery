@@ -1,3 +1,5 @@
+import re
+
 from django.shortcuts import render
 
 # Create your views here.
@@ -12,3 +14,12 @@ def my_page(request):
 
 def login_page(request):
     return render(request, "login.html")
+
+def signup_page(request):
+    return render(request, "signup.html")
+
+def forgot_password(request):
+    return render(request, "zaboravljena_lozinka.html")
+
+def become_judge(request):
+    return render(request, "postani_ziri.html")

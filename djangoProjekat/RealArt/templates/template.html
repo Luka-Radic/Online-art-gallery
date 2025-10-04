@@ -55,8 +55,8 @@
 
             </div>
             <div class="">
-                <a class="fs-5 text-danger" href="#">Log in</a> &nbsp &nbsp
-                <a class="fs-5 text-danger" href="#">Sign up</a>
+                <a class="fs-5 text-danger" href="{% url 'login_page' %}">Log in</a> &nbsp &nbsp
+                <a class="fs-5 text-danger" href="{% url 'signup_page' %}">Sign up</a>
             </div>
         </nav>
     </header>
@@ -70,9 +70,9 @@
             </div>
             <div class="col-sm-7">
                 <p>Ukoliko vec imate nalog zelite da se prijavite: &nbsp
-                    <a href="#" class="alert-link">Log in</a> &nbsp
+                    <a href="{% url 'login_page' %}" class="alert-link">Log in</a> &nbsp
                     Nemate nalog? &nbsp
-                    <a href="#" class="alert-link">Sign up</a></p>
+                    <a href="{% url 'signup_page' %}" class="alert-link">Sign up</a></p>
             </div>
             <div class="col-sm-1">
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
