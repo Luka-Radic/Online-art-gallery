@@ -1,216 +1,60 @@
-<!-- Luka Radic  -->
-<!DOCTYPE html>
-<html lang="en">
+{% extends "template.html" %}
+{% load static %}
+{% block title %}Izložbe{% endblock %}
 
-<head>
-    <title>PSI projekat - prototip</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> 
-    <link rel="stylesheet" href="./assets/css/style_izlozbi.css">
-    <link rel="stylesheet" href="assets/css/ceo_dokument.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-</head>
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center text-danger mb-4">Pregled izložbi</h1>
 
-<body>
-
-    <nav class="navbar navbar-expand-lg bg-dark navbar-light">
-        <div class="container text-light">
-            <div class="w-100 d-flex justify-content-between">
-                <span class="">realart@gmail.com</span>
-                <span class="">263 1245 657</span>
-            </div>
+        <div class="text-center mb-4">
+            <button class="btn btn-primary" type="button" onclick="toggleFormu()">+ Napravi novu izložbu</button>
         </div>
-    </nav>
 
-    <header>
-        <nav class="container navbar navbar-expand-lg navbar-light fs-4">
-            <p class="text-dark text-align-left"> 
-                <img src="./assets/img/icon.jpg" style="width: 40px; height: 40px;" alt="[icon]"> RealArt team 
-            </p>
-            <div class="container justify-content-center w-auto">
-                <ul class="nav navbar-expand-sm navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="pocetna.html">Pocetna</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">O nama</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="izlozbe.html">Izlozbe</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="korisnici.html">Korisnici</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="moj_profil.html">Moj Profil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="galerija.html">Radovi</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="">
-                <a class="fs-5 text-danger" href="login.html">Log in</a> &nbsp;&nbsp;
-                <a class="fs-5 text-danger" href="signup.html">Sign up</a>
-            </div>
-        </nav>
-    </header>
-
-    <div class="container-fluid mt-5">
-        <button class="btn btn-primary d-block mx-auto mb-3" onclick="toggleFormu()">Napravi izložbu</button>
-        <div class="container-fluid mt-5" id="napravi-izlozbu" style="display: none;">
-            <h2>Nova izložba</h2>
-            <form action="/napravi-izlozbu" method="POST">
-                <div class="mb-3">
-                    <label for="imeIzlozbe" class="form-label">Ime izložbe</label>
-                    <input type="text" class="form-control" id="imeIzlozbe" name="imeIzlozbe" required>
-                </div>
-                <div class="mb-3">
-                    <label for="temaIzlozbe" class="form-label">Tema izložbe</label>
-                    <select class="form-select" id="temaIzlozbe" name="temaIzlozbe" required>
-                        <option value="">-- Izaberi temu --</option>
-                        <option value="priroda">Priroda</option>
-                        <option value="portret">Portret</option>
-                        <option value="arhitektura">Arhitektura</option>
-                        <option value="slobodna">Slobodna tema</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="trajanje" class="form-label">Trajanje izložbe (u satima, max 168)</label>
-                    <input type="number" class="form-control" id="trajanje" name="trajanje" min="1" max="168" required>
-                </div>
-                <button type="submit" class="btn btn-success">Potvrdi izložbu</button>
+        <!-- Forma za pravljenje nove izložbe -->
+        <div id="forma-izlozba" class="card shadow-sm p-4 mb-5" style="display: none;">
+            <h3 class="text-center mb-3">Nova izložba</h3>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Potvrdi izložbu</button>
             </form>
         </div>
 
-            <div class="search-container d-flex gap-2 align-items-center">
-                <input type="text" id="artistSearchInput" class="search-input" placeholder="Pretražite izložbu">
-                <div class="btn-group">
-                    <button class="search-button" id="artistSearchBtn">⌕</button>
-                    <button type="button" class="search-button filter-button dropdown-toggle"
-                        data-bs-toggle="dropdown">≡</button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item filter-option" data-filter="sve" href="#">Sve izložbe</a></li>
-                        <li><a class="dropdown-item filter-option" data-filter="aktivna" href="#">Aktivne izložbe</a></li>
-                        <li><a class="dropdown-item filter-option" data-filter="zatvorena" href="#">Zatvorene izložbe</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="container text-center my-4">
-                <div class="d-inline-flex gap-4 justify-content-center">
-                    <div class="d-flex align-items-center gap-2">
-                        <div class="legend-box legend-priroda"></div>
-                        <span>Tema Priroda</span>
+        <!-- Galerija postojećih izložbi -->
+            <div class="row g-4">
+                {% for item in izlozbe_sa_slikom %}
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card shadow-sm h-100">
+                            <img src="{{ item.slika }}" class="card-img-top" alt="{{ item.izlozba.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title text-danger">{{ item.izlozba.name }}</h5>
+                                <p class="card-text">Tema: {{ item.izlozba.theme }}</p>
+                                <p class="text-muted">
+                                    {% if item.izlozba.status == "active" %}
+                                        Aktivna{% if item.izlozba.end_date != None %} do {{ item.izlozba.end_date }}{% endif %}
+                                    {% else %}
+                                        Zatvorena{% if item.izlozba.end_date != None %} - {{ item.izlozba.end_date }}{% endif %}
+                                    {% endif %}
+                                </p>
+                                <p class="small">{{ item.broj_radova }} radova
+                                    · {{ item.broj_umetnika}} umetnika</p>
+                                <a href="#" class="btn btn-outline-danger w-100">Pogledaj izložbu</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="d-flex align-items-center gap-2">
-                        <div class="legend-box legend-portret"></div>
-                        <span>Tema Portret</span>
-                    </div>
-                    <div class="d-flex align-items-center gap-2">
-                        <div class="legend-box legend-arhitektura"></div>
-                        <span>Tema Arhitektura</span>
-                    </div>
-                    <div class="d-flex align-items-center gap-2">
-                        <div class="legend-box legend-slobodna"></div>
-                        <span>Slobodna tema</span>
-                    </div>
-                </div>
-            </div>
-            
-
-            <div class="gallery-card tema-priroda" data-status="aktivna">
-                <div class="gallery-title">
-                    <a href="prikaz_izlozbe.html" class="tema-priroda">Priroda u pokretu</a>
-                </div>
-                <img class="gallery-img" src="./assets/img/priroda1.jpg" alt="Priroda izložba">
-                <p class="gallery-status aktivna">Aktivna do 12. avgusta</p>
-                <p class="gallery-meta">15 radova · 6 umetnika</p>
-            </div>
-
-            <div class="gallery-card tema-portret" data-status="zatvorena">
-                <div class="gallery-title">
-                    <a href="izlozba2.html" class="tema-portret">Portreti duše</a>
-                </div>
-                <img class="gallery-img" src="./assets/img/portret1.jpg" alt="Portret izložba">
-                <p class="gallery-status zatvorena">Zatvorena 21. jula</p>
-                <p class="gallery-meta">8 radova · 3 umetnika</p>
-            </div>
-
-            <div class="gallery-card tema-arhitektura" data-status="aktivna">
-                <div class="gallery-title">
-                    <a href="izlozba3.html" class="tema-arhitektura">Geometrija grada</a>
-                </div>
-                <img class="gallery-img" src="./assets/img/arhitektura1.jpg" alt="Arhitektura izložba">
-                <p class="gallery-status aktivna">Aktivna do 15. avgusta</p>
-                <p class="gallery-meta">20 radova · 5 umetnika</p>
-            </div>
-
-            <div class="gallery-card tema-slobodna" data-status="zatvorena">
-                <div class="gallery-title">
-                    <a href="izlozba4.html" class="tema-slobodna">Slobodna ekspresija</a>
-                </div>
-                <img class="gallery-img" src="./assets/img/slobodna1.jpg" alt="Slobodna tema izložba">
-                <p class="gallery-status zatvorena">Zatvorena 1. avgusta</p>
-                <p class="gallery-meta">9 radova · 4 umetnika</p>
+                {% endfor %}
             </div>
         </div>
-    </div>
 
     <script>
         function toggleFormu() {
-            const forma = document.getElementById("napravi-izlozbu");
-
+            const forma = document.getElementById("forma-izlozba");
             if (forma.style.display === "none" || forma.style.display === "") {
                 forma.style.display = "block";
-                forma.scrollIntoView({ behavior: "smooth" });
+                forma.scrollIntoView({behavior: "smooth"});
             } else {
                 forma.style.display = "none";
             }
         }
-
-        const searchInput = document.getElementById('artistSearchInput');
-        const filterOptions = document.querySelectorAll('.filter-option');
-        let currentStatusFilter = 'sve'; // default prikazuje sve
-
-        function filterCards() {
-            const searchText = searchInput.value.toLowerCase();
-            const cards = document.querySelectorAll('.gallery-card');
-
-            cards.forEach(card => {
-                const title = card.querySelector('.gallery-title a').textContent.toLowerCase();
-                const status = card.getAttribute('data-status'); // očekuje se "aktivna" ili "zatvorena"
-
-                const matchesText = title.includes(searchText);
-                const matchesStatus = (currentStatusFilter === 'sve') || (status === currentStatusFilter);
-
-                card.style.display = (matchesText && matchesStatus) ? '' : 'none';
-            });
-        }
-
-searchInput.addEventListener('input', filterCards);
-
-filterOptions.forEach(option => {
-    option.addEventListener('click', e => {
-        e.preventDefault();
-        currentStatusFilter = option.getAttribute('data-filter');
-        filterCards();
-    });
-});
-
-        document.getElementById('artistSearchInput').addEventListener('input', function() {
-            const filter = this.value.toLowerCase();
-            const cards = document.querySelectorAll('.gallery-card');
-
-            cards.forEach(card => {
-                const title = card.querySelector('.gallery-title a').textContent.toLowerCase();
-
-                if (title.includes(filter)) {
-                    card.style.display = '';  // prikaži karticu
-                } else {
-                    card.style.display = 'none';  // sakrij karticu
-                }
-            });
-        });
     </script>
-</body>
-</html>
+{% endblock %}
