@@ -24,6 +24,11 @@ def my_page(request):
     if not me: redirect("homepage")
     return render(request, "moj_profil.html", {"me": me})
 
+def artist(request, id):
+    user = User.objects.filter(id=id).first()
+    if not user: redirect("homepage")
+    return render(request, "umetnik.html", {"user": user})
+
 def login_page(request):
     if request.user.is_authenticated:
         return redirect("homepage")

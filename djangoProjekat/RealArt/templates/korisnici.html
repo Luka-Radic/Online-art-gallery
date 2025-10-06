@@ -25,13 +25,12 @@
                         <h4 class="card-title">{{ user.first_name }} {{ user.last_name }}</h4>
                         <p>username: {{ user.username }}</p>
                         <p class="card-text">
-                            {% if user.role == 'registered' %} Umetnik
-                            {% else %} Žiri {% endif %}
+                            {% if user.role == 'registered' %} Umetnik {% else %} Žiri {% endif %}
                         </p>
                         {% if user.username == request.user.username %}
                             <a href="{% url 'my_page' %}" class="btn btn-secondary">Pogledaj svoj profil</a>
                         {% else %}
-                            <a href="{% url 'my_page' %}" class="btn btn-secondary">Pogledaj profil</a>
+                            <a href="{% url 'artist' user.id %}" class="btn btn-secondary">Pogledaj profil</a>
                         {% endif %}
                     </div>
                 </div>

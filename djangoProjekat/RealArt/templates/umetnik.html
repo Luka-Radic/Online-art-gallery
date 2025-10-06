@@ -1,78 +1,45 @@
 <!-- Mina Sljivic  -->
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'template.html' %}
 
-<head>
-    <title>PSI projekat - prototip</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+{% load static %}
+{% block title %} Umetnik {% endblock %}
 
-    <link rel="stylesheet" href="assets/css/style_korisnici.css"> 
-    <link rel="stylesheet" href="assets/css/ceo_dokument.css">   
-</head>
-
-<body>
-
-    <nav class="navbar navbar-expand-lg bg-dark navbar-light">
-        <div class="container text-light">
-            <div class="w-100 d-flex justify-content-between">
-                <span class="">realart@gmail.com</span>
-                <span class="">263 1245 657</span>
-            </div>
-        </div>
-    </nav>
-
-
-    <header>
-        <nav class="container navbar navbar-expand-lg navbar-light fs-4">
-            <p class="text-dark text-align-left"> 
-                <img src="./assets/img/icon.jpg" style="width: 40px; height: 40px;" alt="[icon]"> RealArt team </p>
-            <div class="container justify-content-center w-auto">
-                
-                <ul class="nav navbar-expand-sm navbar-nav ">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="pocetna.html">Početna</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">O nama</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="izlozbe.html">Izložbe</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="korisnici.html">Korisnici</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="moj_profil.html">Moj Profil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="galerija.html">Radovi</a>
-                    </li>
-                </ul>
-
-            </div>
-            <div class="">
-                <a class="fs-5 text-danger" href="login.html">Log in</a> &nbsp &nbsp
-                <a class="fs-5 text-danger" href="signup.html">Sign up</a>
-            </div>
-        </nav>
-    </header>
-
+{% block content %}
     <div class="container">
         <div class="row">
             <div class="col-sm-6 user-img-container">
-                <img src="assets/img/zensko1.jpg" alt="Slika korisnika" class="img-fluid user-img">
+                <img src={% static "img/zensko1.jpg" %} alt="Slika korisnika" class="img-fluid user-img">
             </div>
             <div class="col-sm-6 user-description">
-                <h1>Marina Kovačević</h1>
-                <p class="pb-4">username: marina</p>
-                <h4>Status: Umetnik</h4>
+                <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+                <p class="pb-4">username: {{ user.username }}</p>
+                <h4> Status:
+                    {% if user.role == 'registered' %} Umetnik
+                    {% else %} Žiri {% endif %}
+                </h4>
+
                 <br>
+                <h4> Opis: </h4>
+                <p class="user-bio">{{ user.bio }}</p>
+
+                <br>
+                <text class="text-danger"> zakucano: </text>
                 <h4>Prosečna ocena: 4.37/5</h4>
+
+                {% if user.role == 'jury' %}
+                    <h4>Kvalifikacija:</h4>
+                    <text class="text-danger"> zakucano: </text>
+                    <p><ul>
+                        <li>Diplomirao i masterirao na Fakultetu likovnih umetnosti u Beogradu (odsek slikarstvo)</li>
+                        <li>Učestvovao na preko 40 grupnih i 5 samostalnih izložbi u zemlji i inostranstvu</li>
+                        <li>Član umetničkih žirija na nacionalnim i međunarodnim likovnim konkursima</li>
+                        <li>Višegodišnje iskustvo u selekciji i ocenjivanju radova savremene umetnosti</li>
+                    </ul><p>
+                {% endif %}
     
                 <a href="#" class="text-warning h6 text-shadow">Želiš da podržiš ovog umetnika fundiranjem?🪙</a>
                 <br> <br>
-                <a href="korisnici.html" class="btn btn-light back-button">⟸ Nazad</a>
+                <a href="{% url 'users' %}" class="btn btn-light back-button">⟸ Nazad</a>
                 
             </div>
         </div>
@@ -83,25 +50,21 @@
             <h4>Pregled radova:</h4>
             <div class="col-sm-3">
                 <a href="">
-                    <img src="assets/img/slika1.jpg" class="img-fluid painting" alt="slika1" name="slika1">
+                    <img src="{% static 'img/slika1.jpg' %}" class="img-fluid painting" alt="slika1" name="slika1">
                     <label for="slika1">Puls prirode</label>
                 </a>
             </div>
             <div class="col-sm-3">
                 <a href="">
-                    <img src="assets/img/slika2.jpg" class="img-fluid painting" alt="slika2" name="slika2">
+                    <img src="{% static 'img/slika2.jpg' %}" class="img-fluid painting" alt="slika2" name="slika2">
                     <label for="slika2">Plamen šume - realizam</label>
                 </a>
             </div>
-            <div class="col-sm-3"></div>
-            <div class="col-sm-3"></div>
+
         </div>
     </div>
     
 
     <br><br>
-
-</body>
-
-</html>
+{% endblock %}
 

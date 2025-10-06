@@ -12,7 +12,9 @@
             <div class="col-sm-6 user-description">
                 <h1>{{ me.first_name }} {{ me.last_name }} </h1>
                 <p class="pb-4">username: {{ me.username }}</p>
-                <h4>Status: {{ me.role }}</h4>
+                <h4>Status:
+                    {% if me.role == 'registered' %} Umetnik {% else %} Žiri {% endif %}
+                </h4>
 
                 {% if me.role == "registered" %}
                 <div>Zelis da konkurises za zirija? 
