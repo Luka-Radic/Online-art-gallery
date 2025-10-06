@@ -14,3 +14,5 @@ RealArt/pycache/
 .venv/
 **/migrations/*.py
 !**/migrations/__init__.py
+*.pyc
+.idea/
