@@ -5,8 +5,11 @@
 
 {% block content %}
 
-    <div class="container mt-5">
-    <form id="registracijaForm">
+    <div class="container mt-5" style="max-width: 60%;">
+    <h2>Registracija</h2>
+    <h5 class="text-danger">{{ message }}</h5>
+    <form id="registracijaForm" method="POST" action="{% url 'signup_page' %}">
+        {% csrf_token %}
         <div class="mb-3">
             <label for="ime" class="form-label">Ime</label>
             <input type="text" class="form-control" id="ime" name="ime" required>
@@ -36,18 +39,23 @@
             <label for="email" class="form-label">Email adresa</label>
             <input type="email" class="form-control" id="email" name="email" required>
         </div>
-
+<!--
         <div class="mb-3">
             <label for="drzava" class="form-label">Država</label>
             <input type="text" class="form-control" id="drzava" name="drzava" required>
         </div>
+-->
 
         <div class="mb-3">
-            <label for="komentari" class="form-label">Komentari</label>
-            <textarea class="form-control" id="komentari" name="komentari" rows="5" placeholder="Unesite vaše komentare ovde..."></textarea>
+            <label for="opis" class="form-label">Opis</label>
+            <textarea class="form-control" id="opis" name="opis" rows="5" placeholder="Unesite vaš opis ovde..."></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Prijavi se</button>
+        <button type="submit" class="btn btn-secondary">Prijavi se</button>
+        <div class="mt-3 pb-3">
+            <a href="{% url 'login_page' %}" class="text-danger text-decoration-underline">Već imate nalog?</a>
+        </div>
+
     </form>
     </div>
     
