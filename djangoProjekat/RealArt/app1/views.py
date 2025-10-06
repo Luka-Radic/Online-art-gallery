@@ -6,15 +6,23 @@ from django.shortcuts import render, redirect
 from app1.models import User
 
 
+
+
 # Create your views here.
 def homepage(request):
     return render(request, "pocetna.html")
 
 def users(request):
-    return render(request, "korisnici.html")
+    users = User.objects.all()
+    dj_users = DjangoUser.objects.all()
+    return render(request, "korisnici.html", {"users": users, "dj_users": dj_users})
 
 def my_page(request):
-    return render(request, "moj_profil.html")
+    username = request.user.username
+    print(username)
+    me = User.objects.filter(username=username).first()
+    if not me: redirect("homepage")
+    return render(request, "moj_profil.html", {"me": me})
 
 def login_page(request):
     if request.user.is_authenticated:
@@ -60,7 +68,8 @@ def signup_page(request):
                 user = User.objects.create(username=username, password_hash=password, first_name=name, last_name=lastname,
                                            email=email, bio=description, role='registered', date_joined=None)  # TODO enum
                 user.save()
-                DjangoUser.objects.create_user(username=username, password=password)
+                django_user = DjangoUser.objects.create_user(username=username, password=password)
+                login(request, django_user)
                 return redirect("homepage")
 
     return render(request, "signup.html", {"message": message})

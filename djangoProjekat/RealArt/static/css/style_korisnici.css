@@ -70,6 +70,10 @@
   transform: scale(1.01);
 }
 
+.user-bio {
+    background-color: white;!important;
+}
+
 
 /* ------------- Stranica Galerija (Ranko)-------------- */
 

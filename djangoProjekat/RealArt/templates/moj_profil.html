@@ -10,15 +10,22 @@
                 <img src="{% static 'img/musko2.jpg' %}" alt="Slika korisnika" class="img-fluid user-img">
             </div>
             <div class="col-sm-6 user-description">
-                <h1>Nikola Jović</h1>
-                <p class="pb-4">username: nikola</p>
-                <h4>Status: Umetnik</h4>
-                
+                <h1>{{ me.first_name }} {{ me.last_name }} </h1>
+                <p class="pb-4">username: {{ me.username }}</p>
+                <h4>Status: {{ me.role }}</h4>
+
+                {% if me.role == "registered" %}
                 <div>Zelis da konkurises za zirija? 
                     <a href="{% url "become_judge" %}" class="text-danger"> Prijava</a>
                 </div>
+                {% endif %}
+
+                <br>
+                <h4> Opis: </h4>
+                <p class="user-bio">{{ me.bio }}</p>
                 
                 <br>
+                <text class="text-danger"> zakucano: </text>
                 <h4>Prosečna ocena: 4.21/5</h4>
                 <h5>Zarađeno dosad: 6.08$</h5>
                 <br> <br>
