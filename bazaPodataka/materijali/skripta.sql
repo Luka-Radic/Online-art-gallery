@@ -179,6 +179,7 @@ CREATE TABLE `user` (
   `role` enum('guest','registered','jury','admin') NOT NULL DEFAULT 'guest',
   `bio` text,
   `date_joined` datetime DEFAULT CURRENT_TIMESTAMP,
+  `pfp_url` varchar(255),
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email_UNIQUE` (`email`)
