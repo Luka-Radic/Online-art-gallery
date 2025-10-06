@@ -33,8 +33,8 @@ CREATE TABLE `comment` (
   PRIMARY KEY (`id`),
   KEY `author_id` (`author_id`),
   KEY `painting_id` (`painting_id`),
-  CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`painting_id`) REFERENCES `painting` (`id`)
+  CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `user` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`painting_id`) REFERENCES `painting` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -58,8 +58,8 @@ CREATE TABLE `exhibition` (
   PRIMARY KEY (`id`),
   KEY `winner_painting_id` (`winner_painting_id`),
   KEY `exhibition_ibfk_1` (`created_by`),
-  CONSTRAINT `exhibition_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`),
-  CONSTRAINT `exhibition_ibfk_2` FOREIGN KEY (`winner_painting_id`) REFERENCES `painting` (`id`)
+  CONSTRAINT `exhibition_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT `exhibition_ibfk_2` FOREIGN KEY (`winner_painting_id`) REFERENCES `painting` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -79,8 +79,8 @@ CREATE TABLE `funding` (
   PRIMARY KEY (`id`),
   KEY `donor_id` (`donor_id`),
   KEY `artist_id` (`artist_id`),
-  CONSTRAINT `funding_ibfk_1` FOREIGN KEY (`donor_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `funding_ibfk_2` FOREIGN KEY (`artist_id`) REFERENCES `user` (`id`)
+  CONSTRAINT `funding_ibfk_1` FOREIGN KEY (`donor_id`) REFERENCES `user` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT `funding_ibfk_2` FOREIGN KEY (`artist_id`) REFERENCES `user` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -99,7 +99,7 @@ CREATE TABLE `juryrequest` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `applicant_id` (`applicant_id`),
-  CONSTRAINT `juryrequest_ibfk_1` FOREIGN KEY (`applicant_id`) REFERENCES `user` (`id`)
+  CONSTRAINT `juryrequest_ibfk_1` FOREIGN KEY (`applicant_id`) REFERENCES `user` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -119,7 +119,7 @@ CREATE TABLE `painting` (
   `avg_rating` float DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `artist_id` (`artist_id`),
-  CONSTRAINT `painting_ibfk_1` FOREIGN KEY (`artist_id`) REFERENCES `user` (`id`)
+  CONSTRAINT `painting_ibfk_1` FOREIGN KEY (`artist_id`) REFERENCES `user` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -135,8 +135,8 @@ CREATE TABLE `participation` (
   `exhibition_id` int NOT NULL,
   PRIMARY KEY (`painting_id`,`exhibition_id`),
   KEY `exhibition_id` (`exhibition_id`),
-  CONSTRAINT `participation_ibfk_1` FOREIGN KEY (`painting_id`) REFERENCES `painting` (`id`),
-  CONSTRAINT `participation_ibfk_2` FOREIGN KEY (`exhibition_id`) REFERENCES `exhibition` (`id`)
+  CONSTRAINT `participation_ibfk_1` FOREIGN KEY (`painting_id`) REFERENCES `painting` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT `participation_ibfk_2` FOREIGN KEY (`exhibition_id`) REFERENCES `exhibition` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -156,8 +156,8 @@ CREATE TABLE `rating` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `author_id` (`author_id`,`painting_id`),
   KEY `painting_id` (`painting_id`),
-  CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`painting_id`) REFERENCES `painting` (`id`),
+  CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `user` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`painting_id`) REFERENCES `painting` (`id`) ON DELETE CASCADE,
   CONSTRAINT `rating_chk_1` CHECK ((`score` between 1 and 5))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
