@@ -80,27 +80,25 @@
     </div>
     <div class="container mt-4 p-4 border rounded shadow-sm bg-light">
         <h4 class="text-center fw-bold pb-2 mb-4">Brisanje fotografija</h4>
-        <div class="scroll-box">
-            <div class="mb-3">
-                <input type="text" id="paintingSearch" class="form-control" placeholder="Pretraži po naslovu...">
-            </div>
-            <div class="row g-3">
-                {% for painting in paintings %}
-                    <div class="col-md-4 photo-box" data-title="{{ painting.title|lower }}">
-                        <div class="p-3 border rounded bg-white shadow-sm d-flex flex-column align-items-center">
-                            <img src="{{ painting.image_url }}" class="img-fluid rounded mb-2 img-card">
-                            <p class="mb-1 fw-semibold">{{ painting.title }}</p>
-                            <small class="text-muted">{{ painting.author.username }}</small>
-                            <form method="post" class="mt-2">
-                                {% csrf_token %}
-                                <input type="hidden" name="painting_id" value="{{ painting.id }}">
-                                <input type="hidden" name="akcija" value="brisanje">
-                                <button type="submit" class="btn btn-outline-danger btn-sm">🗑 Obriši</button>
-                            </form>
-                        </div>
+        <div class="mb-3">
+            <input type="text" id="paintingSearch" class="form-control" placeholder="Pretraži po naslovu...">
+        </div>
+        <div class="row g-3 scroll-box">
+            {% for painting in paintings %}
+                <div class="col-md-4 photo-box" data-title="{{ painting.title|lower }}">
+                    <div class="p-3 border rounded bg-white shadow-sm d-flex flex-column align-items-center">
+                        <img src="{{ painting.image_url }}" class="img-fluid rounded mb-2 img-card">
+                        <p class="mb-1 fw-semibold">{{ painting.title }}</p>
+                        <small class="text-muted">{{ painting.author.username }}</small>
+                        <form method="post" class="mt-2">
+                            {% csrf_token %}
+                            <input type="hidden" name="painting_id" value="{{ painting.id }}">
+                            <input type="hidden" name="akcija" value="brisanje">
+                            <button type="submit" class="btn btn-outline-danger btn-sm">🗑 Obriši</button>
+                        </form>
                     </div>
-                {% endfor %}
-            </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
     <div class="container mt-4 mb-4 p-4 border rounded shadow-sm bg-light">
@@ -121,7 +119,7 @@
                         <p class="mb-0">Komentar: {{ comment.text }} </p>
                         <p class="mb-0">Ime slike: {{ comment.painting.title }}</p>
                         {% if comment.created_at != None %}
-                        <small class="text-muted">{{ comment.created_at }}</small>
+                            <small class="text-muted">{{ comment.created_at }}</small>
                         {% endif %}
                     </div>
                     <form method="post" class="ms-3">
