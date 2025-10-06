@@ -16,3 +16,4 @@ RealArt/pycache/
 !**/migrations/__init__.py
 *.pyc
 .idea/
+.idea/
