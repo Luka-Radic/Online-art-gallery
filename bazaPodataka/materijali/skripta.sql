@@ -53,13 +53,13 @@ CREATE TABLE `exhibition` (
   `start_date` date DEFAULT NULL,
   `end_date` date DEFAULT NULL,
   `status` enum('active','closed') NOT NULL DEFAULT 'active',
-  `created_by` int NOT NULL,
+  `created_by` int,
   `winner_painting_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `winner_painting_id` (`winner_painting_id`),
   KEY `exhibition_ibfk_1` (`created_by`),
-  CONSTRAINT `exhibition_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
-  CONSTRAINT `exhibition_ibfk_2` FOREIGN KEY (`winner_painting_id`) REFERENCES `painting` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
+  CONSTRAINT `exhibition_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`) ON UPDATE CASCADE ON DELETE SET NULL,
+  CONSTRAINT `exhibition_ibfk_2` FOREIGN KEY (`winner_painting_id`) REFERENCES `painting` (`id`) ON UPDATE CASCADE ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -73,13 +73,13 @@ DROP TABLE IF EXISTS `funding`;
 CREATE TABLE `funding` (
   `id` int NOT NULL AUTO_INCREMENT,
   `amount` decimal(10,2) NOT NULL,
-  `donor_id` int NOT NULL,
+  `donor_id` int,
   `artist_id` int NOT NULL,
   `date` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `donor_id` (`donor_id`),
   KEY `artist_id` (`artist_id`),
-  CONSTRAINT `funding_ibfk_1` FOREIGN KEY (`donor_id`) REFERENCES `user` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT `funding_ibfk_1` FOREIGN KEY (`donor_id`) REFERENCES `user` (`id`) ON UPDATE CASCADE ON DELETE SET NULL,
   CONSTRAINT `funding_ibfk_2` FOREIGN KEY (`artist_id`) REFERENCES `user` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
