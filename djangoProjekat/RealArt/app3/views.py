@@ -86,3 +86,5 @@ def exhibition(request, exhibition_id):
         'users' : User.objects.all()
     }
     return render(request, 'prikaz_izlozbe.html', context)
+
+#def gallery(request):

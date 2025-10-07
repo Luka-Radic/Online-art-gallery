@@ -22,4 +22,6 @@ urlpatterns = [
     path('', pocetna, name='pocetna'),
     path('adminUs/', adminUs, name='adminUs'),
     path('exhibition/<int:exhibition_id>/', exhibition, name='exhibition'),
+
+    #path('gallery', gallery, name = 'gallery')
 ]
