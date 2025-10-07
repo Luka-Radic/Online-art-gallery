@@ -17,39 +17,25 @@
 
     <div class="container fluid mt-4 ">
         <div class="row">
+            {% for user in users %}
             <div class="col-sm-3">
                 <div class="card m-3">
                     <img src="{% static 'img/zensko1.jpg' %}" alt="slika korisnika" class="card-img-top img-fluid">
                     <div class="card-body">
-                        <h4 class="card-title">Marina Kovacevic</h4>
-                        <p>username: marina</p>
-                        <p class="card-text">Umetnik</p>
-                        <a href="{% url 'my_page' %}" class="btn btn-secondary">Pogledaj profil</a>
+                        <h4 class="card-title">{{ user.first_name }} {{ user.last_name }}</h4>
+                        <p>username: {{ user.username }}</p>
+                        <p class="card-text">
+                            {% if user.role == 'registered' %} Umetnik {% else %} Žiri {% endif %}
+                        </p>
+                        {% if user.username == request.user.username %}
+                            <a href="{% url 'my_page' %}" class="btn btn-secondary">Pogledaj svoj profil</a>
+                        {% else %}
+                            <a href="{% url 'artist' user.id %}" class="btn btn-secondary">Pogledaj profil</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
-                <div class="card m-3">
-                    <img src="{% static 'img/musko2.jpg' %}" alt="slika korisnika" class="card-img-top img-fluid">
-                    <div class="card-body">
-                        <h4 class="card-title">Nikola Jovic</h4>
-                        <p>username: nikola</p>
-                        <p class="card-text">Umetnik</p>
-                        <a href="{% url 'my_page' %}" class="btn btn-secondary">Pogledaj profil</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card m-3">
-                    <img src="{% static 'img/musko1.jpg' %}" alt="slika korisnika" class="card-img-top img-fluid">
-                    <div class="card-body">
-                        <h4 class="card-title">Aleksandar Marovic</h4>
-                        <p>username: aleksandar97</p>
-                        <p class="card-text text-danger">Ziri</p>
-                        <a href="ziri.html" class="btn btn-secondary">Pogledaj profil</a>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 

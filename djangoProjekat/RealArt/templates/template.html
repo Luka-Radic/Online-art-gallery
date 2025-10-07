@@ -46,9 +46,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'users' %}">Korisnici</a>
                     </li>
+                    {% if request.user.is_authenticated %}
                     <li>
                         <a class="nav-link" href="{% url 'my_page' %}">Moj Profil</a>
                     </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="#">Radovi</a>
                     </li>
