@@ -47,8 +47,8 @@ def exhibition(request, exhibition_id):
     izlozba = Exhibition.objects.get(id=exhibition_id)
     painting_ids = Participation.objects.filter(exhibition_id=exhibition_id).values_list('painting_id', flat=True)
     paintings = Painting.objects.filter(id__in=painting_ids)
-    print(request.user)
-    user = User.objects.get(username=request.user.username)
+    if request.user.is_authenticated:
+        user = User.objects.get(username=request.user.username)
 
     if request.method == "POST" and request.FILES.get('image'):
         image = request.FILES.get('image')
