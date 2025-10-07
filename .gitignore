@@ -17,3 +17,4 @@ RealArt/pycache/
 *.pyc
 .idea/
 djangoProjekat/RealArt/.idea/
+djangoProjekat/RealArt/settings.py
