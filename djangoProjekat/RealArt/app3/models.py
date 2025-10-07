@@ -3,7 +3,7 @@ from django.db import models
 
 def get_pfp(DjangoUser):
     users = User.objects.filter(username=DjangoUser.username)
-    if users.count() != 0:
+    if users.count() != 0 and users.first().pfp_url is not None:
         return users.first().pfp_url
     else:
         return "/static/img/default_pfp.png"

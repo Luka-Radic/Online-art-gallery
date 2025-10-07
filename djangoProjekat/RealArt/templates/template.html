@@ -62,7 +62,7 @@
                     <a class="fs-5 text-danger" href="{% url 'logout_page' %}">Log out</a>
                     <div class="user-chip d-flex align-items-center px-3 py-1 shadow-sm">
                         <span class="chip-label">{{ user.username }}</span>
-                        <img src="{% if user != None %}{{ user.get_pfp }}{% else %}{% static 'img/default_pfp.png' %}{% endif %}"
+                        <img src="{{ user.get_pfp }}"
                              alt="User" class="chip-avatar">
                     </div>
                 {% else %}
