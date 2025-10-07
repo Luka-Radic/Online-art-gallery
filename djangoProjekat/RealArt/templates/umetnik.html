@@ -11,7 +11,7 @@
                 {% if user.pfp_url is not None %}
                         <img src="{% static 'img/zensko1.jpg' %}" alt="slika korisnika" class="img-fluid user-img">
                     {% else %}
-                        <img src="{% static '#' %}" alt="korisnik nema sliku" class="img-fluid user-img">
+                        <img src="{% static 'img/default_pfp.png' %}" alt="korisnik nema sliku" class="img-fluid user-img">
                     {% endif %}
             </div>
             <div class="col-sm-6 user-description">
