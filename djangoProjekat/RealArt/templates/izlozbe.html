@@ -1,89 +1,67 @@
 <!-- Luka Radic  -->
 {% extends "template.html" %}
 {% load static %}
+
 {% block optionalInclude %}
     <link rel="stylesheet" href="{% static 'css/style_izlozbi.css' %}">
     <script src="{% static 'js/izlozbe.js' %}"></script>
 {% endblock %}
+
 {% block title %}Izložbe{% endblock %}
 
 {% block content %}
-    <div class="container mt-5">
-        <h1 class="text-center text-danger mb-4">Pregled izložbi</h1>
+<div class="container mt-5">
+    <h1 class="text-center text-danger mb-4">Pregled izložbi</h1>
 
-        <div class="text-center mb-4">
-            <button class="btn btn-primary" type="button" onclick="toggleFormu()">+ Napravi novu izložbu</button>
-        </div>
-        <div class="search-container mb-4 d-flex align-items-center">
-            <div class="input-group w-100">
-                <input type="text" id="searchIzlozbe" class="form-control" placeholder="Pretraži izložbe">
-                <select id="statusFilter" class="form-select" style="max-width: 150px;">
-                    <option value="sve" selected>Sve izložbe</option>
-                    <option value="active">Aktivne</option>
-                    <option value="closed">Zatvorene</option>
-                </select>
-            </div>
-        </div>
+    <!-- Dugme za novu izložbu -->
+    <div class="text-center mb-4">
+        <button class="btn btn-primary" type="button" onclick="toggleFormu()">+ Napravi novu izložbu</button>
+    </div>
 
-        <div id="forma-izlozba" class="card shadow-sm p-4 mb-5" style="display: none;">
-            <h3 class="text-center mb-3">Nova izložba</h3>
-            <form method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" style="display: block; margin: 0 auto;">Potvrdi izložbu</button>
-            </form>
-        </div>
-
-        <div class="row g-4">
-            {% for item in izlozbe_sa_slikom %}
-                <div class="col-md-6 col-lg-4">
-                    <div class="card shadow-sm h-100">
-                        <img src="{{ item.slika }}" class="card-img-top" alt="{{ item.izlozba.name }}">
-                        <div class="card-body">
-                            <h5 class="card-title text-danger">{{ item.izlozba.name }}</h5>
-                            <p class="card-text">Tema: {{ item.izlozba.theme }}</p>
-                            <p class="text-muted">
-                                {% if item.izlozba.status == "active" %}
-                                    Aktivna{% if item.izlozba.end_date != None %} do
-                                    {{ item.izlozba.end_date }}{% endif %}
-                                {% else %}
-                                    Zatvorena{% if item.izlozba.end_date != None %} -
-                                    {{ item.izlozba.end_date }}{% endif %}
-                                {% endif %}
-                            </p>
-                            <p class="small">{{ item.broj_radova }} radova · {{ item.broj_umetnika }} umetnika</p>
-                            <a href="{% url 'exhibition' item.izlozba.id %}" class="btn btn-outline-danger w-100">Pogledaj
-                                izložbu</a>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-        <div class="row g-4">
-            {% for item in izlozbe_sa_slikom %}
-                <div class="col-md-6 col-lg-4">
-                    <div class="card shadow-sm h-100">
-                        <img src="{{ item.slika }}" class="card-img-top" alt="{{ item.izlozba.name }}">
-                        <div class="card-body">
-                            <h5 class="card-title text-danger">{{ item.izlozba.name }}</h5>
-                            <p class="card-text">Tema: {{ item.izlozba.theme }}</p>
-                            <p class="text-muted">
-                                {% if item.izlozba.status == "active" %}
-                                    Aktivna{% if item.izlozba.end_date != None %} do
-                                    {{ item.izlozba.end_date }}{% endif %}
-                                {% else %}
-                                    Zatvorena{% if item.izlozba.end_date != None %} -
-                                    {{ item.izlozba.end_date }}{% endif %}
-                                {% endif %}
-                            </p>
-                            <p class="small">{{ item.broj_radova }} radova
-                                · {{ item.broj_umetnika }} umetnika</p>
-                            <a href="#" class="btn btn-outline-danger w-100">Pogledaj izložbu</a>
-                            >>>>>>> BASE (156f72 Merge "Lepsa forma za pravljenje izlzobi")
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
+    <!-- Pretraga i filter -->
+    <div class="search-container mb-4 d-flex align-items-center">
+        <div class="input-group w-100">
+            <input type="text" id="searchIzlozbe" class="form-control" placeholder="Pretraži izložbe">
+            <select id="statusFilter" class="form-select" style="max-width: 150px;">
+                <option value="sve" selected>Sve izložbe</option>
+                <option value="active">Aktivne</option>
+                <option value="closed">Zatvorene</option>
+            </select>
         </div>
     </div>
+
+    <!-- Forma za novu izložbu -->
+    <div id="forma-izlozba" class="card shadow-sm p-4 mb-5" style="display: none;">
+        <h3 class="text-center mb-3">Nova izložba</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" style="display: block; margin: 0 auto;">Potvrdi izložbu</button>
+        </form>
+    </div>
+
+    <!-- Galerija izložbi -->
+    <div class="row g-4">
+        {% for item in izlozbe_sa_slikom %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow-sm h-100">
+                    <img src="{{ item.slika }}" class="card-img-top" alt="{{ item.izlozba.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title text-danger">{{ item.izlozba.name }}</h5>
+                        <p class="card-text">Tema: {{ item.izlozba.theme }}</p>
+                        <p class="text-muted">
+                            {% if item.izlozba.status == "active" %}
+                                Aktivna{% if item.izlozba.end_date != None %} do {{ item.izlozba.end_date }}{% endif %}
+                            {% else %}
+                                Zatvorena{% if item.izlozba.end_date != None %} - {{ item.izlozba.end_date }}{% endif %}
+                            {% endif %}
+                        </p>
+                        <p class="small">{{ item.broj_radova }} radova · {{ item.broj_umetnika }} umetnika</p>
+                        <a href="{% url 'exhibition' item.izlozba.id %}" class="btn btn-outline-danger w-100">Pogledaj izložbu</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
