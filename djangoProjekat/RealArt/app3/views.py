@@ -47,10 +47,11 @@ def exhibition(request, exhibition_id):
     izlozba = Exhibition.objects.get(id=exhibition_id)
     painting_ids = Participation.objects.filter(exhibition_id=exhibition_id).values_list('painting_id', flat=True)
     paintings = Painting.objects.filter(id__in=painting_ids)
+    user = None
     if request.user.is_authenticated:
-        user = User.objects.get(username=request.user.username)
+        user = User.objects.filter(username=request.user.username).first()
 
-    if request.method == "POST" and request.FILES.get('image'):
+    if request.method == "POST" and request.FILES.get('image') is not None and user is not None:
         image = request.FILES.get('image')
         title = request.POST.get('title', '').strip()
 
@@ -87,4 +88,16 @@ def exhibition(request, exhibition_id):
     }
     return render(request, 'prikaz_izlozbe.html', context)
 
-#def gallery(request):
+def gallery(request):
+    data = []
+    paintings = Painting.objects.all()
+    for painting in paintings:
+        themes = Participation.objects.filter(painting=painting).values_list('exhibition__theme', flat=True).distinct()
+        data.append({
+            'painting' : painting,
+            'themes' : themes
+        })
+    context = {
+        'paintings' : data
+    }
+    return render(request, 'galerija.html', context)

@@ -179,3 +179,14 @@
 #forma-izlozba:hover {
     transform: none !important; /* sprečava hover uvećavanje */
 }
+
+.form-control:focus {
+    outline: none;
+    box-shadow: none;
+    background-color: lightgrey;
+}
+
+.search-list{
+    max-width: 120px;
+    background-color: lightgrey;
+}
