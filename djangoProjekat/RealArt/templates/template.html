@@ -11,22 +11,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="{% static "css/style_korisnici.css" %}">
     <link rel="stylesheet" href="{% static "css/ceo_dokument.css" %}">
+    <link rel="stylesheet" href="{% static "css/style_administrator.css" %}">
     {% block optionalInclude %}
     {% endblock %}
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-dark navbar-light">
-        <div class="container text-light">
-            <div class="w-100 d-flex justify-content-between">
-                <span class="">realart@gmail.com</span>
-                <span class="">263 1245 657</span>
-            </div>
+<nav class="navbar navbar-expand-lg bg-dark navbar-light">
+    <div class="container text-light">
+        <div class="w-100 d-flex justify-content-between">
+            <span class="">realart@gmail.com</span>
+            <span class="">263 1245 657</span>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    {% block headerSecond %}
+{% block headerSecond %}
     <header>
         <nav class="container navbar navbar-expand-lg navbar-light fs-4">
             <p class="text-dark text-align-left">
@@ -47,9 +48,9 @@
                         <a class="nav-link" href="{% url 'users' %}">Korisnici</a>
                     </li>
                     {% if request.user.is_authenticated %}
-                    <li>
-                        <a class="nav-link" href="{% url 'my_page' %}">Moj Profil</a>
-                    </li>
+                        <li>
+                            <a class="nav-link" href="{% url 'my_page' %}">Moj Profil</a>
+                        </li>
                     {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="#">Radovi</a>
@@ -57,12 +58,15 @@
                 </ul>
 
 
-
             </div>
-            <div class="">
+            <div class="d-flex align-items-center gap-3">
                 {% if request.user.is_authenticated %}
-                    <span>Dobro došli, {{ request.user.username }}</span> &nbsp
                     <a class="fs-5 text-danger" href="{% url 'logout_page' %}">Log out</a>
+                    <div class="user-chip d-flex align-items-center px-3 py-1 shadow-sm">
+                        <span class="chip-label">{{ user.username }}</span>
+                        <img src="{% if user != None %}{{ user.get_pfp }}{% else %}{% static 'img/default_pfp.png' %}{% endif %}"
+                             alt="User" class="chip-avatar">
+                    </div>
                 {% else %}
                     <a class="fs-5 text-danger" href="{% url 'login_page' %}">Log in</a> &nbsp &nbsp
                     <a class="fs-5 text-danger" href="{% url 'signup_page' %}">Sign up</a>
@@ -74,27 +78,27 @@
 
 
     {% if not request.user.is_authenticated %}
-    <div class="alert alert-dismissable alert-warning vh-50 pb-0">
-        <div class="row">
-            <div class="col-sm-4">
-                <p>Dobro dosli na sajt RealArt. Trenutno pristupate kao <strong>gost</strong>.</p>
-            </div>
-            <div class="col-sm-7">
-                <p>Ukoliko vec imate nalog zelite da se prijavite: &nbsp
-                    <a href="{% url 'login_page' %}" class="alert-link">Log in</a> &nbsp
-                    Nemate nalog? &nbsp
-                    <a href="{% url 'signup_page' %}" class="alert-link">Sign up</a></p>
-            </div>
-            <div class="col-sm-1">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <div class="alert alert-dismissable alert-warning vh-50 pb-0">
+            <div class="row">
+                <div class="col-sm-4">
+                    <p>Dobro dosli na sajt RealArt. Trenutno pristupate kao <strong>gost</strong>.</p>
+                </div>
+                <div class="col-sm-7">
+                    <p>Ukoliko vec imate nalog zelite da se prijavite: &nbsp
+                        <a href="{% url 'login_page' %}" class="alert-link">Log in</a> &nbsp
+                        Nemate nalog? &nbsp
+                        <a href="{% url 'signup_page' %}" class="alert-link">Sign up</a></p>
+                </div>
+                <div class="col-sm-1">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
             </div>
         </div>
-    </div>
     {% endif %}
 
-    {% endblock %}
-    {% block content %}
-    {% endblock %}
+{% endblock %}
+{% block content %}
+{% endblock %}
 
 </body>
 

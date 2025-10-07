@@ -1,5 +1,13 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User as DjangoUser
 from django.db import models
+
+def get_pfp(DjangoUser):
+    users = User.objects.filter(username=DjangoUser.username)
+    if users.count() != 0:
+        return users.first().pfp_url
+    else:
+        return "/static/img/default_pfp.png"
+DjangoUser.get_pfp = get_pfp
 
 class Status(models.TextChoices):
     PENDING = ('pending', 'Prihvaćen')
