@@ -2,6 +2,7 @@
 {% extends "template.html" %}
 {% load static %}
 {% block optionalInclude %}
+    <link rel="stylesheet" href="{% static 'css/style_izlozbi.css' %}">
     <script src="{% static 'js/izlozbe.js' %}"></script>
 {% endblock %}
 {% block title %}Izložbe{% endblock %}
@@ -29,7 +30,7 @@
             <form method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit">Potvrdi izložbu</button>
+                <button type="submit" style="display: block; margin: 0 auto;">Potvrdi izložbu</button>
             </form>
         </div>
 
