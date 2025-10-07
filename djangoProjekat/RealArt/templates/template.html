@@ -65,8 +65,8 @@
                 {% if request.user.is_authenticated %}
                     <a class="fs-5 text-danger" href="{% url 'logout_page' %}">Log out</a>
                     <div class="user-chip d-flex align-items-center px-3 py-1 shadow-sm">
-                        <span class="chip-label">{{ user.username }}</span>
-                        <img src="{{ user.get_pfp }}"
+                        <span class="chip-label">{{ request.user.username }}</span>
+                        <img src="{{ request.user.get_pfp }}"
                              alt="User" class="chip-avatar">
                     </div>
                 {% else %}

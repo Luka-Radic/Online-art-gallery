@@ -6,93 +6,98 @@
     <script src="{% static 'js/admin.js' %}" defer></script>
 {% endblock %}
 {% block content %}
-    <div class="container mt-4 p-4 border rounded shadow-sm bg-light">
-        <h4 class="text-center fw-bold pb-2 mb-4">
-            Zahtevi korisnika
-        </h4>
-        <div class="mb-3">
-            <input type="text" id="searchInput" class="form-control"
-                   placeholder="Pretraži po korisničkom imenu...">
-        </div>
-        <div class="scroll-box d-flex flex-column gap-3">
-            {% for request in requests %}
-                <div class="request-box p-3 border rounded bg-white shadow-sm d-flex justify-content-between align-items-center m-0"
-                     data-username="{{ request.applicant.username|default_if_none:''|lower }}">
-                    {{ request.applicant.username }}
-                    <div class="d-flex gap-2 ms-auto">
-                        {% if request.status == None or request.status == 'pending' %}
-                            <form method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="request_id" value="{{ request.id }}">
-                                <input type="hidden" name="akcija" value="prihvati">
-                                <button type="submit" class="btn btn-outline-success" title="Prihvati">✔</button>
-                            </form>
-                            <form method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="request_id" value="{{ request.id }}">
-                                <input type="hidden" name="akcija" value="odbij">
-                                <button type="submit" class="btn btn-outline-danger" title="Odbij">✖</button>
-                            </form>
-                        {% else %}
-                            <span class="badge bg-secondary">{{ request.status|capfirst }}</span>
-                        {% endif %}
+    {% if user.is_superuser %}
+        <div class="container mt-4 p-4 border rounded shadow-sm bg-light">
+            <h4 class="text-center fw-bold pb-2 mb-4">
+                Zahtevi korisnika
+            </h4>
+            <div class="mb-3">
+                <input type="text" id="searchInput" class="form-control"
+                       placeholder="Pretraži po korisničkom imenu...">
+            </div>
+            <div class="scroll-box d-flex flex-column gap-3">
+                {% for request in requests %}
+                    <div class="request-box p-3 border rounded bg-white shadow-sm d-flex justify-content-between align-items-center m-0"
+                         data-username="{{ request.applicant.username|default_if_none:''|lower }}">
+                        {{ request.applicant.username }}
+                        <div class="d-flex gap-2 ms-auto">
+                            {% if request.status == None or request.status == 'pending' %}
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="request_id" value="{{ request.id }}">
+                                    <input type="hidden" name="akcija" value="prihvati">
+                                    <button type="submit" class="btn btn-outline-success" title="Prihvati">✔</button>
+                                </form>
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="request_id" value="{{ request.id }}">
+                                    <input type="hidden" name="akcija" value="odbij">
+                                    <button type="submit" class="btn btn-outline-danger" title="Odbij">✖</button>
+                                </form>
+                            {% else %}
+                                <span class="badge bg-secondary">{{ request.status|capfirst }}</span>
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-    <div class="container mt-4 p-4 border rounded shadow-sm bg-light">
-        <h4 class="text-center fw-bold pb-2 mb-4">Brisanje fotografija</h4>
-        <div class="mb-3">
-            <input type="text" id="paintingSearch" class="form-control" placeholder="Pretraži po naslovu...">
+        <div class="container mt-4 p-4 border rounded shadow-sm bg-light">
+            <h4 class="text-center fw-bold pb-2 mb-4">Brisanje fotografija</h4>
+            <div class="mb-3">
+                <input type="text" id="paintingSearch" class="form-control" placeholder="Pretraži po naslovu...">
+            </div>
+            <div class="row g-3 scroll-box">
+                {% for painting in paintings %}
+                    <div class="col-md-4 photo-box" data-title="{{ painting.title|lower }}">
+                        <div class="p-3 border rounded bg-white shadow-sm d-flex flex-column align-items-center">
+                            <img src="{{ painting.image_url }}" class="img-fluid rounded mb-2 img-card">
+                            <p class="mb-1 fw-semibold">{{ painting.title }}</p>
+                            <small class="text-muted">{{ painting.author.username }}</small>
+                            <form method="post" class="mt-2">
+                                {% csrf_token %}
+                                <input type="hidden" name="painting_id" value="{{ painting.id }}">
+                                <input type="hidden" name="akcija" value="brisanje">
+                                <button type="submit" class="btn btn-outline-danger btn-sm">🗑 Obriši</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-        <div class="row g-3 scroll-box">
-            {% for painting in paintings %}
-                <div class="col-md-4 photo-box" data-title="{{ painting.title|lower }}">
-                    <div class="p-3 border rounded bg-white shadow-sm d-flex flex-column align-items-center">
-                        <img src="{{ painting.image_url }}" class="img-fluid rounded mb-2 img-card">
-                        <p class="mb-1 fw-semibold">{{ painting.title }}</p>
-                        <small class="text-muted">{{ painting.author.username }}</small>
-                        <form method="post" class="mt-2">
+        <div class="container mt-4 mb-4 p-4 border rounded shadow-sm bg-light">
+            <h4 class="text-center fw-bold pb-2 mb-4">Brisanje komentara</h4>
+
+            <div class="mb-3">
+                <input type="text" id="commentSearchInput" class="form-control"
+                       placeholder="Pretraži po korisničkom imenu ili sadržaju komentara...">
+            </div>
+
+            <div class="scroll-box d-flex flex-column gap-3">
+                {% for comment in comments %}
+                    <div class="comment-box p-3 border rounded bg-white shadow-sm d-flex justify-content-between align-items-center"
+                         data-username="{{ comment.author.username|lower }}"
+                         data-content="{{ comment.text|lower }}">
+                        <div>
+                            <p class="mb-1 fw-semibold">{{ comment.author.username }}</p>
+                            <p class="mb-0">Komentar: {{ comment.text }} </p>
+                            <p class="mb-0">Ime slike: {{ comment.painting.title }}</p>
+                            {% if comment.created_at != None %}
+                                <small class="text-muted">{{ comment.created_at }}</small>
+                            {% endif %}
+                        </div>
+                        <form method="post" class="ms-3">
                             {% csrf_token %}
-                            <input type="hidden" name="painting_id" value="{{ painting.id }}">
-                            <input type="hidden" name="akcija" value="brisanje">
-                            <button type="submit" class="btn btn-outline-danger btn-sm">🗑 Obriši</button>
+                            <input type="hidden" name="akcija" value="brisanje_komentara">
+                            <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                            <button type="submit" class="btn btn-outline-danger btn-sm" title="Obriši komentar">🗑
+                            </button>
                         </form>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-    <div class="container mt-4 mb-4 p-4 border rounded shadow-sm bg-light">
-        <h4 class="text-center fw-bold pb-2 mb-4">Brisanje komentara</h4>
-
-        <div class="mb-3">
-            <input type="text" id="commentSearchInput" class="form-control"
-                   placeholder="Pretraži po korisničkom imenu ili sadržaju komentara...">
-        </div>
-
-        <div class="scroll-box d-flex flex-column gap-3">
-            {% for comment in comments %}
-                <div class="comment-box p-3 border rounded bg-white shadow-sm d-flex justify-content-between align-items-center"
-                     data-username="{{ comment.author.username|lower }}"
-                     data-content="{{ comment.text|lower }}">
-                    <div>
-                        <p class="mb-1 fw-semibold">{{ comment.author.username }}</p>
-                        <p class="mb-0">Komentar: {{ comment.text }} </p>
-                        <p class="mb-0">Ime slike: {{ comment.painting.title }}</p>
-                        {% if comment.created_at != None %}
-                            <small class="text-muted">{{ comment.created_at }}</small>
-                        {% endif %}
-                    </div>
-                    <form method="post" class="ms-3">
-                        {% csrf_token %}
-                        <input type="hidden" name="akcija" value="brisanje_komentara">
-                        <input type="hidden" name="comment_id" value="{{ comment.id }}">
-                        <button type="submit" class="btn btn-outline-danger btn-sm" title="Obriši komentar">🗑</button>
-                    </form>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
+    {% else %}
+    <h1 class="text-danger text-center">Nemate pristup ovom delu sajta.</h1>
+    {% endif %}
 {% endblock %}
