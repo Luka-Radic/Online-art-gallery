@@ -4,6 +4,7 @@ from django.urls import path, include
 
 
 from app1.views import *
+from app2.views import image_detail
 
 urlpatterns = [
     path('', homepage, name='homepage'),
@@ -19,5 +20,7 @@ urlpatterns = [
     path('delete_profile/', delete_profile, name='delete_profile'),
     path('add_pfp/', add_pfp, name='add_pfp'),
     path('add_pfp_page/', add_pfp_page, name='add_pfp_page'),
+
+    path('image<int:painting_id>/', image_detail, name='image_detail'),
 
 ]
