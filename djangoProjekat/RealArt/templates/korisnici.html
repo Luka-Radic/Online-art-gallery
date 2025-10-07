@@ -7,12 +7,49 @@
 
     <div class="container-fluid mt-4">
         <div class="row text-center">
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Pretraži...">
-                <button class="search-button">⌕</button>
-            </div>
+            <form method="POST" action="{% url 'search_users' %}" id="search-form">
+                <div class="search-container">
+                    {% csrf_token %}
+                    <input name="search" type="text" value="{{ input }}" class="search-input"
+                           id="search-input" placeholder="Pretraži... ⌕">
+{#                    <button type="submit" class="search-button">⌕</button>#}
+                </div>
+            </form>
         </div>
     </div>
+
+
+    {% if filtered is not None %}
+        <div class="container fluid mt-4 ">
+            <div class="row">
+                {% for f in filtered %}
+                <div class="col-sm-3">
+                    <div class="card m-3">
+                        {% if f.pfp_url is not None %}
+                            <img src="{% static 'img/zensko1.jpg' %}" alt="slika korisnika" class="card-img-top img-fluid">
+                        {% else %}
+                            <img src="{% static 'img/default_pfp.png' %}" alt="slika korisnika" class="card-img-top img-fluid">
+                        {% endif %}
+                        <div class="card-body">
+                            <h4 class="card-title">{{ f.first_name }} {{ f.last_name }}</h4>
+                            <p>username: {{ f.username }}</p>
+                            <p class="card-text">
+                                {% if f.role == 'registered' %} Umetnik {% else %} Žiri {% endif %}
+                            </p>
+                            {% if f.username == request.user.username %}
+                                <a href="{% url 'my_page' %}" class="btn btn-secondary">Pogledaj svoj profil</a>
+                            {% else %}
+                                <a href="{% url 'artist' f.id %}" class="btn btn-secondary">Pogledaj profil</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <hr>
+    {% endif %}
 
 
     <div class="container fluid mt-4 ">
@@ -44,7 +81,35 @@
     </div>
 
     <br><br>
+
+    <script>
+        const form = document.getElementById('search-form');
+        const input = document.getElementById('search-input');
+
+        input.addEventListener('keyup', () => {
+                form.submit();
+        });
+
+        window.addEventListener('DOMContentLoaded',
+            () => {
+                const input = document.getElementById('search-input');
+                input.selectionStart = input.selectionEnd = input.value.length;
+                if (input) input.focus();
+            });
+
+        let timeout;
+        input.addEventListener('keyup', () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                form.submit();
+            }, 100);
+        });
+
+    </script>
+
 {% endblock %}
+
+
 
 
 
