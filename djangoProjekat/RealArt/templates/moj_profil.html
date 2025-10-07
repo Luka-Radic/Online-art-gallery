@@ -10,11 +10,11 @@
                 <h1>{{ me.first_name }} {{ me.last_name }} </h1>
                 <p>username: {{ me.username }}</p>
                 {% if me.pfp_url is not None %}
-                    <img src="{% static 'img/musko2.jpg' %}" alt="Slika korisnika" class="img-fluid user-img">
-                    <a class="btn btn-light change-btn" href="#">Promenite profilnu sliku</a>
+                    <img src="{{ me.pfp_url }}" alt="Slika korisnika" class="img-fluid user-img">
+                    <a class="btn btn-light change-btn" href="{% url 'add_pfp_page' %}">Promenite profilnu sliku</a>
                 {% else %}
                     <img src="{% static 'img/default_pfp.png' %}" alt="Dodajte korisnicku sliku" class=" img-fluid user-img">
-                    <a class="btn btn-light change-btn" href="#">Dodaj profilnu sliku</a>
+                    <a class="btn btn-light change-btn" href="{% url 'add_pfp_page' %}">Dodaj profilnu sliku</a>
                 {% endif %}
                 <a class="btn btn-danger change-btn mt-2" href="{% url 'delete_profile' %}">Obrisi moj profil</a>
 
@@ -32,7 +32,9 @@
 
                 <br>
                 <h4> Opis: </h4>
-                <p class="user-bio">{{ me.bio }}</p>
+                {% if me.bio is not None %}
+                    <p class="user-bio">{{ me.bio }}</p>
+                {%  endif %}
                 
                 <br>
                 <text class="text-danger"> zakucano: </text>

@@ -1,9 +1,11 @@
+import os
 import re
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User as DjangoUser
 from django.shortcuts import render, redirect
 
+from RealArt import settings
 from app1 import models
 from app1.models import User
 from enum import Enum
@@ -25,7 +27,6 @@ def users(request):
 
 def my_page(request):
     username = request.user.username
-    print(username)
     me = User.objects.filter(username=username).first()
     if not me: redirect("homepage")
     return render(request, "moj_profil.html", {"me": me})
@@ -115,6 +116,35 @@ def search_users(request):
             filtered = set(filtered)
 
     return render(request, "korisnici.html", {"users": users, "filtered": filtered, "input": input})
+
+
+def add_pfp_page(request):
+    return render(request, "dodaj_proflnu.html")
+
+def add_pfp(request):
+    print("usao")
+    djuser = request.user
+    print (djuser.username)
+    user = User.objects.filter(username=djuser.username).first()
+    if request.method == "POST" and request.FILES.get('image') is not None:
+        image = request.FILES.get("image")
+        print(image)
+        if image.content_type.startswith('image/'):
+            base, ext = os.path.splitext(image.name)
+            filename = f'{djuser.username}{ext}'
+            print(filename)
+            path = os.path.join(settings.BASE_DIR,'static', 'img', filename)
+
+            with open(path, 'wb+') as destination:
+                for chunk in image.chunks():
+                    destination.write(chunk)
+
+            image_url = f'/static/img/{filename}'
+            user.pfp_url = image_url
+            user.save()
+    return render(request, 'moj_profil.html', {"me":user})
+
+
 
 def delete_profile(request):
     username = request.user.username

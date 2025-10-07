@@ -1,0 +1,23 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container-fluid mt-4">
+
+            <form method="POST" action = "{% url 'add_pfp' %}" enctype="multipart/form-data" class="upload-form p-4 shadow-sm bg-light rounded">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <input type="file" name="image" accept="image/*" required class="form-control upload-input"/>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-secondary upload-btn">Dodaj sliku</button>
+                </div>
+            </form>
+
+            <div class="mt-4 mb-4 d-flex justify-content-center">
+                <a href="{% url 'my_page' %}" class="btn btn-light back-button">⟸ Nazad</a>
+            </div>
+        </div>
+{% endblock %}
+

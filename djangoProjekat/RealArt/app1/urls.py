@@ -17,5 +17,7 @@ urlpatterns = [
     path('become_judge', become_judge, name='become_judge'),
     path ('search_users', search_users, name='search_users'),
     path('delete_profile/', delete_profile, name='delete_profile'),
+    path('add_pfp/', add_pfp, name='add_pfp'),
+    path('add_pfp_page/', add_pfp_page, name='add_pfp_page'),
 
 ]
