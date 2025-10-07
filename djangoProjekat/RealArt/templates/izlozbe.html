@@ -34,28 +34,31 @@
             </form>
         </div>
 
-<<<<<<< PATCH SET (e9b1e8 cela funkcionalna prikaz izlozbe)
-        <!-- Galerija postojećih izložbi -->
-            <div class="row g-4">
-                {% for item in izlozbe_sa_slikom %}
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card shadow-sm h-100">
-                            <img src="{{ item.slika }}" class="card-img-top" alt="{{ item.izlozba.name }}">
-                            <div class="card-body">
-                                <h5 class="card-title text-danger">{{ item.izlozba.name }}</h5>
-                                <p class="card-text">Tema: {{ item.izlozba.theme }}</p>
-                                <p class="text-muted">
-                                    {% if item.izlozba.status == "active" %}
-                                        Aktivna{% if item.izlozba.end_date != None %} do {{ item.izlozba.end_date }}{% endif %}
-                                    {% else %}
-                                        Zatvorena{% if item.izlozba.end_date != None %} - {{ item.izlozba.end_date }}{% endif %}
-                                    {% endif %}
-                                </p>
-                                <p class="small">{{ item.broj_radova }} radova
-                                    · {{ item.broj_umetnika}} umetnika</p>
-                                <a href="{% url 'exhibition' item.izlozba.id  %}" class="btn btn-outline-danger w-100">Pogledaj izložbu</a>
-                            </div>
-=======
+        <div class="row g-4">
+            {% for item in izlozbe_sa_slikom %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card shadow-sm h-100">
+                        <img src="{{ item.slika }}" class="card-img-top" alt="{{ item.izlozba.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger">{{ item.izlozba.name }}</h5>
+                            <p class="card-text">Tema: {{ item.izlozba.theme }}</p>
+                            <p class="text-muted">
+                                {% if item.izlozba.status == "active" %}
+                                    Aktivna{% if item.izlozba.end_date != None %} do
+                                    {{ item.izlozba.end_date }}{% endif %}
+                                {% else %}
+                                    Zatvorena{% if item.izlozba.end_date != None %} -
+                                    {{ item.izlozba.end_date }}{% endif %}
+                                {% endif %}
+                            </p>
+                            <p class="small">{{ item.broj_radova }} radova · {{ item.broj_umetnika }} umetnika</p>
+                            <a href="{% url 'exhibition' item.izlozba.id %}" class="btn btn-outline-danger w-100">Pogledaj
+                                izložbu</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
         <div class="row g-4">
             {% for item in izlozbe_sa_slikom %}
                 <div class="col-md-6 col-lg-4">
@@ -76,7 +79,7 @@
                             <p class="small">{{ item.broj_radova }} radova
                                 · {{ item.broj_umetnika }} umetnika</p>
                             <a href="#" class="btn btn-outline-danger w-100">Pogledaj izložbu</a>
->>>>>>> BASE      (156f72 Merge "Lepsa forma za pravljenje izlzobi")
+                            >>>>>>> BASE (156f72 Merge "Lepsa forma za pravljenje izlzobi")
                         </div>
                     </div>
                 </div>
