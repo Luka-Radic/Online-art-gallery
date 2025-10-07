@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 
 from RealArt import settings
 from app1 import models
-from app1.models import User
+from app1.models import User, Painting
 from enum import Enum
 
 class Role(str, Enum):
@@ -29,7 +29,8 @@ def my_page(request):
     username = request.user.username
     me = User.objects.filter(username=username).first()
     if not me: redirect("homepage")
-    return render(request, "moj_profil.html", {"me": me})
+    paintings = Painting.objects.filter(artist_id=me.id)
+    return render(request, "moj_profil.html", {"me": me, "paintings": paintings})
 
 def artist(request, id):
     user = User.objects.filter(id=id).first()
