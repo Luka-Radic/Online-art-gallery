@@ -94,7 +94,6 @@ a:hover {
 .upload-form {
   max-width: 600px;
   margin: 0 auto;
-  display: flex;
   gap: 1rem;
   align-items: center;
   padding: 1rem 1.5rem;

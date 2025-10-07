@@ -1,171 +1,60 @@
-<!-- Ranko Stanojevic  -->
-<!DOCTYPE html>
-<html lang="en">
+{% extends "template.html" %}
+{% load static %}
 
-<head>
-    <title>PSI projekat - prototip</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="assets/css/style_izlozbi.css">
-    <link rel="stylesheet" href="assets/css/style_korisnici.css">
-    <link rel="stylesheet" href="assets/css/ceo_dokument.css">
-</head>
+{% block optionalInclude %}
+    <link rel="stylesheet" href="{% static 'css/style_izlozbi.css' %}">
+    <script src="{% static 'js/prikaz_izlozbe.js' %}"></script>
+{% endblock %}
 
-<body>
-
-    <nav class="navbar navbar-expand-lg bg-dark navbar-light">
-        <div class="container text-light">
-            <div class="w-100 d-flex justify-content-between">
-                <span class="">realart@gmail.com</span>
-                <span class="">263 1245 657</span>
-            </div>
-        </div>
-    </nav>
-
-    <header>
-        <nav class="container navbar navbar-expand-lg navbar-light fs-4">
-            <p class="text-dark text-align-left">
-                <img src="./assets/img/icon.jpg" style="width: 40px; height: 40px;" alt="[icon]"> RealArt team
-            </p>
-            <div class="container justify-content-center w-auto">
-                <ul class="nav navbar-expand-sm navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="pocetna.html">Pocetna</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">O nama</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="izlozbe.html">Izlozbe</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="korisnici.html">Korisnici</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="moj_profil.html">Moj Profil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="galerija.html">Radovi</a>
-                    </li>
+{% block content %}
+    <div class="container fluid mt-4">
+        <h2 class="exhibition-heading text-center">Izložba {{ izlozba.name }}</h2>
+        <div class="search-container d-flex gap-2 align-items-center">
+            <input type="text" class="search-input" id="searchInput" placeholder="Pretražite sliku">
+            <div class="btn-group">
+                <button class="search-button">⌕</button>
+                <button type="button" class="search-button filter-button dropdown-toggle" data-bs-toggle="dropdown">≡
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Sortiraj po umetniku</a></li>
+                    <li><a class="dropdown-item" href="#">Sortira po oceni</a></li>
+                    <li><a class="dropdown-item" href="#">Najnovije</a></li>
                 </ul>
             </div>
-            <div class="">
-                <a class="fs-5 text-danger" href="login.html">Log in</a> &nbsp;&nbsp;
-                <a class="fs-5 text-danger" href="signup.html">Sign up</a>
-            </div>
-        </nav>
-    </header>
+        </div>
 
-    <div class="search-container d-flex gap-2 align-items-center">
-        <input type="text" class="search-input" placeholder="Pretražite sliku">
-        <div class="btn-group">
-            <button class="search-button">⌕</button>
-            <button type="button" class="search-button filter-button dropdown-toggle"
-                data-bs-toggle="dropdown">≡</button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Sortiraj po umetniku</a></li>
-                <li><a class="dropdown-item" href="#">Sortira po oceni</a></li>
-                <li><a class="dropdown-item" href="#">Najnovije</a></li>
-            </ul>
+        <div class="row mt-4 mb-4" id="paintingsContainer">
+            {% for painting in paintings %}
+                <div class="col-sm-4 d-flex align-items-stretch mt-4 mb-4 painting-card"
+                     data-title="{{ painting.title|lower }}"
+                     data-artist="{{ painting.artist.username|lower }}"
+                     data-timestamp="{{ painting.upload_date|date:'U' }}"
+                     data-rating="{{ painting.avg_rating|default:0 }}">
+                    <div class="card m-4 h-100 d-flex flex-column">
+                        <img src="{{ painting.image_url }}" alt="{{ painting.title }}" class="card-img-top img-fluid">
+                        <div class="card-body d-flex flex-column">
+                            <h4 class="card-title">{{ painting.title }}</h4>
+                            <p class="card-text">Umetnik:&nbsp;{{ painting.artist }}</p>
+                            <div class="row mt-auto">
+                                <div class="col-sm-6 d-flex flex-column justify-content-between"><a href="{% url 'users' painting.artist.id %}"
+                                                                                                    class="btn btn-secondary">Pogledaj
+                                    profil</a></div>
+                                <div class="col-sm-6 d-flex flex-column justify-content-between"><a href="#"
+                                                                                                    class="btn btn-secondary">Pogledaj
+                                    sliku</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 
-    <div class="container fluid mt-4">
-        <h3>Izložba "Priroda u pokretu"</h3>
-        <a href="izlozbe.html" class="btn btn-light back-button">⟸ Nazad</a>
-        <div class="row">
-            <div class="col-sm-4 d-flex align-items-stretch">
-                <div class="card m-4 h-100 d-flex flex-column">
-                    <img src="assets/img/priroda1.jpg" alt="priroda1" class="card-img-top img-fluid">
-                    <div class="card-body d-flex flex-column">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <button type="button" class="badge bg-warning">Nosilac</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h4 class="card-title">Šapat obale</h4>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <div class="col-sm-12">
-                                <p class="card-text">Nikola Jović</p>
-                            </div>
-                        </div>
-                        <div class="row mt-auto">
-                            <div class="col-sm-6 d-flex flex-column justify-content-between">
-                                <a href="moj_profil.html" class="btn btn-secondary">Pogledaj profil</a>
-                            </div>
-                            <div class="col-sm-6 d-flex flex-column justify-content-between">
-                                <a href="Slika.html" class="btn btn-secondary">Pogledaj sliku</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4 d-flex align-items-stretch">
-                <div class="card m-4 h-100 d-flex flex-column">
-                    <img src="assets/img/slika1.jpg" alt="slika1" class="card-img-top img-fluid">
-                    <div class="card-body d-flex flex-column">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <button type="button" class="badge bg-success">Novo</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h4 class="card-title">Puls prirode</h4>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <div class="col-sm-12">
-                                <p class="card-text">Marina Kovačević</p>
-                            </div>
-                        </div>
-                        <div class="row mt-auto">
-                            <div class="col-sm-6 d-flex flex-column justify-content-between">
-                                <a href="umetnik.html" class="btn btn-secondary">Pogledaj profil</a>
-                            </div>
-                            <div class="col-sm-6 d-flex flex-column justify-content-between">
-                                <a href="#" class="btn btn-secondary">Pogledaj sliku</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4 d-flex align-items-stretch">
-                <div class="card m-4 h-100 d-flex flex-column">
-                    <img src="assets/img/slika2.jpg" alt="slika2" class="card-img-top img-fluid">
-                    <div class="card-body d-flex flex-column">
-                        <div class="row mt-4">
-                            <div class="col-sm-12">
-                                <h4 class="card-title">Plamen šume - realizam</h4>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <div class="col-sm-12">
-                                <p class="card-text">Marina Kovačević</p>
-                            </div>
-                        </div>
-                        <div class="row mt-auto">
-                            <div class="col-sm-6 d-flex flex-column justify-content-between">
-                                <a href="umetnik.html" class="btn btn-secondary">Pogledaj profil</a>
-                            </div>
-                            <div class="col-sm-6 d-flex flex-column justify-content-between">
-                                <a href="#" class="btn btn-secondary">Pogledaj sliku</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="container fluid mt-4">
         <div class="row text-center m-4">
             <div class="col sm-12">
                 <button type="button" class="btn btn-secondary center mt-4" data-bs-toggle="modal"
-                    data-bs-target="#galleryModal">
+                        data-bs-target="#galleryModal">
                     Pogledaj slajdšou
                 </button>
             </div>
@@ -176,52 +65,63 @@
                     <div class="modal-body p-0">
                         <div id="demo" class="carousel slide carousel-fade" data-bs-ride="carousel">
                             <div class="carousel-indicators">
-                                <button type="button" data-bs-target="#demo" data-bs-slide-to="0"
-                                    class="active"></button>
-                                <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-                                <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+                                {% for painting in paintings %}
+                                    <button type="button" data-bs-target="#demo"
+                                            data-bs-slide-to="{{ forloop.counter0 }}"
+                                            {% if forloop.first %}class="active"{% endif %}></button>
+                                {% endfor %}
                             </div>
                             <div class="carousel-inner">
-                                <div class="carousel-item ratio active ratio-16x9">
-                                    <img src="assets/img/priroda1.jpg" alt="priroda1" class="d-block w-100">
-                                </div>
-                                <div class="carousel-item ratio ratio-16x9">
-                                    <img src="assets/img/slika1.jpg" alt="slika1" class="d-block w-100">
-                                </div>
-                                <div class="carousel-item ratio ratio-16x9">
-                                    <img src="assets/img/slika2.jpg" alt="slika2" class="d-block w-100">
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#demo"
-                                    data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon"></span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#demo"
-                                    data-bs-slide="next">
-                                    <span class="carousel-control-next-icon"></span>
-                                </button>
+                                {% for painting in paintings %}
+                                    <div class="carousel-item ratio ratio-16x9 {% if forloop.first %}active{% endif %}">
+                                        <img src="{{ painting.image_url }}" alt="{{ painting.title }}"
+                                             class="d-block w-100">
+                                    </div>
+                                {% endfor %}
                             </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#demo"
+                                    data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon"></span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#demo"
+                                    data-bs-slide="next">
+                                <span class="carousel-control-next-icon"></span>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="container-fluid mt-4">
-        <div class="row">
-            <div class="col-sm-12">
-                <h3 class="fst-italic text-muted text-center mt-4">Zelite da dodate Vašu sliku?</h3>
+        {% if request.user.is_authenticated and izlozba.status == "active" %}
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="fst-italic text-muted text-center mt-4">Zelite da dodate Vašu sliku?</h3>
+                </div>
             </div>
-        </div>
-        <div class="row mt-4 mb-4">
-            <div class="col-sm-12">
-                <form action="/upload" method="POST" enctype="multipart/form-data"
-                    class="upload-form d-flex align-items-center gap-3 p-3 shadow-sm bg-light">
-                    <input type="file" name="image" accept="image/*" required class="form-control upload-input" />
+            <form method="POST" enctype="multipart/form-data"
+                  class="upload-form p-4 shadow-sm bg-light rounded">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <input type="text" name="title" placeholder="Unesite naziv slike" required
+                           class="form-control upload-input"/>
+                </div>
+
+                <div class="mb-3">
+                    <input type="file" name="image" accept="image/*" required
+                           class="form-control upload-input"/>
+                </div>
+
+                <div class="text-center">
                     <button type="submit" class="btn btn-secondary upload-btn">Dodaj sliku</button>
-                </form>
-            </div>
+                </div>
+            </form>
+        {% endif %}
+        <div class="mt-4 mb-4 d-flex justify-content-center">
+            <a href="{% url 'exhibitions' %}" class="btn btn-light back-button">⟸ Nazad</a>
         </div>
     </div>
-</body>
-
-</html>
+{% endblock %}

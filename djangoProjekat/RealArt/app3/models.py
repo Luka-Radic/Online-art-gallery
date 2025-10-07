@@ -103,6 +103,11 @@ class User(models.Model):
     bio = models.TextField(blank=True, null=True)
     date_joined = models.DateTimeField(blank=True, null=True)
 
+    def __str__(self):
+        return self.username
+
+        email = 'email'
+        first_name = 'first_name'
     class Meta:
         managed = False
         db_table = 'user'

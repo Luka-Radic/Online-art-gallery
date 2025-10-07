@@ -20,5 +20,6 @@ from django.urls import path,include
 from app3.views import *
 urlpatterns = [
     path('', pocetna, name='pocetna'),
-    path('odrzavanje/', odrzavanje, name='odrzavanje'),
+    path('adminUs/', adminUs, name='adminUs'),
+    path('exhibition/<int:exhibition_id>/', exhibition, name='exhibition'),
 ]
