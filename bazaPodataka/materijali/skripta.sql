@@ -117,6 +117,7 @@ CREATE TABLE `painting` (
   `upload_date` datetime DEFAULT CURRENT_TIMESTAMP,
   `artist_id` int NOT NULL,
   `avg_rating` float DEFAULT '0',
+  `image_desc` text,
   PRIMARY KEY (`id`),
   KEY `artist_id` (`artist_id`),
   CONSTRAINT `painting_ibfk_1` FOREIGN KEY (`artist_id`) REFERENCES `user` (`id`) ON UPDATE CASCADE ON DELETE CASCADE

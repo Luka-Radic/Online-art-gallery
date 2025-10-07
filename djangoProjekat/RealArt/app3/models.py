@@ -65,6 +65,7 @@ class Painting(models.Model):
     upload_date = models.DateTimeField(blank=True, null=True)
     artist = models.ForeignKey('User', models.DO_NOTHING)
     avg_rating = models.FloatField(blank=True, null=True)
+    image_desc = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -102,6 +103,7 @@ class User(models.Model):
     role = models.CharField(max_length=10)
     bio = models.TextField(blank=True, null=True)
     date_joined = models.DateTimeField(blank=True, null=True)
+    pfp_url = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.username

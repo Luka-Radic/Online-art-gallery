@@ -56,6 +56,7 @@ class Painting(models.Model):
     upload_date = models.DateTimeField(blank=True, null=True)
     artist = models.ForeignKey('User', models.DO_NOTHING)
     avg_rating = models.FloatField(blank=True, null=True)
+    image_desc = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
