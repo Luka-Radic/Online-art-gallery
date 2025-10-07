@@ -14,8 +14,7 @@ def homepage(request):
 
 def users(request):
     users = User.objects.all()
-    dj_users = DjangoUser.objects.all()
-    return render(request, "korisnici.html", {"users": users, "dj_users": dj_users})
+    return render(request, "korisnici.html", {"users": users})
 
 def my_page(request):
     username = request.user.username
@@ -43,10 +42,15 @@ def login_page(request):
             print("Ulogovan")
             return redirect('homepage')
         else:
+            input = {}
             if not User.objects.filter(username=username):
                 message = 'Ne postoji korisnik sa tim korisnickim imenom'
+                input["password"] = password
             else:
                 message = "Neispravna lozinka za dato ime."
+                input["username"] = username
+
+        return render(request, "login.html", {"message": message, "input": input})
 
     return render(request, "login.html", {"message": message})
 
@@ -87,4 +91,17 @@ def forgot_password(request):
     return render(request, "zaboravljena_lozinka.html")
 
 def become_judge(request):
-    return render(request, "postani_ziri.html")
+    return render(request, "postani_ziri.html")\
+
+def search_users(request):
+    users = User.objects.all()
+    input= ""
+    filtered = None
+    if request.method == "POST":
+        input = request.POST.get("search")
+
+        filtered = list(users.filter(username__icontains=input))
+        filtered += list(users.filter(first_name__icontains=input))
+        filtered += list(users.filter(last_name__icontains=input))
+
+    return render(request, "korisnici.html", {"users": users, "filtered": set(filtered), "input": input})

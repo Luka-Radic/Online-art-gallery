@@ -12,11 +12,11 @@
             {% csrf_token %}
             <div class="mb-3">
                 <label for="korisnickoIme" class="form-label">Korisničko ime</label>
-                <input type="text" class="form-control" id="korisnickoIme" name="username" required>
+                <input type="text" class="form-control" id="korisnickoIme" name="username" value="{{ input.username }}" required>
             </div>
             <div class="mb-3">
                 <label for="lozinka" class="form-label">Lozinka</label>
-                <input type="password" class="form-control" id="lozinka" name="password" required>
+                <input type="password" class="form-control" id="lozinka" name="password" value="{{ input.password }}" required>
             </div>
             <button type="submit" class="btn btn-secondary">Prijavi se</button>
         </form>
