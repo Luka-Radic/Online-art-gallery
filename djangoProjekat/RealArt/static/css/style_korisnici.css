@@ -21,13 +21,16 @@
 
 /*---------Stranice Umetnika i Zirija (Mina)----------- */
 .user-img-container {
+    position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column !important;
 }
 
+
 .user-img {
-  height: 80%;
+  height: 60%;
   max-height: 500px;
   aspect-ratio: 1 / 1;
   object-fit: cover;
@@ -71,7 +74,7 @@
 }
 
 .user-bio {
-    background-color: white;!important;
+    background-color: rgb(255, 255, 255, 0.3);
 }
 
 

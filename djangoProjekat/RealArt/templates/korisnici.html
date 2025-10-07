@@ -20,7 +20,11 @@
             {% for user in users %}
             <div class="col-sm-3">
                 <div class="card m-3">
-                    <img src="{% static 'img/zensko1.jpg' %}" alt="slika korisnika" class="card-img-top img-fluid">
+                    {% if user.pfp_url is not None %}
+                        <img src="{% static 'img/zensko1.jpg' %}" alt="slika korisnika" class="card-img-top img-fluid">
+                    {% else %}
+                        <img src="{% static 'img/default_pfp.jpg' %}" alt="slika korisnika" class="card-img-top img-fluid">
+                    {% endif %}
                     <div class="card-body">
                         <h4 class="card-title">{{ user.first_name }} {{ user.last_name }}</h4>
                         <p>username: {{ user.username }}</p>

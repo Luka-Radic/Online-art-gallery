@@ -6,12 +6,17 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 user-img-container">
-                <img src="{% static 'img/musko2.jpg' %}" alt="Slika korisnika" class="img-fluid user-img">
+            <div class="col-sm-5 user-img-container">
+                <h1>{{ me.first_name }} {{ me.last_name }} </h1>
+                <p>username: {{ me.username }}</p>
+                {% if me.pfp_url is not None %}
+                    <img src="{% static 'img/musko2.jpg' %}" alt="Slika korisnika" class="img-fluid user-img">
+                {% else %}
+                    <img src="{% static '#' %}" alt="Dodajte korisnicku sliku" class=" img-fluid user-img">
+                {% endif %}
+                <a class="btn btn-light change-btn" href="#">Dodaj profilnu sliku</a>
             </div>
             <div class="col-sm-6 user-description">
-                <h1>{{ me.first_name }} {{ me.last_name }} </h1>
-                <p class="pb-4">username: {{ me.username }}</p>
                 <h4>Status:
                     {% if me.role == 'registered' %} Umetnik {% else %} Žiri {% endif %}
                 </h4>
@@ -32,14 +37,20 @@
                 <h5>Zarađeno dosad: 6.08$</h5>
                 <br> <br>
                 <a href="{% url 'users' %}" class="btn btn-light back-button">⟸ Nazad</a>
+                <a href="#radovi" class="btn btn-light back-button">⇓ Radovi </a>
                 
             </div>
+            <div class="col-sm-1">
+                <a href="#"><img src="{% static 'img/edit_profile_icon.png' %}" class="img-fluid logo mt-4"></a>
+                <a href="#"><img src="{% static 'img/settings_icon.png' %}" class="img-fluid logo mt-4"></a>
+            </div>
+
         </div>
     </div>
 
     <div class="container gallery-container">
         <div class="row">
-            <h4>Pregled radova:</h4>
+            <h4 id="radovi">Pregled radova:</h4>
             <div class="col-sm-3">
                 <a href="Slika.html">
                     <img src="{% static 'img/priroda1.jpg' %}" class="img-fluid painting" alt="slika1" name="slika1">

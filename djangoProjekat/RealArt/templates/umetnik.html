@@ -8,22 +8,25 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 user-img-container">
-                <img src={% static "img/zensko1.jpg" %} alt="Slika korisnika" class="img-fluid user-img">
+                {% if user.pfp_url is not None %}
+                        <img src="{% static 'img/zensko1.jpg' %}" alt="slika korisnika" class="img-fluid user-img">
+                    {% else %}
+                        <img src="{% static '#' %}" alt="korisnik nema sliku" class="img-fluid user-img">
+                    {% endif %}
             </div>
             <div class="col-sm-6 user-description">
                 <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-                <p class="pb-4">username: {{ user.username }}</p>
-                <h4> Status:
+                <p>username: {{ user.username }}</p>
+
+                <h4 class="mt-4"> Status:
                     {% if user.role == 'registered' %} Umetnik
                     {% else %} Žiri {% endif %}
                 </h4>
 
-                <br>
-                <h4> Opis: </h4>
+                <h4 class="mt-4"> Opis: </h4>
                 <p class="user-bio">{{ user.bio }}</p>
 
-                <br>
-                <text class="text-danger"> zakucano: </text>
+                <text class="text-danger mt-3"> zakucano: </text>
                 <h4>Prosečna ocena: 4.37/5</h4>
 
                 {% if user.role == 'jury' %}
@@ -40,6 +43,7 @@
                 <a href="#" class="text-warning h6 text-shadow">Želiš da podržiš ovog umetnika fundiranjem?🪙</a>
                 <br> <br>
                 <a href="{% url 'users' %}" class="btn btn-light back-button">⟸ Nazad</a>
+                <a href="#radovi" class="btn btn-light back-button">⇓ Radovi </a>
                 
             </div>
         </div>
@@ -47,7 +51,7 @@
 
     <div class="container gallery-container">
         <div class="row">
-            <h4>Pregled radova:</h4>
+            <h4 id="radovi">Pregled radova:</h4>
             <div class="col-sm-3">
                 <a href="">
                     <img src="{% static 'img/slika1.jpg' %}" class="img-fluid painting" alt="slika1" name="slika1">

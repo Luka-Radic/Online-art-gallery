@@ -11,6 +11,16 @@ body {
     min-height: 100vh;
 }
 
+.logo {
+    width: 40px;
+    height: 40px;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+}
+
 /* Pozadina sa belim providnim slojem */
 body::before {
     content: '';
@@ -77,34 +87,6 @@ a:hover {
   transform: scale(1.02);
 }
 
-/*
-.fancy-button {
-  display: inline-block;
-  padding: 0.6em 1.2em;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #444;
-  background-color: #90dae6;
-  border: 2px solid #ccc;
-  border-radius: 0.5em;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: 'Segoe UI', sans-serif;
-  letter-spacing: 0.4px;
-}
-
-.fancy-button:hover {
-  background-color: #6a7ade;
-  border-color: #9450ed;
-}
-
-.fancy-button.active {
-  background-color: #d0d8e8;
-  border-color: #6e7f9c;
-  color: #2c3e50;
-  box-shadow: 0 0 0 3px rgba(110, 127, 156, 0.2);
-}
-*/
 
 
 /* -------------- Upload forma : Stranica Prikaz Izlozbe (Ranko)-------------- */
