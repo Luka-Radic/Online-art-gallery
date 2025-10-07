@@ -29,7 +29,7 @@
                      data-artist="{{ item.painting.artist.username|default_if_none:''|lower }}"
                      data-title="{{ item.painting.title|default_if_none:''|lower }}"
                      data-theme="{{ item.themes|join:','|escapejs|lower }}">
-                    <div class="card m-4 h-100 d-flex flex-column">
+                    <div class="card mb-4 h-100 d-flex flex-column">
                         <img src="{{ item.painting.image_url }}" alt="{{ item.painting.title }}"
                              class="card-img-top img-fluid">
                         <div class="card-body d-flex flex-column">

@@ -10,9 +10,12 @@
     <div class="container fluid mt-4">
         <h2 class="exhibition-heading text-center">Izložba {{ izlozba.name }}</h2>
         <div class="search-container d-flex gap-2 align-items-center">
+            <select id="searchFilter" class="form-control search-list search-input" >
+                <option value="title">Naziv</option>
+                <option value="artist">Umetnik</option>
+            </select>
             <input type="text" class="search-input" id="searchInput" placeholder="Pretražite sliku">
             <div class="btn-group">
-                <button class="search-button">⌕</button>
                 <button type="button" class="search-button filter-button dropdown-toggle" data-bs-toggle="dropdown">≡
                 </button>
                 <ul class="dropdown-menu">
@@ -25,22 +28,24 @@
 
         <div class="row mt-4 mb-4" id="paintingsContainer">
             {% for painting in paintings %}
-                <div class="col-sm-4 d-flex align-items-stretch mt-4 mb-4 painting-card"
+                <div class="col-md-4 mb-4 painting-card"
                      data-title="{{ painting.title|lower }}"
                      data-artist="{{ painting.artist.username|lower }}"
                      data-timestamp="{{ painting.upload_date|date:'U' }}"
                      data-rating="{{ painting.avg_rating|default:0 }}">
-                    <div class="card m-4 h-100 d-flex flex-column">
+                    <div class="card mb-4 h-100 d-flex flex-column">
                         <img src="{{ painting.image_url }}" alt="{{ painting.title }}" class="card-img-top img-fluid">
                         <div class="card-body d-flex flex-column">
                             <h4 class="card-title">{{ painting.title }}</h4>
                             <p class="card-text">Umetnik:&nbsp;{{ painting.artist }}</p>
                             <div class="row mt-auto">
-                                <div class="col-sm-6 d-flex flex-column justify-content-between"><a href="{% url 'artist' painting.artist.id %}"
-                                                                                                    class="btn btn-secondary">Pogledaj
+                                <div class="col-sm-6 d-flex flex-column justify-content-between"><a
+                                        href="{% url 'artist' painting.artist.id %}"
+                                        class="btn btn-secondary">Pogledaj
                                     profil</a></div>
-                                <div class="col-sm-6 d-flex flex-column justify-content-between"><a href="{% url 'image_detail' painting.id %}"
-                                                                                                    class="btn btn-secondary">Pogledaj
+                                <div class="col-sm-6 d-flex flex-column justify-content-between"><a
+                                        href="{% url 'image_detail' painting.id %}"
+                                        class="btn btn-secondary">Pogledaj
                                     sliku</a></div>
                             </div>
                         </div>
