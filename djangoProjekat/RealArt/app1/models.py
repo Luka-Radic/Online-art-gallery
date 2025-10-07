@@ -93,6 +93,7 @@ class User(models.Model):
     role = models.CharField(max_length=10)
     bio = models.TextField(blank=True, null=True)
     date_joined = models.DateTimeField(blank=True, null=True)
+    pfp_url = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
