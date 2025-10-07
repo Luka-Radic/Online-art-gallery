@@ -16,11 +16,12 @@
                     <img src="{% static 'img/default_pfp.png' %}" alt="Dodajte korisnicku sliku" class=" img-fluid user-img">
                     <a class="btn btn-light change-btn" href="#">Dodaj profilnu sliku</a>
                 {% endif %}
+                <a class="btn btn-danger change-btn mt-2" href="{% url 'delete_profile' %}">Obrisi moj profil</a>
 
             </div>
             <div class="col-sm-6 user-description">
                 <h4>Status:
-                    {% if me.role == 'registered' %} Umetnik {% else %} Žiri {% endif %}
+                    {% if me.is_regular_user %} Umetnik {% else %} Žiri {% endif %}
                 </h4>
 
                 {% if me.role == "registered" %}

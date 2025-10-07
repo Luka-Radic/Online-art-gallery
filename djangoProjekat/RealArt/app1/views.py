@@ -3,9 +3,16 @@ import re
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User as DjangoUser
 from django.shortcuts import render, redirect
+
+from app1 import models
 from app1.models import User
+from enum import Enum
 
-
+class Role(str, Enum):
+    ADMIN = "admin"
+    JURY = "jury"
+    REGISTERED = "registered"
+    GUEST = "guest"
 
 
 # Create your views here.
@@ -73,9 +80,11 @@ def signup_page(request):
         else:
             if User.objects.filter(username=username):
                 message = "Korisnik sa tim korisnickim imenom vec postoji. Unesite drugo."
+            elif User.objects.filter(email=email):
+                message = "Korisnik sa tim email-om vec postoji."
             else:
                 user = User.objects.create(username=username, password_hash=password, first_name=name, last_name=lastname,
-                                           email=email, bio=description, role='registered', date_joined=None)  # TODO enum
+                                           email=email, bio=description, role=Role.REGISTERED, date_joined=None)
                 user.save()
                 django_user = DjangoUser.objects.create_user(username=username, password=password)
                 login(request, django_user)
@@ -99,9 +108,16 @@ def search_users(request):
     filtered = None
     if request.method == "POST":
         input = request.POST.get("search")
+        if input != "":
+            filtered = list(users.filter(username__icontains=input))
+            filtered += list(users.filter(first_name__icontains=input))
+            filtered += list(users.filter(last_name__icontains=input))
+            filtered = set(filtered)
 
-        filtered = list(users.filter(username__icontains=input))
-        filtered += list(users.filter(first_name__icontains=input))
-        filtered += list(users.filter(last_name__icontains=input))
+    return render(request, "korisnici.html", {"users": users, "filtered": filtered, "input": input})
 
-    return render(request, "korisnici.html", {"users": users, "filtered": set(filtered), "input": input})
+def delete_profile(request):
+    username = request.user.username
+    User.objects.filter(username=username).delete()
+    DjangoUser.objects.filter(username=username).delete()
+    return redirect("homepage")

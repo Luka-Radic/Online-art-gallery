@@ -19,7 +19,7 @@
                 <p>username: {{ user.username }}</p>
 
                 <h4 class="mt-4"> Status:
-                    {% if user.role == 'registered' %} Umetnik
+                    {% if user.is_regular_user %} Umetnik
                     {% else %} Žiri {% endif %}
                 </h4>
 
