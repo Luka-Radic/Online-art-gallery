@@ -8,6 +8,7 @@
     height: 640px;
     overflow: hidden;
     padding: 20px;
+    background-color: white; /* bela pozadina */
 }
 
 .card-top { flex-shrink: 0; overflow: hidden; }
@@ -88,4 +89,10 @@
     line-height: 1.5rem;
     height: 1.5rem;
     margin-bottom: 0.5rem !important;
+}
+
+.fixed-card:hover,
+.fixed-card *:hover {
+    transform: none !important;
+    transition: none !important;
 }
