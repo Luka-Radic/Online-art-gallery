@@ -16,5 +16,6 @@ urlpatterns = [
     path('forgot_password/', forgot_password, name='forgot_password'),
     path('become_judge', become_judge, name='become_judge'),
     path ('search_users', search_users, name='search_users'),
+    path('delete_profile/', delete_profile, name='delete_profile'),
 
 ]

@@ -34,7 +34,7 @@
                             <h4 class="card-title">{{ f.first_name }} {{ f.last_name }}</h4>
                             <p>username: {{ f.username }}</p>
                             <p class="card-text">
-                                {% if f.role == 'registered' %} Umetnik {% else %} Žiri {% endif %}
+                                {% if f.is_regular_user %} Umetnik {% else %} Žiri {% endif %}
                             </p>
                             {% if f.username == request.user.username %}
                                 <a href="{% url 'my_page' %}" class="btn btn-secondary">Pogledaj svoj profil</a>
@@ -66,7 +66,7 @@
                         <h4 class="card-title">{{ user.first_name }} {{ user.last_name }}</h4>
                         <p>username: {{ user.username }}</p>
                         <p class="card-text">
-                            {% if user.role == 'registered' %} Umetnik {% else %} Žiri {% endif %}
+                            {% if user.is_regular_user %} Umetnik {% else %} Žiri {% endif %}
                         </p>
                         {% if user.username == request.user.username %}
                             <a href="{% url 'my_page' %}" class="btn btn-secondary">Pogledaj svoj profil</a>
@@ -86,9 +86,22 @@
         const form = document.getElementById('search-form');
         const input = document.getElementById('search-input');
 
-        input.addEventListener('keyup', () => {
-                form.submit();
-        });
+        function debounce(func, delay) {
+            let timeoutId;
+
+            return function(...args) {
+            clearTimeout(timeoutId);
+
+            timeoutId = setTimeout(() => {
+              func.apply(this, args);
+            }, delay);
+          };
+        }
+
+        input.addEventListener('keyup', debounce (() => {
+            form.submit();
+
+        }, 200 ));
 
         window.addEventListener('DOMContentLoaded',
             () => {
@@ -96,14 +109,6 @@
                 input.selectionStart = input.selectionEnd = input.value.length;
                 if (input) input.focus();
             });
-
-        let timeout;
-        input.addEventListener('keyup', () => {
-            clearTimeout(timeout);
-            timeout = setTimeout(() => {
-                form.submit();
-            }, 100);
-        });
 
     </script>
 

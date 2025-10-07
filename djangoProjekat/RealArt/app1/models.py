@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 
 # Create your models here.
@@ -22,6 +23,9 @@ class Exhibition(models.Model):
     status = models.CharField(max_length=6)
     created_by = models.ForeignKey('User', models.DO_NOTHING, db_column='created_by')
     winner_painting = models.ForeignKey('Painting', models.DO_NOTHING, blank=True, null=True)
+
+    def is_active(self):
+        return self.start_date >= datetime.date.today() >= self.end_date
 
     class Meta:
         managed = False
@@ -95,6 +99,13 @@ class User(models.Model):
     bio = models.TextField(blank=True, null=True)
     date_joined = models.DateTimeField(blank=True, null=True)
     pfp_url = models.CharField(max_length=255, blank=True, null=True)
+
+    def is_regular_user(self):
+        return self.role == 'registered'
+    def is_jury(self):
+        return self.role == 'jury'
+    def is_admin(self):
+        return self.role == 'admin'
 
     class Meta:
         managed = False
