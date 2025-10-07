@@ -11,6 +11,8 @@ urlpatterns = [
     path('my_page/', my_page, name='my_page'),
     path('login/', login_page, name='login_page'),
     path('signup/', signup_page, name='signup_page'),
+    path('logout/', logout_page, name='logout_page'),
     path('forgot_password/', forgot_password, name='forgot_password'),
     path('become_judge', become_judge, name='become_judge'),
+
 ]

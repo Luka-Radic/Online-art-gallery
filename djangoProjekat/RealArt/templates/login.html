@@ -6,8 +6,10 @@
 {% block content %}
 
     <div class="container mt-5" style="max-width: 400px;">
-        <h2>Logovanje</h2>
+        <h2>Prijava</h2>
+        <h5 class="text-danger">{{ message }}</h5>
         <form method="POST" action="{% url 'login_page' %}">
+            {% csrf_token %}
             <div class="mb-3">
                 <label for="korisnickoIme" class="form-label">Korisničko ime</label>
                 <input type="text" class="form-control" id="korisnickoIme" name="username" required>
@@ -16,10 +18,10 @@
                 <label for="lozinka" class="form-label">Lozinka</label>
                 <input type="password" class="form-control" id="lozinka" name="password" required>
             </div>
-            <button type="submit" class="btn btn-primary">Prijavi se</button>
+            <button type="submit" class="btn btn-secondary">Prijavi se</button>
         </form>
-        <div class="mt-3">
-            <a href="{% url 'forgot_password' %}" class="text-primary text-decoration-underline">Zaboravili ste lozinku?</a>
+        <div class="mt-3 pb-3">
+            <a href="{% url 'forgot_password' %}" class="text-danger text-decoration-underline">Zaboravili ste lozinku?</a>
         </div>
     </div>
 
