@@ -36,7 +36,7 @@ class Funding(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     donor = models.ForeignKey('User', models.DO_NOTHING)
     artist = models.ForeignKey('User', models.DO_NOTHING, related_name='funding_artist_set')
-    date = models.DateTimeField(blank=True, null=True)
+    # date = models.DateTimeField(blank=True, null=True) da bi sam dodelio datum u bazi sa current timestampom
 
     class Meta:
         managed = False

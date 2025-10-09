@@ -22,6 +22,10 @@ urlpatterns = [
     path('add_pfp_page/', add_pfp_page, name='add_pfp_page'),
     path('fund/<int:artist_id>/', fund, name="fund"),
     path('pay/<int:artist_id>/', pay, name='pay'),
+
+    path("fund/success/<int:funding_id>/", fund_success, name="fund_success"),
+    path("fund/cancel/<int:funding_id>/", fund_cancel, name="fund_cancel"),
+
     path('add_jury_doc/', add_jury_doc, name='add_jury_doc'),
 
     path('image<int:painting_id>/', image_detail, name='image_detail'),

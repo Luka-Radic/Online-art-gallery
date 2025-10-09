@@ -1,5 +1,5 @@
 import os
-import re
+import requests
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User as DjangoUser
@@ -9,6 +9,12 @@ from RealArt import settings
 from app1 import models
 from app1.models import User, Painting, Funding, Juryrequest
 from enum import Enum
+
+
+PAYPAL_CLIENT_ID = "ATCPLO9nK8__yOvaqljL-aYPsiNZhhEXSSCUOkgU8wtZpr_ETaRtaCXoEOfFEC3I6TG1RZvVqJ7fH0vn" #client id
+PAYPAL_SECRET = "EFJrsC_qq6kuQIT_-ar2uJzi4j7GTeHO9Bm6DEcSyLhPlKXFxA6nHgaAQ1ODoNf_pdnaizaPAa1_vUbO" #secret key1
+PAYPAL_API = "https://api-m.sandbox.paypal.com"
+
 
 class Role(str, Enum):
     ADMIN = "admin"
@@ -186,17 +192,74 @@ def pay(request, artist_id):
 
         donor = User.objects.filter(email=email).first()
         if donor is None:
-            # stavi da se vrati na fundiraj sa porukom neuspeha
             return redirect("homepage")
 
         amount = request.POST.get("amount")
         if amount is None or amount == "":
             return redirect("homepage")
 
-        Funding.objects.create(amount=amount, donor=donor, artist=artist).save()
-        message = "Uspesno ste donirali umetniku, hvala Vam!"
+            #commit=False
+        funding = Funding.objects.create(amount=amount, donor=donor, artist=artist)
+        print("Funding id: " , funding.id)
 
-    return render(request, "fundiraj.html", {"artist_id": artist_id, "message":message})
+        #dobijanje tokena
+        auth = (PAYPAL_CLIENT_ID, PAYPAL_SECRET)
+        token_response = requests.post(
+            f"{PAYPAL_API}/v1/oauth2/token",
+            data={"grant_type": "client_credentials"},
+            auth=auth
+        )
+        token = token_response.json().get("access_token")
+
+        #pravljenje paypal ordera
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {token}"
+        }
+        order_data = {
+            "intent": "CAPTURE",
+            "purchase_units": [{
+                "amount": {"currency_code": "EUR", "value": str(amount)},
+                "description": f"Fundiranje umetnika {artist.username}"
+            }],
+            "application_context": {
+                "return_url": f"http://127.0.0.1:8000/fund/success/{funding.id}/",
+                "cancel_url": f"http://127.0.0.1:8000/fund/cancel/{funding.id}/"
+            }
+        }
+        order_response = requests.post(f"{PAYPAL_API}/v2/checkout/orders", json=order_data, headers=headers)
+        order_json = order_response.json()
+
+        approval_url = next((link["href"] for link in order_json["links"] if link["rel"] == "approve"), None)
+
+        funding.payment_id = order_json.get("id")
+        #todo kolona paypalov id
+        funding.save()
+
+        #preusmerim korisnika na paypal stranicu za placanje:
+        return redirect(approval_url)
+
+    return render(request, "fundiraj.html", {"artist_id": artist_id})
+
+
+def fund_success(request, funding_id):
+    funding = Funding.objects.get(id=funding_id)
+    funding.status = "completed"
+    funding.save()
+    return render(request, "fundiraj.html", {
+        "artist_id": funding.artist.id,
+        "message": "Uspesno ste podržali umetnika! Hvala!"
+    })
+
+def fund_cancel(request, funding_id):
+    funding = Funding.objects.get(id=funding_id)
+    funding.status = "cancelled"
+    funding.save()
+    return render(request, "fundiraj.html", {
+        "artist_id": funding.artist.id,
+        "message": "Plaćanje je otkazano."
+    })
+
 
 def delete_profile(request):
     username = request.user.username
