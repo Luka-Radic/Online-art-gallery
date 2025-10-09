@@ -37,9 +37,11 @@
                 {%  endif %}
                 
                 <br>
-                <text class="text-danger"> zakucano: </text>
-                <h4>Prosečna ocena: 4.21/5</h4>
-                <h5>Zarađeno dosad: 6.08$</h5>
+                <span class="h4">Prosečna ocena: {{me.get_rating}}/5</span>
+                {% if me.get_rating == 0 %}
+                    <span class="text-danger">Nema još uvek nijedne ocene.</span>
+                {% endif %}
+                <h5 class="mt-2">Zarađeno dosad: {{me.get_funding}}$</h5>
                 <br> <br>
                 <button class="btn btn-light back-button" onclick="history.back()"> ⟸ Nazad </button>
                 <a href="#radovi" class="btn btn-light back-button">⇓ Radovi </a>
@@ -58,7 +60,7 @@
             <h4 id="radovi">Pregled radova: </h4>
             {% for painting in paintings %}
                 <div class="col-sm-3">
-                    <a href="{% url 'image_detail' painting.id %}">
+                    <a href="{% url 'image_detail' painting.id %}" class="text-dark">
                         <img src="{{ painting.image_url }}" class="img-fluid painting" alt={{ painting.title }} name={{ painting.title }}>
                         <label for={{ painting.title }}>{{ painting.title }}</label>
                     </a>

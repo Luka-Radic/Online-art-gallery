@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 
 from RealArt import settings
 from app1 import models
-from app1.models import User, Painting
+from app1.models import User, Painting, Funding, Juryrequest
 from enum import Enum
 
 class Role(str, Enum):
@@ -35,7 +35,8 @@ def my_page(request):
 def artist(request, id):
     user = User.objects.filter(id=id).first()
     if not user: redirect("homepage")
-    return render(request, "umetnik.html", {"user": user})
+    paintings = Painting.objects.filter(artist_id=id)
+    return render(request, "umetnik.html", {"user": user, "paintings": paintings})
 
 def login_page(request):
     if request.user.is_authenticated:
@@ -130,17 +131,13 @@ def add_pfp_page(request):
     return render(request, "dodaj_proflnu.html")
 
 def add_pfp(request):
-    print("usao")
     djuser = request.user
-    print (djuser.username)
     user = User.objects.filter(username=djuser.username).first()
     if request.method == "POST" and request.FILES.get('image') is not None:
         image = request.FILES.get("image")
-        print(image)
         if image.content_type.startswith('image/'):
             base, ext = os.path.splitext(image.name)
             filename = f'{djuser.username}{ext}'
-            print(filename)
             path = os.path.join(settings.BASE_DIR,'static', 'img', filename)
 
             with open(path, 'wb+') as destination:
@@ -153,6 +150,53 @@ def add_pfp(request):
     return render(request, 'moj_profil.html', {"me":user})
 
 
+def add_jury_doc(request):
+    djuser = request.user
+    print(djuser.username)
+    user = User.objects.filter(username=djuser.username).first()
+    if request.method == "POST" and request.FILES.get('cv') is not None:
+        cv = request.FILES.get("cv")
+        print(cv)
+        print(cv.content_type)
+        if cv.content_type.startswith('text/') or cv.content_type.startswith('application/'):
+            print("starts with cv")
+            base, ext = os.path.splitext(cv.name)
+            filename = f'{djuser.username}_{base}{ext}'
+            print(filename)
+            path = os.path.join(settings.BASE_DIR, 'static', 'user_docs', filename)
+
+            with open(path, 'wb+') as destination:
+                for chunk in cv.chunks():
+                    destination.write(chunk)
+
+            cv_url = f'/static/user_docs/{filename}'
+            Juryrequest.objects.create(document_url=cv_url, applicant=user).save()
+    return render(request, 'moj_profil.html', {"me": user})
+
+
+def fund(request, artist_id):
+    return render(request, "fundiraj.html", {"artist_id": artist_id})
+
+def pay(request, artist_id):
+    if request.method == "POST":
+        email = request.POST.get("email")
+        artist = User.objects.filter(id=artist_id).first()
+        if artist is None:
+            return redirect("homepage")
+
+        donor = User.objects.filter(email=email).first()
+        if donor is None:
+            # stavi da se vrati na fundiraj sa porukom neuspeha
+            return redirect("homepage")
+
+        amount = request.POST.get("amount")
+        if amount is None or amount == "":
+            return redirect("homepage")
+
+        Funding.objects.create(amount=amount, donor=donor, artist=artist).save()
+        message = "Uspesno ste donirali umetniku, hvala Vam!"
+
+    return render(request, "fundiraj.html", {"artist_id": artist_id, "message":message})
 
 def delete_profile(request):
     username = request.user.username

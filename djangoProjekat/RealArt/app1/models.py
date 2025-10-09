@@ -100,6 +100,24 @@ class User(models.Model):
     date_joined = models.DateTimeField(blank=True, null=True)
     pfp_url = models.CharField(max_length=255, blank=True, null=True)
 
+    def get_funding(self):
+        fundings = Funding.objects.filter(artist_id=self.id)
+        sum = 0
+        for f in fundings:
+            sum += f.amount
+        return sum
+
+    def get_rating(self):
+        ratings = Rating.objects.filter(author_id=self.id)
+        if len(ratings) == 0:
+            return 0
+        avg = 0; num = 0
+        for r in ratings:
+            avg += r.score
+            num += 1
+        return avg/num
+
+
     def is_regular_user(self):
         return self.role == 'registered'
     def is_jury(self):

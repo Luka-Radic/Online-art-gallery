@@ -14,8 +14,9 @@
         </div>
         <div class="row mt-4 mb-4">
             <div class="col-sm-12 text-center">
-                <form action="/upload" method="POST" enctype="multipart/form-data"
-                    class="upload-form d-flex align-items-center gap-3 p-3 shadow-sm bg-light">
+                <form action="{% url 'add_jury_doc' %}" method="POST" enctype="multipart/form-data"
+                      class="upload-form d-flex align-items-center gap-3 p-3 shadow-sm bg-light">
+                    {% csrf_token %}
                     <input type="file" name="cv" accept="cv/*" required class="form-control upload-input" />
                     <button type="submit" class="btn btn-secondary upload-btn">Dodaj dokument</button>
                 </form>

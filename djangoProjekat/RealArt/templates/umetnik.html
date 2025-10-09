@@ -26,8 +26,11 @@
                 <h4 class="mt-4"> Opis: </h4>
                 <p class="user-bio">{{ user.bio }}</p>
 
-                <text class="text-danger mt-3"> zakucano: </text>
-                <h4>Prosečna ocena: 4.37/5</h4>
+
+                <span class="h4">Prosečna ocena: {{user.get_rating}}/5</span>
+                {% if user.get_rating == 0 %}
+                    <span class="text-danger">Nema još uvek nijedne ocene.</span>
+                {% endif %}
 
                 {% if user.role == 'jury' %}
                     <h4>Kvalifikacija:</h4>
@@ -40,7 +43,7 @@
                     </ul><p>
                 {% endif %}
     
-                <a href="#" class="text-warning h6 text-shadow">Želiš da podržiš ovog umetnika fundiranjem?🪙</a>
+                <a href="{% url 'fund' user.id %}" class="text-warning h6 text-shadow mt-3">Želiš da podržiš ovog umetnika fundiranjem?🪙</a>
                 <br> <br>
                 <button class="btn btn-light back-button" onclick="history.back()"> ⟸ Nazad </button>
                 <a href="#radovi" class="btn btn-light back-button">⇓ Radovi </a>
@@ -49,22 +52,17 @@
         </div>
     </div>
 
-    <div class="container gallery-container">
+    <div class="container gallery-container pb-5">
         <div class="row">
-            <h4 id="radovi">Pregled radova:</h4>
-            <div class="col-sm-3">
-                <a href="">
-                    <img src="{% static 'img/slika1.jpg' %}" class="img-fluid painting" alt="slika1" name="slika1">
-                    <label for="slika1">Puls prirode</label>
-                </a>
-            </div>
-            <div class="col-sm-3">
-                <a href="">
-                    <img src="{% static 'img/slika2.jpg' %}" class="img-fluid painting" alt="slika2" name="slika2">
-                    <label for="slika2">Plamen šume - realizam</label>
-                </a>
-            </div>
-
+            <h4 id="radovi">Pregled radova: </h4>
+            {% for painting in paintings %}
+                <div class="col-sm-3">
+                    <a href="{% url 'image_detail' painting.id %}" class="text-dark">
+                        <img src="{{ painting.image_url }}" class="img-fluid painting" alt={{ painting.title }} name={{ painting.title }}>
+                        <label for={{ painting.title }}>{{ painting.title }}</label>
+                    </a>
+                </div>
+            {% endfor %}
         </div>
     </div>
     
