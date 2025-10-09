@@ -114,7 +114,14 @@ def search_users(request):
             filtered = list(users.filter(username__icontains=input))
             filtered += list(users.filter(first_name__icontains=input))
             filtered += list(users.filter(last_name__icontains=input))
-            filtered = set(filtered)
+            split = input.split(" ")
+            if split.__len__() > 1:
+                first_n = split[0]
+                last_n = split[1]
+                print(first_n)
+                print(last_n)
+                filtered += list(users.filter(first_name__icontains=first_n, last_name__icontains=last_n))
+            filtered = list(set(filtered))
 
     return render(request, "korisnici.html", {"users": users, "filtered": filtered, "input": input})
 

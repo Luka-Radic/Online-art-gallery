@@ -21,6 +21,9 @@
 
     {% if filtered is not None %}
         <div class="container fluid mt-4 ">
+        {% if filtered|length == 0 %}
+            <h5 class="text-danger"> Nema rezultata pretrage. </h5>
+        {% endif %}
             <div class="row">
                 {% for f in filtered %}
                 <div class="col-sm-3">
@@ -47,7 +50,6 @@
                 {% endfor %}
             </div>
         </div>
-
         <hr>
     {% endif %}
 
@@ -101,7 +103,7 @@
         input.addEventListener('keyup', debounce (() => {
             form.submit();
 
-        }, 200 ));
+        }, 300 ));
 
         window.addEventListener('DOMContentLoaded',
             () => {
