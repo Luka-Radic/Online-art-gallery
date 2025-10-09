@@ -1,0 +1,29 @@
+[id][]  		 [0][]
+[id][id]   [id][0]     [0][id]   [0][0]
+
+
+sta tacno sadrzi deksriptor fajla?
+
+
+54 - 9 = 45
+potrebno 2^45 bitova za predstavljanje, odnosno 45-3 = 42 , 2^42 bajtova -> 4GB
+
+2^33 / 2 = 2^32 adresa -> 32 bitna adresa
+Stranica 4KB -> offset = 2^12 / 2 = 11bita
+preostalo 21 bit za page 0 i page 1 -> page0 10 bita (2^10) a page1 11 bita (2^10 * 2 = 2^11)
+
+
+2^19 / 2^3 = 2^16 adresa u jednom bloku -> 2^16 ulaza u indeks
+2 nivoa indeksa 2^16 * 2^16  = 2^32 bloka 
+Blok velicine 512kB -> 2^32 * 2^19 = 2^51 => 2PB
+
+KB -> 10
+MB -> 20
+GB -> 30
+TB -> 40
+PB -> 50
+HB -> 60
+
+
+11.AA -> 88.AA
+10.20.30.200 -> 147.91.1.117

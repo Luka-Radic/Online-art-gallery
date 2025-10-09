@@ -14,7 +14,7 @@ RealArt/pycache/
 .venv/
 **/migrations/*.py
 !**/migrations/__init__.py
-*.pyc
+**/*.pyc
 .idea/
 djangoProjekat/RealArt/.idea/
 djangoProjekat/RealArt/settings.py
