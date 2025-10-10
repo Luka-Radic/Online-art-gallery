@@ -5,12 +5,11 @@ from django.db import models
 
 class Comment(models.Model):
     text = models.TextField()
-    created_at = models.DateTimeField(blank=True, null=True)
-    author = models.ForeignKey('User', models.DO_NOTHING)
-    painting = models.ForeignKey('Painting', models.DO_NOTHING)
+    author = models.ForeignKey('User', on_delete=models.CASCADE)
+    painting = models.ForeignKey('Painting', on_delete=models.CASCADE)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'comment'
 
 
@@ -21,70 +20,67 @@ class Exhibition(models.Model):
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
     status = models.CharField(max_length=6)
-    created_by = models.ForeignKey('User', models.DO_NOTHING, db_column='created_by')
-    winner_painting = models.ForeignKey('Painting', models.DO_NOTHING, blank=True, null=True)
+    created_by = models.ForeignKey('User', on_delete=models.SET_NULL, blank=True, null=True, db_column='created_by')
+    winner_painting = models.ForeignKey('Painting', on_delete=models.SET_NULL, blank=True, null=True)
 
     def is_active(self):
         return self.start_date >= datetime.date.today() >= self.end_date
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'exhibition'
 
 
 class Funding(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    donor = models.ForeignKey('User', models.DO_NOTHING)
-    artist = models.ForeignKey('User', models.DO_NOTHING, related_name='funding_artist_set')
+    donor = models.ForeignKey('User', on_delete=models.SET_NULL, blank=True, null=True,)
+    artist = models.ForeignKey('User', on_delete=models.SET_NULL, blank=True, null=True, related_name='funding_artist_set')
     # date = models.DateTimeField(blank=True, null=True) da bi sam dodelio datum u bazi sa current timestampom
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'funding'
 
 
 class Juryrequest(models.Model):
-    applicant = models.ForeignKey('User', models.DO_NOTHING)
+    applicant = models.ForeignKey('User',  on_delete=models.CASCADE)
     document_url = models.CharField(max_length=255, blank=True, null=True)
     status = models.CharField(max_length=8, blank=True, null=True)
-    created_at = models.DateTimeField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'juryrequest'
 
 
 class Painting(models.Model):
     title = models.CharField(max_length=100, blank=True, null=True)
     image_url = models.CharField(max_length=255)
-    upload_date = models.DateTimeField(blank=True, null=True)
-    artist = models.ForeignKey('User', models.DO_NOTHING)
+    artist = models.ForeignKey('User',  on_delete=models.CASCADE)
     avg_rating = models.FloatField(blank=True, null=True)
     image_desc = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'painting'
 
 
 class Participation(models.Model):
     pk = models.CompositePrimaryKey('painting_id', 'exhibition_id')
-    painting = models.ForeignKey(Painting, models.DO_NOTHING)
-    exhibition = models.ForeignKey(Exhibition, models.DO_NOTHING)
+    painting = models.ForeignKey(Painting, on_delete=models.CASCADE)
+    exhibition = models.ForeignKey(Exhibition, on_delete=models.CASCADE)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'participation'
 
 
 class Rating(models.Model):
     score = models.IntegerField()
-    created_at = models.DateTimeField(blank=True, null=True)
-    author = models.ForeignKey('User', models.DO_NOTHING)
-    painting = models.ForeignKey(Painting, models.DO_NOTHING)
+    author = models.ForeignKey('User', on_delete=models.CASCADE)
+    painting = models.ForeignKey(Painting, on_delete=models.CASCADE)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'rating'
         unique_together = (('author', 'painting'),)
 
@@ -97,7 +93,6 @@ class User(models.Model):
     last_name = models.CharField(max_length=50, blank=True, null=True)
     role = models.CharField(max_length=10)
     bio = models.TextField(blank=True, null=True)
-    date_joined = models.DateTimeField(blank=True, null=True)
     pfp_url = models.CharField(max_length=255, blank=True, null=True)
 
     def get_funding(self):
@@ -126,5 +121,5 @@ class User(models.Model):
         return self.role == 'admin'
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'user'

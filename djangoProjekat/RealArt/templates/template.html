@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+<meta name="viewport" content="width=1200, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 
 <head>
@@ -79,24 +80,7 @@
     </header>
 
 
-    {% if not request.user.is_authenticated %}
-        <div class="alert alert-dismissable alert-warning vh-50 pb-0">
-            <div class="row">
-                <div class="col-sm-4">
-                    <p>Dobro dosli na sajt RealArt. Trenutno pristupate kao <strong>gost</strong>.</p>
-                </div>
-                <div class="col-sm-7">
-                    <p>Ukoliko vec imate nalog zelite da se prijavite: &nbsp
-                        <a href="{% url 'login_page' %}" class="alert-link">Log in</a> &nbsp
-                        Nemate nalog? &nbsp
-                        <a href="{% url 'signup_page' %}" class="alert-link">Sign up</a></p>
-                </div>
-                <div class="col-sm-1">
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                </div>
-            </div>
-        </div>
-    {% endif %}
+
     <div class="content">
         {% block content %}
         {% endblock %}

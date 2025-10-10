@@ -141,6 +141,8 @@ def add_pfp(request):
     djuser = request.user
     user = User.objects.filter(username=djuser.username).first()
     if request.method == "POST" and request.FILES.get('image') is not None:
+        if user.pfp_url is not None:
+            delete_picture(user)
         image = request.FILES.get("image")
         if image.content_type.startswith('image/'):
             base, ext = os.path.splitext(image.name)
@@ -264,8 +266,12 @@ def fund_cancel(request, funding_id):
 
 def delete_profile(request):
     username = request.user.username
-    User.objects.filter(username=username).delete()
-    DjangoUser.objects.filter(username=username).delete()
+
+    user = User.objects.filter(username=username).first()
+    if user.pfp_url is not None:
+        delete_picture(user)
+    user.delete()
+    DjangoUser.objects.filter(username=username).first().delete()
     return redirect("homepage")
 
 def edit_profile(request):
@@ -304,3 +310,11 @@ def save_profile_edits(request):
         return redirect("my_page")
 
     return render(request, "moj_profil.html", {"me":me.id})
+
+
+def delete_picture(user):
+    relative_path = user.pfp_url.replace('/static/', '')
+    file_path = os.path.join(settings.BASE_DIR, 'static', relative_path)
+
+    if os.path.exists(file_path):
+        os.remove(file_path)
