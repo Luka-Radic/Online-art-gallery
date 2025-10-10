@@ -26,60 +26,132 @@
 
 /*---------Stranice Umetnika i Zirija (Mina)----------- */
 .user-img-container {
-    position: relative;
   display: flex;
-  align-items: center;
   justify-content: center;
-  flex-direction: column !important;
+  align-items: center;
+    flex-direction: column;
 }
-
 
 .user-img {
-  height: 60%;
-  max-height: 500px;
+  /*max-width: 100%;*/
+  /*max-height: 400px;*/
+  height: 100%;
+  max-height: 400px;
   aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 6px;
-  display: block;
-  margin: 5px;
-  border: 5px solid whitesmoke;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  object-fit: cover; !important;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  border: 3px solid rgba(255, 255, 255, 0.6);
+  transition: 0.3s ease;
 }
-
-.user-description {
-  padding: 100px;
-  font-family: Arial, Helvetica, sans-serif;
+.user-img:hover {
+  transform: scale(1.02);
 }
 
 .text-shadow {
   text-shadow: 0.5px 0.5px 0px rgb(46, 39, 39);
 }
 
-.gallery-container {
-  align-items: flex-end;
-  border-radius: 5px;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  align-items: center;
- /* mt-3 align-items-center p-4 shadow rounded bg-white*/
+.user-description {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.gallery-container img {
+/* Naslovi i tekst */
+.user-description h1 {
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.user-description h4 {
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+.user-bio {
+  background-color: rgba(255, 255, 255, 0.65);
+  border-radius: 12px;
+  padding: 15px 20px;
+  font-style: italic;
+  color: #333;
+}
+
+/* Dugmad */
+button, .btn {
+  border-radius: 30px !important;
+  transition: 0.3s;
+}
+button:hover, .btn:hover {
+  transform: scale(1.03);
+}
+
+/* Pregled radova */
+
+.gallery-container {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    align-items: flex-end;
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+.gallery-container h4 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.painting  {
   margin: 2%;
   border: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   object-fit: cover;
   aspect-ratio: 1 / 1;
   display: block;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
 }
 
 .painting:hover {
   transform: scale(1.01);
 }
 
-.user-bio {
-    background-color: rgb(255, 255, 255, 0.3);
+/* edit */
+
+.edit{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+}
+
+.edit-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.2s ease;
+}
+.edit-icon:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.user-description input[readonly],
+.user-description textarea[readonly] {
+  cursor: default;
+  background: transparent;
+  box-shadow: none;
+}
+
+.user-description input:focus,
+.user-description textarea:focus {
+  outline: none;
+  background-color: #fff;
 }
 
 

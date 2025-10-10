@@ -1,5 +1,6 @@
 import os
 import requests
+from django.contrib import messages
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User as DjangoUser
@@ -34,7 +35,7 @@ def users(request):
 def my_page(request):
     username = request.user.username
     me = User.objects.filter(username=username).first()
-    if not me: redirect("homepage")
+    if me is None: redirect("homepage")
     paintings = Painting.objects.filter(artist_id=me.id)
     return render(request, "moj_profil.html", {"me": me, "paintings": paintings})
 
@@ -266,3 +267,40 @@ def delete_profile(request):
     User.objects.filter(username=username).delete()
     DjangoUser.objects.filter(username=username).delete()
     return redirect("homepage")
+
+def edit_profile(request):
+    user = User.objects.get(username = request.user.username)
+    return render(request, "izmeni_profil.html", {"me": user})
+
+def save_profile_edits(request):
+    me = User.objects.filter(username=request.user.username).first()
+    if me is None:
+        return redirect("homepage")
+
+    if request.method == "POST":
+        first_name = request.POST.get("first_name").strip()
+        last_name = request.POST.get("last_name").strip()
+        username = request.POST.get("username").strip()
+        bio = request.POST.get("bio").strip()
+
+        if first_name:
+            me.first_name = first_name
+        if last_name:
+            me.last_name = last_name
+        if username and username != me.username:
+
+            if User.objects.filter(username=username).exclude(id=me.id).exists():
+                messages.error(request, "Taj username je već zauzet.")
+                #TODO vratiti poruku o zauzetosti usernamea
+                return redirect("edit_profile")
+            me.username = username
+            request.user.username = username
+        if bio:
+            me.bio = bio
+
+        me.save()
+        request.user.save()
+        messages.success(request, "Profil uspešno ažuriran.")
+        return redirect("my_page")
+
+    return render(request, "moj_profil.html", {"me":me.id})

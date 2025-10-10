@@ -20,6 +20,8 @@ urlpatterns = [
     path('delete_profile/', delete_profile, name='delete_profile'),
     path('add_pfp/', add_pfp, name='add_pfp'),
     path('add_pfp_page/', add_pfp_page, name='add_pfp_page'),
+    path('edit_profile/', edit_profile, name='edit_profile'),
+    path("save_profile_edits/", save_profile_edits, name="save_profile_edits"),
     path('fund/<int:artist_id>/', fund, name="fund"),
     path('pay/<int:artist_id>/', pay, name='pay'),
 

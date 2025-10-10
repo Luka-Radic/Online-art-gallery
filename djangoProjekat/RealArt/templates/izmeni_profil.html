@@ -1,0 +1,80 @@
+{% extends "template.html" %}
+{% load static %}
+{% block title %}Izmeni profil{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <!-- Leva strana: profilna slika -->
+        <div class="col-sm-5 user-img-container">
+        {% if me.pfp_url is not None %}
+                <img src="{{ me.pfp_url }}" alt="Slika korisnika" class="img-fluid user-img">
+                <a class="btn btn-light change-btn" href="{% url 'add_pfp_page' %}">Promenite profilnu sliku</a>
+            {% else %}
+                <img src="{% static 'img/default_pfp.png' %}" alt="Dodajte korisnicku sliku" class=" img-fluid user-img">
+                <a class="btn btn-light change-btn" href="{% url 'add_pfp_page' %}">Dodaj profilnu sliku</a>
+            {% endif %}
+            <a class="btn btn-danger change-btn mt-2" href="{% url 'delete_profile' %}">Obrisi moj profil</a>
+        </div>
+
+        <!-- Desna strana: podaci o korisniku -->
+        <div class="col-sm-7 user-description position-relative">
+            <form method="POST" action="{% url 'save_profile_edits' %}">
+                {% csrf_token %}
+
+                <h1>
+                    <div class="inline">
+                        <h4>Ime: </h4>
+                        <img src="{% static 'img/edit_icon.png' %}" alt="Edit" class="edit-icon ms-2" data-target="first_name">
+                        <input type="text" name="first_name" value="{{ me.first_name }}" class="form-control d-inline w-auto border-0 bg-transparent fs-3 fw-bold" readonly>
+                    </div>
+                    <div class="inline">
+                        <h4>Prezime: </h4>
+                        <img src="{% static 'img/edit_icon.png' %}" alt="Edit" class="edit-icon ms-2" data-target="last_name">
+                        <input type="text" name="last_name" value="{{ me.last_name }}" class="form-control d-inline w-auto border-0 bg-transparent fs-3 fw-bold" readonly>
+                    </div>
+                </h1>
+
+                <p>
+                    <span class="fw-bold">Username:</span>
+                    <img src="{% static 'img/edit_icon.png' %}" alt="Edit" class="edit-icon ms-2" data-target="username">
+                    <input type="text" name="username" value="{{ me.username }}" class="form-control d-inline w-auto border-0 bg-transparent" readonly>
+                </p>
+
+                <h4>
+                    Status:
+                    {% if me.is_regular_user %} Umetnik {% else %} Žiri {% endif %}
+                </h4>
+
+                <div class="inline">
+                    <h4>Opis:</h4>
+                    <img src="{% static 'img/edit_icon.png' %}" alt="Edit" class="edit-icon mt-1" data-target="bio">
+                </div>
+                <textarea name="bio" class="form-control border-0 bg-transparent p-0" rows="3" readonly>{{ me.bio }}</textarea>
+
+                <br><br>
+                <button type="submit" class="btn btn-danger mt-3">Sačuvaj izmene</button>
+                <a href="{% url 'my_page' %}" class="btn btn-light mt-3">Otkaži</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // omogućava edit polja kad se klikne olovčica
+    document.querySelectorAll('.edit-icon').forEach(icon => {
+        icon.addEventListener('click', () => {
+            const targets = icon.dataset.target.split(" ");
+            targets.forEach(t => {
+                const field = document.querySelector(`[name="${t}"]`);
+                if (field) {
+                    field.removeAttribute('readonly');
+                    field.classList.add('border', 'border-secondary', 'rounded');
+                    field.focus();
+                }
+            });
+        });
+    });
+</script>
+
+{% endblock %}

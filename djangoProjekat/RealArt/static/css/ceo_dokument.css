@@ -5,11 +5,59 @@ Ovo je back dugme ako treba negde stavite isto ovo: <a href="prikaz_izlozbe.html
 */
 
 body {
-    margin: 0;
+    margin-top: 40px;
     font-family: sans-serif;
     position: relative;
     min-height: 100vh;
 }
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* sprečava da se skroluje ceo body */
+}
+
+header,
+nav,
+.alert {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* gornji tamni navbar */
+nav.bg-dark {
+  top: 0;
+  height: 40px;
+}
+
+/* donji (glavni) navbar unutar headera */
+header nav.container {
+  top: 40px;
+  background-color: rgb(255, 255, 255, 0.1);
+  border-bottom: 1px solid #ccc;
+  z-index: 999;
+}
+
+/* alert odmah ispod headera */
+.alert {
+  top: 120px; /* prilagodi visini headera */
+  z-index: 998;
+}
+
+/* content - jedini deo koji se skroluje */
+.content {
+  margin-top: 105px; /* visina svega iznad, da se ne preklapa */
+  height: calc(100vh - 105px); /* zauzima ostatak ekrana */
+  overflow-y: auto; /* samo ovaj deo ima skrol */
+  padding: 20px;
+}
+
 
 .logo {
     width: 40px;
@@ -21,6 +69,13 @@ body {
     height: 50px;
 }
 
+.inline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
 /* Pozadina sa belim providnim slojem */
 body::before {
     content: '';
@@ -31,7 +86,7 @@ body::before {
     height: 100%;
     
     background: 
-        linear-gradient(rgba(253, 253, 253, 0.5), rgba(255, 255, 255, 0.5)),
+        linear-gradient(rgba(253, 253, 253, 0.45), rgba(255, 255, 255, 0.45)),
         url("../img/galerija_pozadina.webp") no-repeat center center;
     background-size: cover;
 
