@@ -1,0 +1,25 @@
+{% extends "template.html" %}
+
+{% load static %}
+{% block title %}Promeni lozinku{% endblock %}
+
+{% block content %}
+
+    <div class="container mt-5" style="max-width: 400px;">
+        <h2>Promena lozinke</h2>
+        <h5 class="text-danger">{{ message }}</h5>
+        <form method="POST" action="{% url 'reset_password' token %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="password" class="form-label">Unesite novu lozinku</label>
+                <input type="text" class="form-control" name="password" value="" required>
+            </div>
+            <div class="mb-3">
+                <label for="password_again" class="form-label">Potvrdite novu lozinku:</label>
+                <input type="password" class="form-control" name="password_again" value="" required>
+            </div>
+            <button type="submit" class="btn btn-secondary">Potvrdi</button>
+        </form>
+    </div>
+
+{% endblock %}

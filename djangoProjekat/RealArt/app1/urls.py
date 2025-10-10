@@ -27,6 +27,8 @@ urlpatterns = [
 
     path("fund/success/<int:funding_id>/", fund_success, name="fund_success"),
     path("fund/cancel/<int:funding_id>/", fund_cancel, name="fund_cancel"),
+    path('reset-password/<str:token>/', reset_password, name='reset_password'),
+    path('send_reset_email/', send_reset_email, name='send_reset_email'),
 
     path('add_jury_doc/', add_jury_doc, name='add_jury_doc'),
 

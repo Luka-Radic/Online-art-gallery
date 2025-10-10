@@ -8,15 +8,14 @@
 
     <div class="container mt-5" style="max-width: 400px;">
         <h2>Promena lozinke</h2>
-        <form>
-            <h6>Unesite e-mail nalog preko kog želite da promenite lozinku. Na njega će Vam stići dalje instrukcije.</h6>
-            <br>
-            <div class="mb-3">
-                <label for="korisnickoIme" class="form-label">E-mail:</label>
-                <input type="text" class="form-control" id="email" name="email" required>
-            </div>
-            <a href="{% url 'login_page' %}" class="btn btn-secondary">Nazad</a>
-            <button type="submit" class="btn btn-secondary">Pošalji</button>
+        <h6>Unesite e-mail nalog preko kog želite da promenite lozinku. Na njega će Vam stići dalje instrukcije.</h6>
+        <br>
+        <form method="POST" action="{% url 'send_reset_email' %}">
+            {% csrf_token %}
+            <label for="email" class="form-label">E-mail:</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+            <a href="{% url 'login_page' %}" class="btn btn-secondary mt-2">Nazad</a>
+            <button type="submit" class="btn btn-secondary mt-2">Pošalji</button>
         </form>
     </div>
 

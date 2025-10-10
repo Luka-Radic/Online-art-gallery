@@ -1,13 +1,14 @@
 import os
 import requests
-from django.contrib import messages
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User as DjangoUser
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.utils.crypto import get_random_string
 
 from RealArt import settings
-from app1 import models
 from app1.models import User, Painting, Funding, Juryrequest
 from enum import Enum
 
@@ -94,7 +95,7 @@ def signup_page(request):
                 message = "Korisnik sa tim email-om vec postoji."
             else:
                 user = User.objects.create(username=username, password_hash=password, first_name=name, last_name=lastname,
-                                           email=email, bio=description, role=Role.REGISTERED, date_joined=None)
+                                           email=email, bio=description, role=Role.REGISTERED)
                 user.save()
                 django_user = DjangoUser.objects.create_user(username=username, password=password)
                 login(request, django_user)
@@ -296,7 +297,6 @@ def save_profile_edits(request):
         if username and username != me.username:
 
             if User.objects.filter(username=username).exclude(id=me.id).exists():
-                messages.error(request, "Taj username je već zauzet.")
                 #TODO vratiti poruku o zauzetosti usernamea
                 return redirect("edit_profile")
             me.username = username
@@ -306,7 +306,6 @@ def save_profile_edits(request):
 
         me.save()
         request.user.save()
-        messages.success(request, "Profil uspešno ažuriran.")
         return redirect("my_page")
 
     return render(request, "moj_profil.html", {"me":me.id})
@@ -318,3 +317,62 @@ def delete_picture(user):
 
     if os.path.exists(file_path):
         os.remove(file_path)
+
+
+
+def reset_password(request, token):
+    if request.method == 'POST':
+        new_password = request.POST.get('password')
+
+        email = TokenStorage.get_token(token)
+        print(email)
+        user = User.objects.get(email=email)
+        print(user.username)
+        djuser = DjangoUser.objects.get(username=user.username)
+        print(djuser.username)
+        djuser.set_password(new_password)
+        djuser.save()
+        user.password_hash = new_password
+        user.save()
+        return redirect('login_page')
+    return render(request, 'promeni_lozinku.html', {'token': token})
+
+
+
+def send_reset_email(request):
+    if request.method == "POST":
+        email = request.POST.get("email")
+        print("Mejlic", email)
+        user = User.objects.filter(email=email).first()
+        if user:
+            token = get_random_string(50)
+            TokenStorage.save_token(token, email)
+            reset_link = request.build_absolute_uri(reverse('reset_password', args=[token]))
+
+            send_mail(
+                subject="Reset your password",
+                message=f"Click the link to reset your password: {reset_link}",
+                from_email=None,
+                recipient_list=[email],
+                fail_silently=False,
+            )
+            return render(request, 'zaboravljena_lozinka.html')
+        else:
+            return render(request, 'zaboravljena_lozinka.html', {'error': 'Email nije pronađen.'})
+
+    return render(request, 'zaboravljena_lozinka.html')
+
+
+
+
+
+class TokenStorage:
+    token_dict = {}
+
+    @staticmethod
+    def save_token(token, email):
+        TokenStorage.token_dict[token] = email
+
+    @staticmethod
+    def get_token(token):
+        return TokenStorage.token_dict.get(token)
