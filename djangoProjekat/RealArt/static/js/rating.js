@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     stars.forEach((star, index) => {
         star.addEventListener('mouseenter', () => {
             removeHover();
-            // Dodaj hovered klasu svim zvezdicama od prve do hoverovane
             for (let i = 0; i <= index; i++) {
                 if (!stars[i].classList.contains('filled')) {
                     stars[i].classList.add('hovered');
@@ -30,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     s.classList.remove('filled');
                 }
             });
-            // ovde možeš dodati fetch/AJAX POST za slanje ocene
         });
     });
 });
