@@ -1,37 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const stars = document.querySelectorAll('#starRating .star');
-    const ratingValue = document.getElementById('ratingValue');
-    let currentRating = 0;
+    const stars = document.querySelectorAll('.star-rating .star');
 
-    stars.forEach(star => {
+    function removeHover() {
+        stars.forEach(s => s.classList.remove('hovered'));
+    }
+
+    stars.forEach((star, index) => {
+        star.addEventListener('mouseenter', () => {
+            removeHover();
+            // Dodaj hovered klasu svim zvezdicama od prve do hoverovane
+            for (let i = 0; i <= index; i++) {
+                if (!stars[i].classList.contains('filled')) {
+                    stars[i].classList.add('hovered');
+                }
+            }
+        });
+
+        star.addEventListener('mouseleave', () => {
+            removeHover();
+        });
+
         star.addEventListener('click', () => {
-            const value = parseInt(star.dataset.value);
-            currentRating = (currentRating === value) ? 0 : value;
-            updateStars();
-            ratingValue.textContent = currentRating > 0 ? `${currentRating}/5` : "0/5";
-        });
-
-        star.addEventListener('mouseover', () => {
-            const value = parseInt(star.dataset.value);
-            highlightStars(value);
-        });
-
-        star.addEventListener('mouseout', () => {
-            updateStars();
+            const score = index + 1;
+            stars.forEach((s, i) => {
+                if (i < score) {
+                    s.classList.add('filled');
+                    s.classList.remove('hovered');
+                } else {
+                    s.classList.remove('filled');
+                }
+            });
+            // ovde možeš dodati fetch/AJAX POST za slanje ocene
         });
     });
-
-    function updateStars() {
-        stars.forEach(star => {
-            const value = parseInt(star.dataset.value);
-            star.style.color = value <= currentRating ? 'gold' : '#ccc';
-        });
-    }
-
-    function highlightStars(value) {
-        stars.forEach(star => {
-            const val = parseInt(star.dataset.value);
-            star.style.color = (val <= value) ? 'gold' : '#ccc';
-        });
-    }
 });

@@ -19,22 +19,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
         izlozbeCards.forEach(card => {
             const titleEl = card.querySelector('.card-title');
-            const statusEl = card.querySelector('p.text-muted');
-
             const titleText = titleEl ? titleEl.textContent.toLowerCase() : '';
-            const statusText = statusEl ? statusEl.textContent.toLowerCase() : '';
+
+            // Čitanje statusa direktno iz baze
+            const cardStatus = card.dataset.status; // "active", "closed" ili drugo
 
             const matchesQuery = titleText.includes(query);
+
             const matchesStatus =
                 status === 'sve' ||
-                (status === 'active' && statusText.includes('aktivna')) ||
-                (status === 'closed' && statusText.includes('zatvorena'));
+                (status === 'active' && cardStatus === 'active') ||
+                (status === 'closed' && cardStatus === 'closed');
 
-            if (matchesQuery && matchesStatus) {
-                card.style.display = '';
-            } else {
-                card.style.display = 'none';
-            }
+            card.style.display = (matchesQuery && matchesStatus) ? '' : 'none';
         });
     }
 

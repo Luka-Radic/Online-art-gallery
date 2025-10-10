@@ -54,9 +54,6 @@
     border: 2px solid #eee;
 }
 
-.star-rating { display: flex; gap: 4px; }
-.star-rating .star { font-size: 1.25rem; cursor: pointer; color: #dcdcdc; transition: color 0.3s; }
-.star-rating .star.filled { color: #f1c40f; }
 
 .input-group { flex-shrink: 0; }
 
@@ -95,4 +92,29 @@
 .fixed-card *:hover {
     transform: none !important;
     transition: none !important;
+}
+
+.star-rating {
+    display: flex;
+    gap: 4px;
+}
+
+.star-rating .star {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #dcdcdc; /* default siva */
+    transition: color 0.2s, text-shadow 0.2s, -webkit-text-stroke 0.2s;
+}
+
+
+.star-rating .star.filled {
+    color: #f1c40f;
+    -webkit-text-stroke: 0px transparent;
+    text-shadow: none;
+}
+
+.star-rating .star.hovered {
+    color: transparent; /* unutrašnjost ostaje providna */
+    -webkit-text-stroke: 1px #f1c40f; /* zlatna ivica */
+    text-shadow: none;
 }
