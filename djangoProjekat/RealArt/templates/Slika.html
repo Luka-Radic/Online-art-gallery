@@ -3,143 +3,112 @@
 {% load static %}
 
 {% block optionalInclude %}
-<link rel="stylesheet" href="{% static 'css/slika.css' %}">
-<script src="{% static 'js/rating.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/slika.css' %}">
+    <script src="{% static 'js/rating.js' %}"></script>
 {% endblock %}
 
 {% block title %}{{ painting.title }}{% endblock %}
 
 {% block content %}
-<div class="container my-5">
-    <div class="row g-4">
-        <!-- LEVA KOLONA - SLIKA -->
-        <div class="col-12 col-md-7">
-            <div class="preview-image-wrap position-relative">
-                <img id="previewImage" class="img-fluid rounded shadow"
-                     src="{{ painting.image_url }}" alt="{{ painting.title }}">
-                <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#fullscreenModal">⛶</button>
+    <div class="container my-5">
+        <div class="row g-4">
+            <!-- LEVA KOLONA - SLIKA -->
+            <div class="col-12 col-md-7">
+                <div class="preview-image-wrap position-relative">
+                    <img id="previewImage" class="img-fluid rounded shadow"
+                         src="{{ painting.image_url }}" alt="{{ painting.title }}">
+                    <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#fullscreenModal">⛶</button>
+                </div>
             </div>
-        </div>
 
-        <!-- FULLSCREEN MODAL -->
-        <div class="modal fade" id="fullscreenModal">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-body text-center">
-                        <img src="{{ painting.image_url }}" class="img-fluid" alt="{{ painting.title }}">
+            <!-- FULLSCREEN MODAL -->
+            <div class="modal fade" id="fullscreenModal">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-body text-center">
+                            <img src="{{ painting.image_url }}" class="img-fluid" alt="{{ painting.title }}">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- DESNA KOLONA - CARD -->
-        <div class="col-12 col-md-5">
-            <div class="card p-4 shadow-sm fixed-card">
-                <!-- Top sekcija: Autor i ocena -->
-                <div class="card-top">
-                    <div class="d-flex align-items-center mb-3">
-                        <img src="{% static 'img/musko2.jpg' %}" alt="avatar" class="rounded-circle artist-avatar">
-                        <div class="ms-3">
-                            <div class="fw-bold fs-5">{{ painting.artist.username }}</div>
-                            <div class="text-muted small">{{ painting.upload_date|date:"Y" }} · Umetnik</div>
-                        </div>
-                        <div class="ms-auto text-end">
-                            <div class="small mb-1 text-muted">Prosečna ocena: {{ painting.avg_rating|default:"N/A" }}</div>
-                            <div id="starRating" class="star-rating">
-                                <button type="button" class="star" data-value="1">☆</button>
-                                <button type="button" class="star" data-value="2">☆</button>
-                                <button type="button" class="star" data-value="3">☆</button>
-                                <button type="button" class="star" data-value="4">☆</button>
-                                <button type="button" class="star" data-value="5">☆</button>
+            <!-- DESNA KOLONA - CARD -->
+            <div class="col-12 col-md-5">
+                <div class="card p-4 shadow-sm fixed-card">
+                    <!-- Top sekcija: Autor i ocena -->
+                    <div class="card-top">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{{ painting.artist.pfp_url|default:'/static/img/musko2.jpg' }}"
+                                 alt="avatar" class="rounded-circle artist-avatar">
+                            <div class="ms-3">
+                                <div class="fw-bold fs-5">{{ painting.artist.username }}</div>
+                                <div class="text-muted small">{{ painting.upload_date|date:"Y" }} · Umetnik</div>
                             </div>
-                            <div class="small text-muted" id="ratingValue">0/5</div>
+                            <div class="ms-auto text-end">
+                                <div class="small mb-1 text-muted">Prosečna
+                                    ocena: {{ painting.avg_rating|default:"N/A" }}</div>
+                                <div id="starRating" class="star-rating">
+                                    <button type="button" class="star" data-value="1">☆</button>
+                                    <button type="button" class="star" data-value="2">☆</button>
+                                    <button type="button" class="star" data-value="3">☆</button>
+                                    <button type="button" class="star" data-value="4">☆</button>
+                                    <button type="button" class="star" data-value="5">☆</button>
+                                </div>
+                                <div class="small text-muted" id="ratingValue">0/5</div>
+                            </div>
                         </div>
+
+                        <h4 class="mb-2 text-danger">{{ painting.title }}</h4>
+
+                        <p class="description-text text-muted">
+                            Opis slike će ovde ići... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
+                            risus.
+                            Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
+                            Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non,
+                            mi.
+                            Opis slike će ovde ići... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
+                            risus.
+                            Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
+                            Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non,
+                            mi.
+                        </p>
+
+                        <hr>
+                        <h6 class="mb-2 fs-5">Komentari</h6>
                     </div>
 
-                    <h4 class="mb-2 text-danger">{{ painting.title }}</h4>
-
-                    <p class="description-text text-muted">
-                        Opis slike će ovde ići... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
-                        Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
-                        Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.
-                        Opis slike će ovde ići... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
-                        Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
-                        Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.
-                    </p>
-
-                    <hr>
-                    <h6 class="mb-2 fs-5">Komentari</h6>
-                </div>
-
-                <!-- Middle sekcija: komentari -->
-                <div id="commentsList" class="list-group">
-                    <div class="list-group-item d-flex align-items-start comment-item">
-                        <img src="{% static 'img/zensko1.jpg' %}" alt="Marina" class="comment-avatar me-2">
-                        <div>
-                            <div class="comment-username"><strong>Marina</strong></div>
-                            <div class="comment-text">Prelepa slika!</div>
-                        </div>
-                    </div>
-                    <div class="list-group-item d-flex align-items-start comment-item">
-                        <img src="{% static 'img/musko2.jpg' %}" alt="Nikola" class="comment-avatar me-2">
-                        <div>
-                            <div class="comment-username"><strong>Nikola</strong></div>
-                            <div class="comment-text">Sjajno urađeno!</div>
-                        </div>
-                    </div>
-                    <div class="list-group-item d-flex align-items-start comment-item">
-                        <img src="{% static 'img/zensko1.jpg' %}" alt="Marina" class="comment-avatar me-2">
-                        <div>
-                            <div class="comment-username"><strong>Marina</strong></div>
-                            <div class="comment-text">Prelepa slika!</div>
-                        </div>
-                    </div>
-                    <div class="list-group-item d-flex align-items-start comment-item">
-                        <img src="{% static 'img/musko2.jpg' %}" alt="Nikola" class="comment-avatar me-2">
-                        <div>
-                            <div class="comment-username"><strong>Nikola</strong></div>
-                            <div class="comment-text">Sjajno urađeno!</div>
-                        </div>
-                    </div>
-                    <div class="list-group-item d-flex align-items-start comment-item">
-                        <img src="{% static 'img/zensko1.jpg' %}" alt="Marina" class="comment-avatar me-2">
-                        <div>
-                            <div class="comment-username"><strong>Marina</strong></div>
-                            <div class="comment-text">Prelepa slika!</div>
-                        </div>
-                    </div>
-                    <div class="list-group-item d-flex align-items-start comment-item">
-                        <img src="{% static 'img/musko2.jpg' %}" alt="Nikola" class="comment-avatar me-2">
-                        <div>
-                            <div class="comment-username"><strong>Nikola</strong></div>
-                            <div class="comment-text">Sjajno urađeno!</div>
-                        </div>
-                    </div><div class="list-group-item d-flex align-items-start comment-item">
-                        <img src="{% static 'img/zensko1.jpg' %}" alt="Marina" class="comment-avatar me-2">
-                        <div>
-                            <div class="comment-username"><strong>Marina</strong></div>
-                            <div class="comment-text">Prelepa slika!</div>
-                        </div>
-                    </div>
-                    <div class="list-group-item d-flex align-items-start comment-item">
-                        <img src="{% static 'img/musko2.jpg' %}" alt="Nikola" class="comment-avatar me-2">
-                        <div>
-                            <div class="comment-username"><strong>Nikola</strong></div>
-                            <div class="comment-text">Sjajno urađeno!</div>
-                        </div>
+                    <!-- Middle sekcija: komentari -->
+                    <div id="commentsList" class="list-group">
+                        {% for comment in comments %}
+                            <div class="list-group-item d-flex align-items-start comment-item">
+                                <img src="{{ comment.author.pfp_url|default:'/static/img/musko2.jpg' }}"
+                                     alt="{{ comment.author.username }}" class="comment-avatar me-2">
+                                <div>
+                                    <div class="comment-username">
+                                        <strong>{{ comment.author.username }}</strong>
+                                        <span class="text-muted small">· {{ comment.created_at|date:"d.m.Y H:i" }}</span>
+                                    </div>
+                                    <div class="comment-text">{{ comment.text }}</div>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <div class="text-muted">Nema komentara za ovu sliku.</div>
+                        {% endfor %}
                     </div>
 
-                </div>
-
-                <!-- Bottom sekcija: input -->
-                <div class="input-group mt-3">
-                    <input id="commentInput" type="text" class="form-control" placeholder="Napiši komentar...">
-                    <button id="addCommentBtn" class="btn btn-primary" type="button">Dodaj</button>
+                    <!-- Bottom sekcija: input -->
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="input-group mt-3">
+                            <input name="comment_text" type="text" class="form-control" placeholder="Napiši komentar..."
+                                   required>
+                            <button class="btn btn-primary" type="submit">Dodaj</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
 
-    <a href="#" class="btn btn-light mt-4">⟸ Nazad</a>
-</div>
+        <a href="#" class="btn btn-light mt-4">⟸ Nazad</a>
+    </div>
 {% endblock %}

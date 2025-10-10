@@ -1,6 +1,14 @@
 from datetime import datetime
-
+from django.contrib.auth.models import User as DjangoUser
 from django.db import models
+
+def get_role(DjangoUser):
+    users = User.objects.filter(username=DjangoUser.username)
+    if users.count() != 0 and users.first() is not None:
+        return users.first().role
+    else:
+        return ""
+DjangoUser.get_role = get_role
 
 class Comment(models.Model):
     text = models.TextField()
