@@ -38,23 +38,41 @@
                     <!-- Top sekcija: Autor i ocena -->
                     <div class="card-top">
                         <div class="d-flex align-items-center mb-3">
-                            <img src="{{ painting.artist.pfp_url|default:'/static/img/musko2.jpg' }}"
-                                 alt="avatar" class="rounded-circle artist-avatar">
+                            <a href="{% url 'artist' painting.artist.id %}">
+                                <img src="{{ painting.artist.pfp_url|default:'/static/img/default_pfp.png' }}"
+                                     alt="{{ painting.artist.username }}" class="rounded-circle artist-avatar">
+                            </a>
                             <div class="ms-3">
-                                <div class="fw-bold fs-5">{{ painting.artist.username }}</div>
+                                <div class="fw-bold fs-5">
+                                    <a href="{% url 'artist' painting.artist.id %}"
+                                       class="text-dark text-decoration-none">
+                                        {{ painting.artist.username }}
+                                    </a>
+                                </div>
                                 <div class="text-muted small">{{ painting.upload_date|date:"Y" }} · Umetnik</div>
                             </div>
                             <div class="ms-auto text-end">
-                                <div class="small mb-1 text-muted">Prosečna
-                                    ocena: {{ painting.avg_rating|default:"N/A" }}</div>
-                                <div id="starRating" class="star-rating">
-                                    <button type="button" class="star" data-value="1">☆</button>
-                                    <button type="button" class="star" data-value="2">☆</button>
-                                    <button type="button" class="star" data-value="3">☆</button>
-                                    <button type="button" class="star" data-value="4">☆</button>
-                                    <button type="button" class="star" data-value="5">☆</button>
-                                </div>
-                                <div class="small text-muted" id="ratingValue">0/5</div>
+                                <div class="small text-muted">Prosečna ocena: {{ avg_rating }}</div>
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <div class="star-rating">
+                                        <form method="POST">
+                                            {% csrf_token %}
+                                            <div class="star-rating">
+                                                {% for star in stars %}
+                                                    <button type="submit" name="rating_value" value="{{ star }}"
+                                                            class="star {% if user_rating and star <= user_rating %}filled{% endif %}">
+                                                        {% if user_rating and star <= user_rating %}
+                                                            ★
+                                                        {% else %}
+                                                            ☆
+                                                        {% endif %}
+                                                    </button>
+                                                {% endfor %}
+                                            </div>
+                                        </form>
+                                    </div>
+                                </form>
                             </div>
                         </div>
 
@@ -81,11 +99,18 @@
                     <div id="commentsList" class="list-group">
                         {% for comment in comments %}
                             <div class="list-group-item d-flex align-items-start comment-item">
-                                <img src="{{ comment.author.pfp_url|default:'/static/img/musko2.jpg' }}"
-                                     alt="{{ comment.author.username }}" class="comment-avatar me-2">
+                                <a href="{% url 'artist' comment.author.id %}">
+                                    <img src="{{ comment.author.pfp_url|default:'/static/img/default_pfp.png' }}"
+                                         alt="{{ comment.author.username }}" class="comment-avatar me-2">
+                                </a>
                                 <div>
                                     <div class="comment-username">
-                                        <strong>{{ comment.author.username }}</strong>
+                                        <strong>
+                                            <a href="{% url 'artist' comment.author.id %}"
+                                               class="text-dark text-decoration-none">
+                                                {{ comment.author.username }}
+                                            </a>
+                                        </strong>
                                         <span class="text-muted small">· {{ comment.created_at|date:"d.m.Y H:i" }}</span>
                                     </div>
                                     <div class="comment-text">{{ comment.text }}</div>
@@ -99,16 +124,19 @@
                     <!-- Bottom sekcija: input -->
                     <form method="POST">
                         {% csrf_token %}
-                        <div class="input-group mt-3">
-                            <input name="comment_text" type="text" class="form-control" placeholder="Napiši komentar..."
-                                   required>
-                            <button class="btn btn-primary" type="submit">Dodaj</button>
-                        </div>
+                        {% if request.user.is_authenticated %}
+                            <div class="input-group mt-3">
+                                <input name="comment_text" type="text" class="form-control"
+                                       placeholder="Napiši komentar..."
+                                       required>
+                                <button class="btn btn-primary" type="submit">Dodaj</button>
+                            </div>
+                        {% endif %}
                     </form>
                 </div>
             </div>
         </div>
 
-        <a href="#" class="btn btn-light mt-4">⟸ Nazad</a>
+        <button class="btn btn-light back-button" onclick="history.back()"> ⟸ Nazad</button>
     </div>
 {% endblock %}
