@@ -20,6 +20,7 @@ from django.urls import path, include
 import app1, app2, app3
 
 urlpatterns = [
+    path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
     path('', include('app1.urls')),
     path('', include('app2.urls')),
