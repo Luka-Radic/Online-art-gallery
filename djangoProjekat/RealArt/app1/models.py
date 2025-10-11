@@ -113,6 +113,13 @@ class User(models.Model):
         return avg/num
 
 
+    def get_qualification_url(self):
+        qualifications = Juryrequest.objects.filter(applicant_id=self.id).first()
+        if qualifications:
+            return qualifications.document_url
+        return '/static/user_docs/default_doc.txt'
+
+
     def is_regular_user(self):
         return self.role == 'registered'
     def is_jury(self):

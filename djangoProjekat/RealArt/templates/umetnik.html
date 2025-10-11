@@ -32,18 +32,16 @@
                     <span class="text-danger">Nema još uvek nijedne ocene.</span>
                 {% endif %}
 
-                {% if user.role == 'jury' %}
-                    <h4>Kvalifikacija:</h4>
-                    <text class="text-danger"> zakucano: </text>
-                    <p><ul>
-                        <li>Diplomirao i masterirao na Fakultetu likovnih umetnosti u Beogradu (odsek slikarstvo)</li>
-                        <li>Učestvovao na preko 40 grupnih i 5 samostalnih izložbi u zemlji i inostranstvu</li>
-                        <li>Član umetničkih žirija na nacionalnim i međunarodnim likovnim konkursima</li>
-                        <li>Višegodišnje iskustvo u selekciji i ocenjivanju radova savremene umetnosti</li>
-                    </ul><p>
+                {% if user.is_jury %}
+                    <div class="inline">
+                        <h4>Kvalifikacija:</h4>
+                        <a href="{{ user.get_qualification_url }}" target="_blank" class="text-dark">Otvori kvalifikacija.txt</a>
+                    </div>
                 {% endif %}
 
-                <a href="{% url 'fund' user.id %}" class="text-warning h6 text-shadow mt-3">Želiš da podržiš ovog umetnika fundiranjem?🪙</a>
+                {% if request.user.is_authenticated %}
+                    <a href="{% url 'fund' user.id %}" class="text-warning h6 text-shadow mt-3">Želiš da podržiš ovog umetnika fundiranjem?🪙</a>
+                {% endif %}
                 <br> <br>
                 <button class="btn btn-light back-button" onclick="history.back()"> ⟸ Nazad </button>
                 <a href="#radovi" class="btn btn-light back-button">⇓ Radovi </a>

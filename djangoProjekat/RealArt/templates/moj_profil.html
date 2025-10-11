@@ -28,13 +28,18 @@
                     {% if me.is_regular_user %} Umetnik {% else %} Žiri {% endif %}
                 </h4>
 
-                {% if me.role == "registered" %}
-                <div>Zelis da konkurises za zirija? 
-                    <a href="{% url "become_judge" %}" class="text-danger"> Prijava</a>
-                </div>
+                {% if me.is_regular_user %}
+                    <div>Zelis da konkurises za zirija?
+                        <a href="{% url "become_judge" %}" class="text-danger"> Prijava</a>
+                    </div>
+                {% endif %}
+                {% if me.is_jury %}
+                    <div class="inline">
+                        <h4 class="mt-1">Kvalifikacija:</h4>
+                        <a href="{{ me.get_qualification_url }}" target="_blank" class="text-dark">Otvori svoj kvalifikacija.txt</a>
+                    </div>
                 {% endif %}
 
-                <br>
                 <h4> Opis: </h4>
                 {% if me.bio is not None %}
                     <p class="user-bio">{{ me.bio }}</p>
