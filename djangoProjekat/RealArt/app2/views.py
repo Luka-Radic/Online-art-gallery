@@ -33,7 +33,7 @@ def exhibitions(request):
         form = ExhibitionForm(request.POST)
         if form.is_valid():
             izlozba = form.save(commit=False)
-            izlozba.created_by = User.objects.filter(username=DjangoUser.username).first()
+            izlozba.created_by = User.objects.filter(username=request.user.username).first()
             izlozba.status = "active" if izlozba.start_date <= today <= izlozba.end_date else "closed"
             izlozba.winner_painting = None
             izlozba.save()

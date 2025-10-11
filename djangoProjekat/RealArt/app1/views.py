@@ -105,6 +105,7 @@ def signup_page(request):
     If there are validation errors, it provides appropriate error messages.
     '''
     message = ""
+    input = {}
     if request.method == "POST":
         name = request.POST.get("ime")
         lastname = request.POST.get("prezime")
@@ -113,16 +114,27 @@ def signup_page(request):
         password_again = request.POST.get("potvrdaLozinke")
         email = request.POST.get("email")
         description = request.POST.get("opis")
-        state = request.POST.get("drzava")
+
+        input["name"] = name
+        input["lastname"] = lastname
+        input["username"] = username
+        input["password"] = password
+        input["password_again"] = password_again
+        input["email"] = email
+        input["bio"] = description
 
         if password != password_again:
             message = "Sifre se ne podudaraju."
+            input["password"] = ""
+            input["password_again"] = ""
 
         else:
             if User.objects.filter(username=username):
                 message = "Korisnik sa tim korisnickim imenom vec postoji. Unesite drugo."
+                input["username"] = ""
             elif User.objects.filter(email=email):
                 message = "Korisnik sa tim email-om vec postoji."
+                input["email"] = ""
             else:
                 user = User.objects.create(username=username, password_hash=password, first_name=name, last_name=lastname,
                                            email=email, bio=description, role=Role.REGISTERED)
@@ -131,7 +143,7 @@ def signup_page(request):
                 login(request, django_user)
                 return redirect("homepage")
 
-    return render(request, "signup.html", {"message": message})
+    return render(request, "signup.html", {"message": message, "input": input})
 
 def logout_page(request):
     '''

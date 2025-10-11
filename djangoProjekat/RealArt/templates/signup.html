@@ -12,32 +12,32 @@
         {% csrf_token %}
         <div class="mb-3">
             <label for="ime" class="form-label">Ime</label>
-            <input type="text" class="form-control" id="ime" name="ime" required>
+            <input type="text" class="form-control" id="ime" name="ime" value="{{ input.name }}" required>
         </div>
 
         <div class="mb-3">
             <label for="prezime" class="form-label">Prezime</label>
-            <input type="text" class="form-control" id="prezime" name="prezime" required>
+            <input type="text" class="form-control" id="prezime" name="prezime" value="{{ input.lastname }}" required>
         </div>
 
         <div class="mb-3">
             <label for="korisnickoIme" class="form-label">Korisničko ime</label>
-            <input type="text" class="form-control" id="korisnickoIme" name="korisnickoIme" required>
+            <input type="text" class="form-control" id="korisnickoIme" name="korisnickoIme" value="{{ input.username }}" required>
         </div>
 
         <div class="mb-3">
             <label for="lozinka" class="form-label">Lozinka</label>
-            <input type="password" class="form-control" id="lozinka" name="lozinka" minlength="8" required>
+            <input type="password" class="form-control" id="lozinka" name="lozinka" minlength="8" value="{{ input.password }}" required>
         </div>
 
         <div class="mb-3">
             <label for="potvrdaLozinke" class="form-label">Potvrda lozinke</label>
-            <input type="password" class="form-control" id="potvrdaLozinke" name="potvrdaLozinke" minlength="8" required>
+            <input type="password" class="form-control" id="potvrdaLozinke" name="potvrdaLozinke" minlength="8" value="{{ input.password_again }}" required>
         </div>
 
         <div class="mb-3">
             <label for="email" class="form-label">Email adresa</label>
-            <input type="email" class="form-control" id="email" name="email" required>
+            <input type="email" class="form-control" id="email" name="email" value="{{ input.email }}" required>
         </div>
 <!--
         <div class="mb-3">
@@ -48,7 +48,7 @@
 
         <div class="mb-3">
             <label for="opis" class="form-label">Opis</label>
-            <textarea class="form-control" id="opis" name="opis" rows="5" placeholder="Unesite vaš opis ovde..."></textarea>
+            <textarea class="form-control" id="opis" name="opis" rows="5" placeholder="Unesite vaš opis ovde...">{{ input.bio }}</textarea>
         </div>
 
         <button type="submit" class="btn btn-secondary">Prijavi se</button>

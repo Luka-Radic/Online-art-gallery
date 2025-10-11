@@ -103,14 +103,20 @@ class User(models.Model):
         return sum
 
     def get_rating(self):
-        ratings = Rating.objects.filter(author_id=self.id)
-        if len(ratings) == 0:
+        my_paintings = Painting.objects.filter(artist_id=self.id)
+        avg = 0
+        num = 0
+
+        for painting in my_paintings:
+            ratings = Rating.objects.filter(painting_id=painting.id)
+            for r in ratings:
+                avg += r.score
+                num += 1
+
+        if num != 0:
+            return avg/num
+        else:
             return 0
-        avg = 0; num = 0
-        for r in ratings:
-            avg += r.score
-            num += 1
-        return avg/num
 
 
     def get_qualification_url(self):
