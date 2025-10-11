@@ -212,7 +212,8 @@ def add_pfp(request):
             image_url = f'/static/img/{filename}'
             user.pfp_url = image_url
             user.save()
-    return render(request, 'moj_profil.html', {"me":user})
+    return redirect("my_page")
+    # return render(request, 'moj_profil.html', {"me":user})
 
 
 def add_jury_doc(request):
@@ -222,18 +223,17 @@ def add_jury_doc(request):
     Juryrequest entry in the database, and renders the profile page with the updated information.
     '''
     djuser = request.user
-    print(djuser.username)
     user = User.objects.filter(username=djuser.username).first()
     if request.method == "POST" and request.FILES.get('cv') is not None:
         cv = request.FILES.get("cv")
-        print(cv)
-        print(cv.content_type)
         if cv.content_type.startswith('text/') or cv.content_type.startswith('application/'):
-            print("starts with cv")
             base, ext = os.path.splitext(cv.name)
             filename = f'{djuser.username}_{base}{ext}'
-            print(filename)
             path = os.path.join(settings.BASE_DIR, 'static', 'user_docs', filename)
+
+            # !! ne sme ipak ovde da se poziva jer admin treba prvo da review novi pa onda tek da se zamene i obrise stari
+            # ranko u amdinu kad reviewuje, nek obrise stari ako valja novi i onda ce kad se dohvati first biti dohvacen taj novi
+            # delete_user_doc(user)
 
             with open(path, 'wb+') as destination:
                 for chunk in cv.chunks():
@@ -272,11 +272,10 @@ def pay(request, artist_id):
         if amount is None or amount == "":
             return redirect("homepage")
 
-            #commit=False
         funding = Funding.objects.create(amount=amount, donor=donor, artist=artist)
         print("Funding id: " , funding.id)
 
-        #dobijanje tokena
+        # dobijanje tokena
         auth = (PAYPAL_CLIENT_ID, PAYPAL_SECRET)
         token_response = requests.post(
             f"{PAYPAL_API}/v1/oauth2/token",
@@ -306,8 +305,8 @@ def pay(request, artist_id):
 
         approval_url = next((link["href"] for link in order_json["links"] if link["rel"] == "approve"), None)
 
-        funding.payment_id = order_json.get("id")
-        #todo kolona paypalov id
+        # funding.payment_id = order_json.get("id")
+        # #todo kolona paypalov id ali ne mora realno
         funding.save()
 
         #preusmerim korisnika na paypal stranicu za placanje:
@@ -323,7 +322,7 @@ def fund_success(request, funding_id):
     the funding page with a success message.
     '''
     funding = Funding.objects.get(id=funding_id)
-    funding.status = "completed" #TODO dodati completed kolonu u db
+    funding.status = "completed" #TODO dodati status kolonu u db
     funding.save()
     return render(request, "fundiraj.html", {
         "artist_id": funding.artist.id,
@@ -336,12 +335,11 @@ def fund_cancel(request, funding_id):
     It updates the funding status to "cancelled" and renders the funding page with a cancellation message.
     '''
     funding = Funding.objects.get(id=funding_id)
-    funding.status = "cancelled"
-    funding.save()
-    return render(request, "fundiraj.html", {
-        "artist_id": funding.artist.id,
-        "message": "Plaćanje je otkazano."
-    })
+    message = "Plaćanje je otkazano."
+    # funding.status = "cancelled" #TODO dodati status kolonu u db
+    # funding.save()
+
+    return render(request, "fundiraj.html", {"artist_id": funding.artist.id, "message": message})
 
 
 def delete_profile(request):
@@ -383,6 +381,7 @@ def save_profile_edits(request):
         first_name = request.POST.get("first_name").strip()
         last_name = request.POST.get("last_name").strip()
         username = request.POST.get("username").strip()
+        email = request.POST.get("email").strip()
         bio = request.POST.get("bio").strip()
 
         if first_name:
@@ -396,6 +395,11 @@ def save_profile_edits(request):
                 return redirect("edit_profile")
             me.username = username
             request.user.username = username
+        if email and email != me.email:
+            if User.objects.filter(email=email).exclude(id=me.id).exists():
+                #TODO vratiti poruku o zauzetosti emaila
+                return redirect("edit_profile")
+            me.email = email
         if bio:
             me.bio = bio
 
@@ -403,7 +407,7 @@ def save_profile_edits(request):
         request.user.save()
         return redirect("my_page")
 
-    return render(request, "moj_profil.html", {"me":me.id})
+    return redirect("my_page")
 
 
 def delete_picture(user):
@@ -414,6 +418,19 @@ def delete_picture(user):
     It constructs the file path from the user's profile picture URL and removes the file if it exists.
     '''
     relative_path = user.pfp_url.replace('/static/', '')
+    file_path = os.path.join(settings.BASE_DIR, 'static', relative_path)
+
+    if os.path.exists(file_path):
+        os.remove(file_path)
+
+def delete_user_doc(user):
+    '''
+    Just a helper function to remove the document from the database.
+
+    Deletes the text document of the given user from the server.
+    It constructs the file path from the user's profile picture URL and removes the file if it exists.
+    '''
+    relative_path = user.get_qualification_url().replace('/static/', '')
     file_path = os.path.join(settings.BASE_DIR, 'static', relative_path)
 
     if os.path.exists(file_path):

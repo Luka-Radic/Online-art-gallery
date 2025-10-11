@@ -14,7 +14,9 @@
                 <img src="{% static 'img/default_pfp.png' %}" alt="Dodajte korisnicku sliku" class=" img-fluid user-img">
                 <a class="btn btn-light change-btn" href="{% url 'add_pfp_page' %}">Dodaj profilnu sliku</a>
             {% endif %}
-            <a class="btn btn-danger change-btn mt-2" href="{% url 'delete_profile' %}">Obrisi moj profil</a>
+            <a class="btn btn-danger change-btn mt-2" href="{% url 'delete_profile' %}"
+            onclick="return confirm('Jeste li sigurni da želite da obrišete profil? Akcija je trajna.');"> Obrisi moj profil
+            </a>
         </div>
 
         <!-- Desna strana: podaci o korisniku -->
@@ -41,10 +43,19 @@
                     <input type="text" name="username" value="{{ me.username }}" class="form-control d-inline w-auto border-0 bg-transparent" readonly>
                 </p>
 
+                <div class="inline">
+                    <span class="fw-bold">Email:</span>
+                    <img src="{% static 'img/edit_icon.png' %}" alt="Edit" class="edit-icon ms-2" data-target="email">
+                    <input type="email" name="email" value="{{ me.email }}" class="form-control d-inline w-auto border-0 bg-transparent" readonly>
+                </div>
+
                 <h4>
                     Status:
                     {% if me.is_regular_user %} Umetnik {% else %} Žiri {% endif %}
                 </h4>
+                <p>Zelis da izmeniš kvalifikaciju i time ponovo konkurises za zirija?
+                    <a href="{% url "become_judge" %}" class="text-danger"> Izmeni </a>
+                </p>
 
                 <div class="inline">
                     <h4>Opis:</h4>
