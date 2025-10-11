@@ -18,6 +18,7 @@ from django.db.models import Avg
     #return render(request, 'izlozbe.html', {'form': form})
 
 
+#Ovde se prave izlzobe, stavlja se njivo status adekvatno
 def exhibitions(request):
     # Automatsko ažuriranje statusa svih izložbi
     today = date.today()
@@ -55,6 +56,7 @@ def exhibitions(request):
     return render(request, 'izlozbe.html', {'form': form, 'izlozbe_sa_slikom': izlozbe_sa_slikom})
 
 
+#ovde je sve sto ima veze sa slikom, dodavanje komentara, dodavanje ocene korisnika i atomatsko azuriranje prosecne ocene
 def image_detail(request, painting_id):
     painting = get_object_or_404(Painting, id=painting_id)
 
@@ -62,7 +64,6 @@ def image_detail(request, painting_id):
     if request.user.is_authenticated:
         app2_user = User.objects.filter(username=request.user.username).first()
 
-    # POST: komentar ili rating
     if request.method == 'POST' and app2_user:
         # Dodavanje komentara
         text = request.POST.get('comment_text', '').strip()
@@ -96,7 +97,7 @@ def image_detail(request, painting_id):
                 )
             return redirect('image_detail', painting_id=painting.id)
 
-    # Dohvati komentare
+    # komentari
     comments = Comment.objects.filter(painting=painting).order_by('-created_at')
 
     # Prosečna ocena
@@ -122,56 +123,6 @@ def image_detail(request, painting_id):
     })
 
 
-def rate_painting(request, painting_id):
-    """
-    Prima POST zahtev sa ocenom i čuva je u bazi podataka za prijavljenog korisnika.
-    """
-
-    # 1. Provera metode zahteva (Ekvivalent @require_POST)
-    if request.method != 'POST':
-        # Vraća HTTP 405 Method Not Allowed ako nije POST
-        return HttpResponse('Method Not Allowed', status=405)
-
-    # 2. Provera statusa prijave (Ekvivalent @login_required)
-    if not request.user.is_authenticated:
-        # Vraća HTTP 401 Unauthorized ako korisnik nije prijavljen
-        # U AJAX pozivu je bolje vratiti status greške nego preusmeriti.
-        return JsonResponse({'error': 'Korisnik nije prijavljen. Prijavite se za ocenjivanje.'}, status=401)
-
-    # --- Nastavak logike ocenjivanja ---
-
-    painting = get_object_or_404(Painting, id=painting_id)
-
-    try:
-        data = json.loads(request.body)
-        score = data.get('score')
-    except json.JSONDecodeError:
-        return JsonResponse({'error': 'Neispravan JSON format'}, status=400)
-
-    if not score or not (1 <= score <= 5):
-        return JsonResponse({'error': 'Ocena mora biti između 1 i 5'}, status=400)
-
-    # Koristi get_or_create da pronađe postojeći ili kreira novi rating
-    rating, created = Rating.objects.update_or_create(
-        author=request.user,  # Trenutno prijavljeni korisnik
-        painting=painting,
-        defaults={
-            'score': score,
-            # 'created_at' bi trebalo da se podesi u modelu kao auto_now_add,
-            # ali kako je `managed = False`, možda ćete morati ručno da ga podesite
-        }
-    )
-
-    # Izračunavanje nove prosečne ocene
-    avg_rating = Rating.objects.filter(painting=painting).aggregate(Avg('score'))['score__avg']
-
-    # Vraćanje JSON odgovora klijentu
-    return JsonResponse({
-        'message': 'Ocena uspešno sačuvana',
-        'score': rating.score,
-        'created': created,
-        'avg_rating': round(avg_rating, 2) if avg_rating is not None else 0
-    })
 
 
 
