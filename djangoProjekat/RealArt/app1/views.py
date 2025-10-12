@@ -26,6 +26,14 @@ class Role(str, Enum):
     REGISTERED = "registered"
     GUEST = "guest"
 
+class Status(str, Enum):
+    '''
+    Enum for user roles.
+    '''
+    PENDING = "pending"
+    APPROVED = "approved"
+    REJECTED = "rejected"
+
 
 # Create your views here.
 def homepage(request):
@@ -252,7 +260,7 @@ def add_jury_doc(request):
                     destination.write(chunk)
 
             cv_url = f'/static/user_docs/{filename}'
-            Juryrequest.objects.create(document_url=cv_url, applicant=user).save()
+            Juryrequest.objects.create(document_url=cv_url, applicant=user, status=Status.PENDING).save()
     return render(request, 'moj_profil.html', {"me": user})
 
 

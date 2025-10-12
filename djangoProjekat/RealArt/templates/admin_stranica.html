@@ -23,10 +23,12 @@
                         <div class="d-flex gap-2 ms-auto">
                             {% if request.status == None or request.status == 'pending' %}
                                 <form method="post">
+                                    <a href="{{ request.document_url }}" target="_blank" class="text-dark">Otvori kvalifikacija.txt</a>
                                     {% csrf_token %}
                                     <input type="hidden" name="request_id" value="{{ request.id }}">
                                     <input type="hidden" name="akcija" value="prihvati">
                                     <button type="submit" class="btn btn-outline-success" title="Prihvati">✔</button>
+
                                 </form>
                                 <form method="post">
                                     {% csrf_token %}
