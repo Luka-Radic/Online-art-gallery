@@ -30,6 +30,7 @@
                      data-title="{{ item.painting.title|default_if_none:''|lower }}"
                      data-theme="{{ item.themes|join:','|escapejs|lower }}">
 
+                    <a href="{% url 'image_detail' item.painting.id %}" class="clickable-card no-link-style">
                     <div class="card mb-4 h-100 d-flex flex-column">
                         <img src="{{ item.painting.image_url }}" alt="{{ item.painting.title }}"
                              class="card-img-top img-fluid">
@@ -51,11 +52,11 @@
                                 <p class="fw-bold text-dark text-decoration-none no-hover no-hover-link">
                                     {{ item.painting.artist.username }}
                                 </p>
-                                <a href="{% url 'image_detail' item.painting.id %}" class="stretched-link"></a>
+{#                                <a href="{% url 'image_detail' item.painting.id %}" class="stretched-link"></a>#}
                             </div>
                         </div>
                     </div>
-
+                    </a>
                 </div>
             {% empty %}
                 <div class="col-12 text-center">
