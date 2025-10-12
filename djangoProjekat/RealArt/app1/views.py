@@ -46,7 +46,9 @@ def users(request):
     '''
     Renders the users page. Fetches and displays all users.
     '''
-    users = User.objects.all()
+    users = User.objects.exclude(role=Role.ADMIN)
+    admin = users.filter(role=Role.ADMIN).first()
+    print(admin)
     return render(request, "korisnici.html", {"users": users})
 
 def my_page(request):
@@ -180,7 +182,7 @@ def search_users(request):
     on the users page along with the original input. Resubmit is called after every pressed key, but
     with debounce period, so that it doesn't lose input.
     '''
-    users = User.objects.all()
+    users = User.objects.exclude(role=Role.ADMIN)
     input= ""
     filtered = None
     if request.method == "POST":
