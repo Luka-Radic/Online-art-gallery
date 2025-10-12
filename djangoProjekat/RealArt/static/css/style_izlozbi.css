@@ -1,5 +1,5 @@
 /* Luka Radic */
-
+/* Ranko Stanojevic */
 .gallery-card {
     width: 400px;
     margin: 30px auto;
@@ -181,12 +181,18 @@
 }
 
 .form-control:focus {
-    outline: none;
-    box-shadow: none;
-    background-color: lightgrey;
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: lightgrey !important;
 }
 
 .search-list{
     max-width: 120px;
     background-color: lightgrey;
+}
+
+.no-hover:hover {
+    transform: none !important;
+    box-shadow: none !important;
+    background-color: inherit !important;
 }

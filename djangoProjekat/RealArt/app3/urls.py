@@ -23,5 +23,7 @@ urlpatterns = [
     path('adminUs/', adminUs, name='adminUs'),
     path('exhibition/<int:exhibition_id>/', exhibition, name='exhibition'),
 
-    path('gallery', gallery, name = 'gallery')
+    path('gallery', gallery, name = 'gallery'),
+
+    path('addPicture/<int:exhibition_id>/', addPicture, name='addPicture'),
 ]

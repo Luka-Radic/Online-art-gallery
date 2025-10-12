@@ -1,3 +1,4 @@
+<!--Ranko Stanojevic-->
 {% extends "template.html" %}
 {% load static %}
 
@@ -7,25 +8,41 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container fluid mt-4">
-        <h2 class="exhibition-heading text-center">Izložba {{ izlozba.name }}</h2>
-        <div class="search-container d-flex gap-2 align-items-center">
-            <select id="searchFilter" class="form-control search-list search-input" >
+    <div class="container mt-4">
+
+        <h2 class="exhibition-heading text-center mb-4">Izložba {{ izlozba.name }}</h2>
+
+        <!-- Dugmad i forma na vrhu -->
+        <div class="d-flex justify-content-center gap-3 mb-4">
+            <button class="btn btn-light back-button" onclick="history.back()">⟸ Nazad</button>
+            {% if request.user.is_authenticated and izlozba.status == "active" %}
+                <a href="{% url 'addPicture' izlozba.id %}" class="btn btn-primary">Dodaj sliku</a>{% endif %}
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                    data-bs-target="#galleryModal">
+                Pogledaj slajdšou
+            </button>
+        </div>
+
+        <!-- Search bar -->
+        <div class="search-container d-flex gap-2 align-items-center mb-4">
+            <select id="searchFilter" class="form-control search-list search-input text-center">
                 <option value="title">Naziv</option>
                 <option value="artist">Umetnik</option>
             </select>
             <input type="text" class="search-input" id="searchInput" placeholder="Pretražite sliku">
             <div class="btn-group">
-                <button type="button" class="search-button filter-button dropdown-toggle" data-bs-toggle="dropdown">≡
+                <button type="button" class="search-button filter-button dropdown-toggle no-hover"
+                        data-bs-toggle="dropdown">≡
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Sortiraj po umetniku</a></li>
-                    <li><a class="dropdown-item" href="#">Sortira po oceni</a></li>
+                    <li><a class="dropdown-item" href="#">Sortiraj po oceni</a></li>
                     <li><a class="dropdown-item" href="#">Najnovije</a></li>
                 </ul>
             </div>
         </div>
 
+        <!-- Kartice slika -->
         <div class="row mt-4 mb-4" id="paintingsContainer">
             {% for painting in paintings %}
                 <div class="col-md-4 mb-4 painting-card"
@@ -33,20 +50,21 @@
                      data-artist="{{ painting.artist.username|lower }}"
                      data-timestamp="{{ painting.upload_date|date:'U' }}"
                      data-rating="{{ painting.avg_rating|default:0 }}">
-                    <div class="card mb-4 h-100 d-flex flex-column">
+
+                    <div class="card h-100 d-flex flex-column position-relative">
                         <img src="{{ painting.image_url }}" alt="{{ painting.title }}" class="card-img-top img-fluid">
                         <div class="card-body d-flex flex-column">
                             <h4 class="card-title">{{ painting.title }}</h4>
-                            <p class="card-text">Umetnik:&nbsp;{{ painting.artist }}</p>
-                            <div class="row mt-auto">
-                                <div class="col-sm-6 d-flex flex-column justify-content-between"><a
-                                        href="{% url 'artist' painting.artist.id %}"
-                                        class="btn btn-secondary">Pogledaj
-                                    profil</a></div>
-                                <div class="col-sm-6 d-flex flex-column justify-content-between"><a
-                                        href="{% url 'image_detail' painting.id %}"
-                                        class="btn btn-secondary">Pogledaj
-                                    sliku</a></div>
+
+                            <div class="d-flex align-items-center mt-3">
+                                <img src="{{ painting.artist.pfp_url_getter }}" alt="{{ painting.artist.username }}"
+                                     class="rounded-circle me-2 no-hover-link no-hover"
+                                     style="width:40px; height:40px; object-fit:cover;">
+
+                                <p class="fw-bold text-dark text-decoration-none no-hover no-hover-link">
+                                    {{ painting.artist.username }}
+                                </p>
+                                <a href="{% url 'image_detail' painting.id %}" class="stretched-link"></a>
                             </div>
                         </div>
                     </div>
@@ -55,78 +73,38 @@
         </div>
     </div>
 
-    <div class="container fluid mt-4">
-        <div class="row text-center m-4">
-            <div class="col sm-12">
-                <button type="button" class="btn btn-secondary center mt-4" data-bs-toggle="modal"
-                        data-bs-target="#galleryModal">
-                    Pogledaj slajdšou
-                </button>
-            </div>
-        </div>
-        <div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-xl modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-body p-0">
-                        <div id="demo" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                            <div class="carousel-indicators">
-                                {% for painting in paintings %}
-                                    <button type="button" data-bs-target="#demo"
-                                            data-bs-slide-to="{{ forloop.counter0 }}"
-                                            {% if forloop.first %}class="active"{% endif %}></button>
-                                {% endfor %}
-                            </div>
-                            <div class="carousel-inner">
-                                {% for painting in paintings %}
-                                    <div class="carousel-item ratio ratio-16x9 {% if forloop.first %}active{% endif %}">
-                                        <img src="{{ painting.image_url }}" alt="{{ painting.title }}"
-                                             class="d-block w-100">
-                                    </div>
-                                {% endfor %}
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#demo"
-                                    data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon"></span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#demo"
-                                    data-bs-slide="next">
-                                <span class="carousel-control-next-icon"></span>
-                            </button>
+    <!-- Modal za slideshow -->
+    <div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div id="demo" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            {% for painting in paintings %}
+                                <button type="button" data-bs-target="#demo"
+                                        data-bs-slide-to="{{ forloop.counter0 }}"
+                                        {% if forloop.first %}class="active"{% endif %}></button>
+                            {% endfor %}
                         </div>
+                        <div class="carousel-inner">
+                            {% for painting in paintings %}
+                                <div class="carousel-item ratio ratio-16x9 {% if forloop.first %}active{% endif %}">
+                                    <img src="{{ painting.image_url }}" alt="{{ painting.title }}"
+                                         class="d-block w-100">
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#demo"
+                                data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#demo"
+                                data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="container-fluid mt-4">
-        {% if request.user.is_authenticated and izlozba.status == "active" %}
-            <div class="row">
-                <div class="col-sm-12">
-                    <h3 class="fst-italic text-muted text-center mt-4">Zelite da dodate Vašu sliku?</h3>
-                </div>
-            </div>
-            <form method="POST" enctype="multipart/form-data"
-                  class="upload-form p-4 shadow-sm bg-light rounded">
-                {% csrf_token %}
-
-                <div class="mb-3">
-                    <input type="text" name="title" placeholder="Unesite naziv slike" required
-                           class="form-control upload-input"/>
-                </div>
-
-                <div class="mb-3">
-                    <input type="file" name="image" accept="image/*" required
-                           class="form-control upload-input"/>
-                </div>
-
-                <div class="text-center">
-                    <button type="submit" class="btn btn-secondary upload-btn">Dodaj sliku</button>
-                </div>
-            </form>
-        {% endif %}
-        <div class="mt-4 mb-4 d-flex justify-content-center">
-            <button class="btn btn-light back-button" onclick="history.back()"> ⟸ Nazad </button>
         </div>
     </div>
 {% endblock %}

@@ -30,7 +30,7 @@ def adminUs(request):
             comment_id = request.POST['comment_id']
             if Comment.objects.filter(id=comment_id).exists():
                 Comment.objects.filter(id=comment_id).delete()
-        return redirect('odrzavanje')
+        return redirect('adminUs')
     requests = Juryrequest.objects.filter(status=Status.PENDING)
     paintings = Painting.objects.all()
     comments = Comment.objects.all()
@@ -47,6 +47,18 @@ def exhibition(request, exhibition_id):
     izlozba = Exhibition.objects.get(id=exhibition_id)
     painting_ids = Participation.objects.filter(exhibition_id=exhibition_id).values_list('painting_id', flat=True)
     paintings = Painting.objects.filter(id__in=painting_ids)
+
+    context = {
+        'izlozba' : izlozba,
+        'paintings' : paintings,
+        'users' : User.objects.all()
+    }
+    return render(request, 'prikaz_izlozbe.html', context)
+
+def addPicture(request, exhibition_id):
+    izlozba = Exhibition.objects.get(id=exhibition_id)
+    painting_ids = Participation.objects.filter(exhibition_id=exhibition_id).values_list('painting_id', flat=True)
+    paintings = Painting.objects.filter(id__in=painting_ids)
     user = None
     if request.user.is_authenticated:
         user = User.objects.filter(username=request.user.username).first()
@@ -54,7 +66,7 @@ def exhibition(request, exhibition_id):
     if request.method == "POST" and request.FILES.get('image') is not None and user is not None:
         image = request.FILES.get('image')
         title = request.POST.get('title', '').strip()
-
+        description = request.POST.get('description', '').strip()
         if not title:
             messages.error(request, "Dodajte naziv slike")
             return redirect('exhibition', exhibition_id=exhibition_id)
@@ -63,7 +75,7 @@ def exhibition(request, exhibition_id):
             base, ext = os.path.splitext(image.name)
             timestamp = int(time.time())
             filename = f"{base}_{timestamp}{ext}"
-            path = os.path.join(settings.BASE_DIR,'static', 'img', filename)
+            path = os.path.join(settings.BASE_DIR, 'static', 'img', filename)
 
             with open(path, 'wb+') as destination:
                 for chunk in image.chunks():
@@ -71,22 +83,19 @@ def exhibition(request, exhibition_id):
 
             image_url = f'/static/img/{filename}'
             new_painting = Painting.objects.create(
-                title = title,
-                image_url = image_url,
-                artist = user,
-                upload_date = timezone.now(),
+                title=title,
+                image_url=image_url,
+                artist=user,
+                upload_date=timezone.now(),
+                image_desc=description
             )
             Participation.objects.create(
                 painting=new_painting,
                 exhibition=izlozba
             )
-            return redirect(reverse('exhibition', args=[exhibition_id]))
-    context = {
-        'izlozba' : izlozba,
-        'paintings' : paintings,
-        'users' : User.objects.all()
-    }
-    return render(request, 'prikaz_izlozbe.html', context)
+            return redirect('exhibition', exhibition_id = exhibition_id)
+
+    return render(request, 'dodaj_sliku.html')
 
 def gallery(request):
     data = []
