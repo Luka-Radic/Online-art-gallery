@@ -127,9 +127,10 @@ class User(models.Model):
 
     def __str__(self):
         return self.username
-
-        email = 'email'
-        first_name = 'first_name'
+    def pfp_url_getter(self):
+        if self.pfp_url:
+            return self.pfp_url
+        else: return '/static/img/default_pfp.png'
     class Meta:
         managed = False
         db_table = 'user'
