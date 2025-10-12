@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from django.db.models import Avg
 from django.contrib.auth.models import User as DjangoUser
 from django.db import models
 
@@ -10,6 +10,14 @@ def get_pfp(DjangoUser):
     else:
         return "/static/img/default_pfp.png"
 DjangoUser.get_pfp = get_pfp
+
+def get_base_user(DjangoUser):
+    users = User.objects.filter(username=DjangoUser.username)
+    if users.count() != 0 and users.first().pfp_url is not None:
+        return users.first()
+    else:
+        return None
+DjangoUser.get_base_user = get_base_user
 
 class Status(models.TextChoices):
     PENDING = ('pending', 'Prihvaćen')
@@ -84,6 +92,9 @@ class Painting(models.Model):
         managed = False
         db_table = 'painting'
 
+    def get_average_rating(self):
+        result = Rating.objects.filter(painting=self).aggregate(avg=Avg('score'))
+        return result['avg'] or 0
 
 class Participation(models.Model):
     pk = models.CompositePrimaryKey('painting_id', 'exhibition_id')
