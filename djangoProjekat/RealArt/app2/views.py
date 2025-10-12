@@ -72,7 +72,7 @@ def image_detail(request, painting_id):
                 text=text,
                 painting=painting,
                 author=app2_user,
-                created_at=datetime.now()
+                # created_at=datetime.now()
             )
             return redirect('image_detail', painting_id=painting.id)
 
@@ -86,14 +86,14 @@ def image_detail(request, painting_id):
                     existing_rating.delete()  # klik na istu ocenu -> briše
                 else:
                     existing_rating.score = rating_value
-                    existing_rating.created_at = datetime.now()
+                    # existing_rating.created_at = datetime.now()
                     existing_rating.save()
             else:
                 Rating.objects.create(
                     painting=painting,
                     author=app2_user,
                     score=rating_value,
-                    created_at=datetime.now()
+                    # created_at=datetime.now()
                 )
             return redirect('image_detail', painting_id=painting.id)
 

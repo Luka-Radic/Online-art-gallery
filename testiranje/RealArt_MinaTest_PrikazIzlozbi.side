@@ -1,0 +1,423 @@
+{
+  "id": "9deafacf-fb65-4865-b836-5c738793ed8a",
+  "version": "2.0",
+  "name": "RealArt_MinaTest",
+  "url": "http://127.0.0.1:8000/",
+  "tests": [{
+    "id": "8b6cd422-2b34-41b0-9204-36d10d5b06e1",
+    "name": "uspesan_login",
+    "commands": [{
+      "id": "03fb737a-f3bd-42c6-add2-89802f54d8d5",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1eeb3fc7-57bf-451d-9c7f-1ed423cbdbf8",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1436x862",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bd27a4e0-b8b4-4a79-8ee9-ffda2316024a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.alert-link:nth-child(1)",
+      "targets": [
+        ["css=.alert-link:nth-child(1)", "css:finder"],
+        ["xpath=(//a[contains(text(),'Log in')])[2]", "xpath:link"],
+        ["xpath=(//a[contains(@href, '/login/')])[2]", "xpath:href"],
+        ["xpath=//p/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d31bd143-9628-4676-b719-e8f6e5deaaf4",
+      "comment": "",
+      "command": "click",
+      "target": "id=korisnickoIme",
+      "targets": [
+        ["id=korisnickoIme", "id"],
+        ["name=username", "name"],
+        ["css=#korisnickoIme", "css:finder"],
+        ["xpath=//input[@id='korisnickoIme']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fb4726d5-2d43-4e8b-ac15-325a4724f27e",
+      "comment": "",
+      "command": "type",
+      "target": "id=korisnickoIme",
+      "targets": [
+        ["id=korisnickoIme", "id"],
+        ["name=username", "name"],
+        ["css=#korisnickoIme", "css:finder"],
+        ["xpath=//input[@id='korisnickoIme']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "minnie"
+    }, {
+      "id": "977b3327-876b-4a4e-80a2-429e7e6c7727",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mb-3:nth-child(3)",
+      "targets": [
+        ["css=.mb-3:nth-child(3)", "css:finder"],
+        ["xpath=//form/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b6971dd0-d092-40b0-8056-6689776c0376",
+      "comment": "",
+      "command": "click",
+      "target": "id=lozinka",
+      "targets": [
+        ["id=lozinka", "id"],
+        ["name=password", "name"],
+        ["css=#lozinka", "css:finder"],
+        ["xpath=//input[@id='lozinka']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "824e8d5c-a505-4d90-a471-24212e0c0250",
+      "comment": "",
+      "command": "type",
+      "target": "id=lozinka",
+      "targets": [
+        ["id=lozinka", "id"],
+        ["name=password", "name"],
+        ["css=#lozinka", "css:finder"],
+        ["xpath=//input[@id='lozinka']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Pass123!"
+    }, {
+      "id": "f39c7828-b188-4d0c-b1db-ed3432c32d9d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prijavi se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "ce16a1e5-e2c9-4086-a7fa-8402554fdaa2",
+    "name": "prikaz_stranice_izlozbi",
+    "commands": [{
+      "id": "ee6f6d52-efd2-4c64-acbb-210d0b6d8d0b",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9ebffc4e-9d37-4983-b248-a7bcccfd514d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1436x862",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "30a4cbec-894f-4580-83f4-beee66f0a176",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izlozbe",
+      "targets": [
+        ["linkText=Izlozbe", "linkText"],
+        ["css=.nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Izlozbe')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/exhibitions/')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izlozbe')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "0691a258-a7ab-4fb8-b87a-93065c4681d5",
+    "name": "klik_na_izlozbe",
+    "commands": [{
+      "id": "9079c4fa-b242-4f41-8e3a-6526e175f576",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1270cb5a-71a9-47aa-a0a3-1f2c16eee154",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1436x862",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0e320690-9581-4973-ae85-3eedddce06e6",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izlozbe",
+      "targets": [
+        ["linkText=Izlozbe", "linkText"],
+        ["css=.nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Izlozbe')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/exhibitions/')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izlozbe')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ef84a514-494e-4214-a08e-7a083d24b94c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-6:nth-child(1) .card-img-top",
+      "targets": [
+        ["css=.col-md-6:nth-child(1) .card-img-top", "css:finder"],
+        ["xpath=//img[@alt='Morski pejzaž']", "xpath:img"],
+        ["xpath=//a/img", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "6b8cef9a-95ec-4630-b8d5-43bf6025047a",
+    "name": "sortitranje_izlozbi",
+    "commands": [{
+      "id": "4f17af7f-2b74-45db-91a1-291e0328a6f8",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "16a1eb45-5d44-4633-8b1d-970d7a43be99",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1436x862",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5fd93698-6338-409c-aa33-675be5ac48e5",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izlozbe",
+      "targets": [
+        ["linkText=Izlozbe", "linkText"],
+        ["css=.nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Izlozbe')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/exhibitions/')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izlozbe')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "11345d47-2ea1-452a-96d9-001f1c23c8a1",
+      "comment": "",
+      "command": "click",
+      "target": "id=statusFilter",
+      "targets": [
+        ["id=statusFilter", "id"],
+        ["css=#statusFilter", "css:finder"],
+        ["xpath=//select[@id='statusFilter']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dede039e-dddd-4f16-8574-40b1fbd39de3",
+      "comment": "",
+      "command": "click",
+      "target": "id=statusFilter",
+      "targets": [
+        ["id=statusFilter", "id"],
+        ["css=#statusFilter", "css:finder"],
+        ["xpath=//select[@id='statusFilter']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d23a6981-a47d-4818-b7a8-ec720bb61e88",
+      "comment": "",
+      "command": "select",
+      "target": "id=statusFilter",
+      "targets": [],
+      "value": "label=Aktivne"
+    }, {
+      "id": "768e49a9-f63c-462f-b0fa-a711c910f3c4",
+      "comment": "",
+      "command": "click",
+      "target": "id=statusFilter",
+      "targets": [
+        ["id=statusFilter", "id"],
+        ["css=#statusFilter", "css:finder"],
+        ["xpath=//select[@id='statusFilter']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7f670bbd-7720-468e-805b-58aaeac71b61",
+      "comment": "",
+      "command": "select",
+      "target": "id=statusFilter",
+      "targets": [],
+      "value": "label=Zatvorene"
+    }, {
+      "id": "97316949-db0e-4547-a128-eec418428a30",
+      "comment": "",
+      "command": "click",
+      "target": "id=statusFilter",
+      "targets": [
+        ["id=statusFilter", "id"],
+        ["css=#statusFilter", "css:finder"],
+        ["xpath=//select[@id='statusFilter']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "449231b2-aa33-410a-869f-f2133461ce23",
+      "comment": "",
+      "command": "select",
+      "target": "id=statusFilter",
+      "targets": [],
+      "value": "label=Sve izložbe"
+    }]
+  }, {
+    "id": "e39e2500-a35d-4d99-b213-a989c242e0d8",
+    "name": "search_izlozbi",
+    "commands": [{
+      "id": "2c9df5dc-5633-4cf4-aadb-d499bf684a5b",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3873a211-eb40-4fd3-8860-da083c1f0e90",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1436x862",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d5fba623-22f1-42d6-b546-0c7bb04b395f",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izlozbe",
+      "targets": [
+        ["linkText=Izlozbe", "linkText"],
+        ["css=.nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Izlozbe')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/exhibitions/')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izlozbe')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7f63e6b2-5797-47a4-a74f-c129fe3b198d",
+      "comment": "",
+      "command": "click",
+      "target": "id=searchIzlozbe",
+      "targets": [
+        ["id=searchIzlozbe", "id"],
+        ["css=#searchIzlozbe", "css:finder"],
+        ["xpath=//input[@id='searchIzlozbe']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1be94aa0-e301-4b4c-a7bf-bfde3302f885",
+      "comment": "",
+      "command": "type",
+      "target": "id=searchIzlozbe",
+      "targets": [
+        ["id=searchIzlozbe", "id"],
+        ["css=#searchIzlozbe", "css:finder"],
+        ["xpath=//input[@id='searchIzlozbe']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "morsk"
+    }, {
+      "id": "9764ee36-ff1f-4f42-a147-4d3b5ed260d8",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.col-md-6:nth-child(1) .card-title",
+      "targets": [
+        ["css=.col-md-6:nth-child(1) .card-title", "css:finder"],
+        ["xpath=//h5", "xpath:position"],
+        ["xpath=//h5[contains(.,'Morski pejzaž')]", "xpath:innerText"]
+      ],
+      "value": "Morski pejzaž"
+    }, {
+      "id": "f495e670-dafa-4038-88e8-13b281d3024c",
+      "comment": "",
+      "command": "click",
+      "target": "id=searchIzlozbe",
+      "targets": [
+        ["id=searchIzlozbe", "id"],
+        ["css=#searchIzlozbe", "css:finder"],
+        ["xpath=//input[@id='searchIzlozbe']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c17f2567-5773-4032-85c7-fea346f8c6df",
+      "comment": "",
+      "command": "type",
+      "target": "id=searchIzlozbe",
+      "targets": [
+        ["id=searchIzlozbe", "id"],
+        ["css=#searchIzlozbe", "css:finder"],
+        ["xpath=//input[@id='searchIzlozbe']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "arhite"
+    }, {
+      "id": "2ffc15f9-3c3b-4e08-8fcf-94ae13e1b9ea",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.col-md-6:nth-child(2) .card-title",
+      "targets": [
+        ["css=.col-md-6:nth-child(2) .card-title", "css:finder"],
+        ["xpath=//div[2]/div/div/a/h5", "xpath:position"],
+        ["xpath=//h5[contains(.,'Oblici arhitekture')]", "xpath:innerText"]
+      ],
+      "value": "Oblici arhitekture"
+    }, {
+      "id": "bff57431-81e9-41f4-b72e-96912fc60e4f",
+      "comment": "",
+      "command": "click",
+      "target": "id=searchIzlozbe",
+      "targets": [
+        ["id=searchIzlozbe", "id"],
+        ["css=#searchIzlozbe", "css:finder"],
+        ["xpath=//input[@id='searchIzlozbe']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0c97745a-61a8-4802-8261-461bb7ce6eed",
+      "comment": "",
+      "command": "type",
+      "target": "id=searchIzlozbe",
+      "targets": [
+        ["id=searchIzlozbe", "id"],
+        ["css=#searchIzlozbe", "css:finder"],
+        ["xpath=//input[@id='searchIzlozbe']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "0bc6767f-0f57-4063-90b1-7d4129646528",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["8b6cd422-2b34-41b0-9204-36d10d5b06e1", "ce16a1e5-e2c9-4086-a7fa-8402554fdaa2", "0691a258-a7ab-4fb8-b87a-93065c4681d5", "6b8cef9a-95ec-4630-b8d5-43bf6025047a", "e39e2500-a35d-4d99-b213-a989c242e0d8"]
+  }],
+  "urls": ["http://127.0.0.1:8000/"],
+  "plugins": []
+}

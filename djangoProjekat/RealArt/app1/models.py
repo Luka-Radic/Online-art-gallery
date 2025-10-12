@@ -1,5 +1,7 @@
 from datetime import datetime
 from django.db import models
+from django.utils import timezone
+
 
 # Create your models here.
 
@@ -7,7 +9,7 @@ class Comment(models.Model):
     text = models.TextField()
     author = models.ForeignKey('User', on_delete=models.CASCADE)
     painting = models.ForeignKey('Painting', on_delete=models.CASCADE)
-
+    created_at = models.DateTimeField(default=timezone.now, blank=True, null=True)
     class Meta:
         managed = True
         db_table = 'comment'
@@ -17,8 +19,8 @@ class Exhibition(models.Model):
     name = models.CharField(max_length=100)
     theme = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
-    start_date = models.DateField(blank=True, null=True)
-    end_date = models.DateField(blank=True, null=True)
+    start_date = models.DateField()
+    end_date = models.DateField()
     status = models.CharField(max_length=6)
     created_by = models.ForeignKey('User', on_delete=models.SET_NULL, blank=True, null=True, db_column='created_by')
     winner_painting = models.ForeignKey('Painting', on_delete=models.SET_NULL, blank=True, null=True)
@@ -58,6 +60,7 @@ class Painting(models.Model):
     artist = models.ForeignKey('User',  on_delete=models.CASCADE)
     avg_rating = models.FloatField(blank=True, null=True)
     image_desc = models.TextField(blank=True, null=True)
+    upload_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
 
     class Meta:
         managed = True
@@ -132,6 +135,9 @@ class User(models.Model):
         return self.role == 'jury'
     def is_admin(self):
         return self.role == 'admin'
+
+    def __str__(self):
+        return self.username
 
     class Meta:
         managed = True

@@ -1,6 +1,10 @@
-from datetime import datetime
+import datetime
+
 from django.contrib.auth.models import User as DjangoUser
 from django.db import models
+from django.utils import timezone
+
+
 
 def get_role(DjangoUser):
     users = User.objects.filter(username=DjangoUser.username)
@@ -12,7 +16,7 @@ DjangoUser.get_role = get_role
 
 class Comment(models.Model):
     text = models.TextField()
-    created_at = models.DateTimeField(blank=True, null=True)
+    created_at = models.DateTimeField(default=timezone.now, blank=True, null=True)
     author = models.ForeignKey('User', models.DO_NOTHING)
     painting = models.ForeignKey('Painting', models.DO_NOTHING)
 
@@ -25,8 +29,8 @@ class Exhibition(models.Model):
     name = models.CharField(max_length=100)
     theme = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
-    start_date = models.DateField(blank=True, null=True)
-    end_date = models.DateField(blank=True, null=True)
+    start_date = models.DateField()
+    end_date = models.DateField()
     status = models.CharField(max_length=6)
     created_by = models.ForeignKey('app2.User', models.DO_NOTHING, db_column='created_by')
     winner_painting = models.ForeignKey('Painting', models.DO_NOTHING, blank=True, null=True)
@@ -43,7 +47,7 @@ class Funding(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     donor = models.ForeignKey('app2.User', models.DO_NOTHING)
     artist = models.ForeignKey('app2.User', models.DO_NOTHING, related_name='funding_artist_set')
-    date = models.DateTimeField(blank=True, null=True)
+    # date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -54,7 +58,7 @@ class Juryrequest(models.Model):
     applicant = models.ForeignKey('app2.User', models.DO_NOTHING)
     document_url = models.CharField(max_length=255, blank=True, null=True)
     status = models.CharField(max_length=8, blank=True, null=True)
-    created_at = models.DateTimeField(blank=True, null=True)
+    # created_at = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -64,7 +68,7 @@ class Juryrequest(models.Model):
 class Painting(models.Model):
     title = models.CharField(max_length=100, blank=True, null=True)
     image_url = models.CharField(max_length=255)
-    upload_date = models.DateTimeField(blank=True, null=True)
+    upload_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
     artist = models.ForeignKey('app2.User', models.DO_NOTHING)
     avg_rating = models.FloatField(blank=True, null=True)
     image_desc = models.TextField(blank=True, null=True)
@@ -89,7 +93,7 @@ class Participation(models.Model):
 
 class Rating(models.Model):
     score = models.IntegerField()
-    created_at = models.DateTimeField(blank=True, null=True)
+    # created_at = models.DateTimeField(blank=True, null=True)
     author = models.ForeignKey('app2.User', models.DO_NOTHING)
     painting = models.ForeignKey(Painting, models.DO_NOTHING)
 
@@ -107,7 +111,7 @@ class User(models.Model):
     last_name = models.CharField(max_length=50, blank=True, null=True)
     role = models.CharField(max_length=10)
     bio = models.TextField(blank=True, null=True)
-    date_joined = models.DateTimeField(blank=True, null=True)
+    # date_joined = models.DateTimeField(blank=True, null=True)
     pfp_url = models.TextField(blank=True, null=True)
 
     def is_regular_user(self):

@@ -1,0 +1,761 @@
+{
+  "id": "f88eeb4f-37e6-45b1-9a37-96827e2d5dba",
+  "version": "2.0",
+  "name": "RealArt_MinaTest_PrikazSlike",
+  "url": "http://127.0.0.1:8000",
+  "tests": [{
+    "id": "454e4f72-90d2-42c7-8136-7f3ee78a3f46",
+    "name": "Untitled",
+    "commands": []
+  }, {
+    "id": "0a4eba85-610b-4ed1-bcf7-be370e1524a6",
+    "name": "uspesan_login",
+    "commands": [{
+      "id": "d4fc7605-b513-4962-adea-34ff122e1668",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4871a4a1-8644-43ff-8c64-fdbac27d49ff",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Log in",
+      "targets": [
+        ["linkText=Log in", "linkText"],
+        ["css=.fs-5:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'Log in')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/login/')]", "xpath:href"],
+        ["xpath=//div[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Log in')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a57d39fd-5185-4ca0-a3ea-837d46a77807",
+      "comment": "",
+      "command": "click",
+      "target": "id=korisnickoIme",
+      "targets": [
+        ["id=korisnickoIme", "id"],
+        ["name=username", "name"],
+        ["css=#korisnickoIme", "css:finder"],
+        ["xpath=//input[@id='korisnickoIme']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e7df989d-5692-4077-9aaf-4883a6cff1f9",
+      "comment": "",
+      "command": "type",
+      "target": "id=korisnickoIme",
+      "targets": [
+        ["id=korisnickoIme", "id"],
+        ["name=username", "name"],
+        ["css=#korisnickoIme", "css:finder"],
+        ["xpath=//input[@id='korisnickoIme']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "minnie"
+    }, {
+      "id": "4b6e9868-5dc3-459a-afef-009896ffcc69",
+      "comment": "",
+      "command": "click",
+      "target": "id=lozinka",
+      "targets": [
+        ["id=lozinka", "id"],
+        ["name=password", "name"],
+        ["css=#lozinka", "css:finder"],
+        ["xpath=//input[@id='lozinka']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "96feecf0-9bbc-4b85-9a61-1c40609f9b82",
+      "comment": "",
+      "command": "type",
+      "target": "id=lozinka",
+      "targets": [
+        ["id=lozinka", "id"],
+        ["name=password", "name"],
+        ["css=#lozinka", "css:finder"],
+        ["xpath=//input[@id='lozinka']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Pass123!"
+    }, {
+      "id": "4fa4b48b-f367-4eb1-b1c1-ee41bb9c9d56",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prijavi se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2338baeb-fc1a-42b7-96d4-c46bba8c9579",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=b",
+      "targets": [
+        ["css=b", "css:finder"],
+        ["xpath=//b", "xpath:position"],
+        ["xpath=//b[contains(.,'RealArt')]", "xpath:innerText"]
+      ],
+      "value": "RealArt"
+    }, {
+      "id": "85dbdf3a-5bdf-4e7e-b802-1b0420468ec0",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1424x850",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "e2ab8830-643a-479e-91f3-7d5148f7dd1e",
+    "name": "prikaz_slike_iz_izlozbe",
+    "commands": [{
+      "id": "ad373feb-3bc8-41e9-86e8-2137b1dcdaef",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3e206657-6ccf-4a4e-897b-6d850cdaf19a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1424x850",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "033ba3d6-2f7c-4c06-9ca7-d6f48b0f4a22",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izlozbe",
+      "targets": [
+        ["linkText=Izlozbe", "linkText"],
+        ["css=.nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Izlozbe')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/exhibitions/')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izlozbe')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7c85a85f-507a-429e-b76e-61748311b9f0",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-6:nth-child(2) .card-img-top",
+      "targets": [
+        ["css=.col-md-6:nth-child(2) .card-img-top", "css:finder"],
+        ["xpath=//img[@alt='Oblici arhitekture']", "xpath:img"],
+        ["xpath=//div[2]/div/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4f2f3af6-e48d-4b5d-a9d1-7b8abfcc41fb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.card-img-top",
+      "targets": [
+        ["css=.card-img-top", "css:finder"],
+        ["xpath=//img[@alt='Nebeski most']", "xpath:img"],
+        ["xpath=//div[@id='paintingsContainer']/div/a/div/img", "xpath:idRelative"],
+        ["xpath=//a/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c9354008-4808-4a25-9632-48bf1bcddfd7",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.mb-2:nth-child(2)",
+      "targets": [
+        ["css=.mb-2:nth-child(2)", "css:finder"],
+        ["xpath=//h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'Nebeski most')]", "xpath:innerText"]
+      ],
+      "value": "Nebeski most"
+    }]
+  }, {
+    "id": "ef6e55bd-50d3-43c1-8a9a-6178d810fdcc",
+    "name": "prikaz_slike_iz_galerije",
+    "commands": [{
+      "id": "f810b456-b08b-418b-9f18-7677c3d1ab57",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "81cdcc3d-b7c3-4439-8113-37ba391fa29f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1424x850",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "37832d42-e639-4405-9d0a-5644335e575f",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Radovi",
+      "targets": [
+        ["linkText=Radovi", "linkText"],
+        ["css=.nav-item:nth-child(6) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Radovi')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/gallery')]", "xpath:href"],
+        ["xpath=//li[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Radovi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f76db3ca-29b6-4871-8b57-89d0cbcdd891",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-4:nth-child(2) .card-img-top",
+      "targets": [
+        ["css=.col-md-4:nth-child(2) .card-img-top", "css:finder"],
+        ["xpath=//img[@alt='Slutnja']", "xpath:img"],
+        ["xpath=//div[@id='galleryContainer']/div[2]/a/div/img", "xpath:idRelative"],
+        ["xpath=//div[2]/a/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "43de369c-053a-40b9-b30f-74a8b533de0b",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.mb-2:nth-child(2)",
+      "targets": [
+        ["css=.mb-2:nth-child(2)", "css:finder"],
+        ["xpath=//h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'Slutnja')]", "xpath:innerText"]
+      ],
+      "value": "Slutnja"
+    }]
+  }, {
+    "id": "9c7d46f4-24d8-4b5d-ba04-b126cc8163a0",
+    "name": "prikaz_slike_iz_artist",
+    "commands": [{
+      "id": "e473f608-5332-4c8c-a61f-1beb7b655304",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6692fece-8a55-4970-95a5-6cf6f366efa2",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1424x850",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5d6bddfc-0465-45f7-a92e-c80f634db778",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Korisnici",
+      "targets": [
+        ["linkText=Korisnici", "linkText"],
+        ["css=.nav-item:nth-child(4) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Korisnici')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/users/')]", "xpath:href"],
+        ["xpath=//li[4]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Korisnici')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "15111cc6-3c4b-4134-8a5a-ebd728e1a5fe",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-sm-3:nth-child(4) .card-img-top",
+      "targets": [
+        ["css=.col-sm-3:nth-child(4) .card-img-top", "css:finder"],
+        ["xpath=(//img[@alt='slika korisnika'])[4]", "xpath:img"],
+        ["xpath=//div[4]/a/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fc83cc8d-f549-45c3-8d1a-076ebbd53b6b",
+      "comment": "",
+      "command": "click",
+      "target": "name=Starost",
+      "targets": [
+        ["name=Starost", "name"],
+        ["css=.col-sm-3:nth-child(3) .img-fluid", "css:finder"],
+        ["xpath=//img[@alt='Starost']", "xpath:img"],
+        ["xpath=//img[@name='Starost']", "xpath:attributes"],
+        ["xpath=//div[2]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5fed4e7c-97cc-4e0f-951c-4728bff07b37",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.mb-2:nth-child(2)",
+      "targets": [
+        ["css=.mb-2:nth-child(2)", "css:finder"],
+        ["xpath=//h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'Starost')]", "xpath:innerText"]
+      ],
+      "value": "Starost"
+    }]
+  }, {
+    "id": "4e4be239-efe7-48ee-b62c-ef60953028a7",
+    "name": "prikaz_slike_iz_mypage",
+    "commands": [{
+      "id": "7ac183ec-3c44-46d2-b346-8430848be6a4",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "36621709-0bc3-4ba9-b082-78f1178d4c31",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1424x850",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "445754e8-bbea-4730-8ede-1b19030f1eba",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Moj Profil",
+      "targets": [
+        ["linkText=Moj Profil", "linkText"],
+        ["css=li:nth-child(5) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Moj Profil')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/my_page/')]", "xpath:href"],
+        ["xpath=//li[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Moj Profil')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c4e45c6c-747b-49f4-ab58-fa5874c830b5",
+      "comment": "",
+      "command": "click",
+      "target": "name=Aheron",
+      "targets": [
+        ["name=Aheron", "name"],
+        ["css=.painting", "css:finder"],
+        ["xpath=//img[@alt='Aheron']", "xpath:img"],
+        ["xpath=//img[@name='Aheron']", "xpath:attributes"],
+        ["xpath=//div[2]/div/div/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "622ea14b-46cb-4739-86f9-8cdc6f6d007a",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.mb-2:nth-child(2)",
+      "targets": [
+        ["css=.mb-2:nth-child(2)", "css:finder"],
+        ["xpath=//h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'Aheron reka')]", "xpath:innerText"]
+      ],
+      "value": "Aheron reka"
+    }]
+  }, {
+    "id": "f70f167e-83d0-4ebd-b4d3-befa31e82ce8",
+    "name": "komentarisanje",
+    "commands": [{
+      "id": "8b27b380-2e4d-4757-8802-2a9f5b427ca9",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "89e6428b-ac3f-48b0-bbd4-459e04db0c47",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1424x850",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "006acd8b-1dd9-4406-9a1a-78b36130350d",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Radovi",
+      "targets": [
+        ["linkText=Radovi", "linkText"],
+        ["css=.nav-item:nth-child(6) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Radovi')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/gallery')]", "xpath:href"],
+        ["xpath=//li[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Radovi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "daafe9ae-2467-462e-8d79-08e1c7fccec4",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-4:nth-child(2) .card-img-top",
+      "targets": [
+        ["css=.col-md-4:nth-child(2) .card-img-top", "css:finder"],
+        ["xpath=//img[@alt='Slutnja']", "xpath:img"],
+        ["xpath=//div[@id='galleryContainer']/div[2]/a/div/img", "xpath:idRelative"],
+        ["xpath=//div[2]/a/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "535d46dc-40aa-49b8-920f-c74bb8c0affd",
+      "comment": "",
+      "command": "click",
+      "target": "name=comment_text",
+      "targets": [
+        ["name=comment_text", "name"],
+        ["css=.form-control", "css:finder"],
+        ["xpath=//input[@name='comment_text']", "xpath:attributes"],
+        ["xpath=//div[3]/div/form/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dc7f4938-edac-498a-a738-fc6e9264017c",
+      "comment": "",
+      "command": "type",
+      "target": "name=comment_text",
+      "targets": [
+        ["name=comment_text", "name"],
+        ["css=.form-control", "css:finder"],
+        ["xpath=//input[@name='comment_text']", "xpath:attributes"],
+        ["xpath=//div[3]/div/form/div/input", "xpath:position"]
+      ],
+      "value": "jako mi se svidja"
+    }, {
+      "id": "a3978d62-42a6-4861-ac6a-71be671d6433",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=(//button[@type='submit'])[6]", "xpath:attributes"],
+        ["xpath=//form/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Dodaj')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "56e18884-a537-4e28-bcbb-38fd84619ed9",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.list-group-item:nth-child(1) .comment-text",
+      "targets": [
+        ["css=.list-group-item:nth-child(1) .comment-text", "css:finder"],
+        ["xpath=//div[@id='commentsList']/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div[2]", "xpath:position"]
+      ],
+      "value": "jako mi se svidja"
+    }]
+  }, {
+    "id": "27edd29d-7ff9-42b9-bae1-960c0bc09f2d",
+    "name": "ocenjivanje_zvezdicama_5_zvezdica",
+    "commands": [{
+      "id": "a60d8cb5-dd2c-4d26-a0d3-1edf78c641ba",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3d65cd72-566d-478e-a854-04321ff97781",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1424x850",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "43bc96ab-ee3d-4140-bd4a-b46c9e8e68a9",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izlozbe",
+      "targets": [
+        ["linkText=Izlozbe", "linkText"],
+        ["css=.nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Izlozbe')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/exhibitions/')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izlozbe')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f04036e4-5535-459e-971b-a53327f42d64",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-6:nth-child(1) .card-img-top",
+      "targets": [
+        ["css=.col-md-6:nth-child(1) .card-img-top", "css:finder"],
+        ["xpath=//img[@alt='Morski pejzaž']", "xpath:img"],
+        ["xpath=//a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "839993f3-f682-4efa-b4f1-4380c5301077",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-4:nth-child(2) .card-img-top",
+      "targets": [
+        ["css=.col-md-4:nth-child(2) .card-img-top", "css:finder"],
+        ["xpath=//img[@alt='Romanticni zalazak']", "xpath:img"],
+        ["xpath=//div[@id='paintingsContainer']/div[2]/a/div/img", "xpath:idRelative"],
+        ["xpath=//div[2]/a/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5565644c-096a-418b-ad5a-a9e610dbe02d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.star:nth-child(5)",
+      "targets": [
+        ["css=.star:nth-child(5)", "css:finder"],
+        ["xpath=(//button[@name='rating_value'])[5]", "xpath:attributes"],
+        ["xpath=//button[5]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c42e07c1-45cb-4441-b8fb-77e54ca02675",
+      "comment": "",
+      "command": "mouseDownAt",
+      "target": "css=.row",
+      "targets": [
+        ["css=.row", "css:finder"],
+        ["xpath=//div/div/div", "xpath:position"]
+      ],
+      "value": "1027.2777786254883,17.998275756835938"
+    }, {
+      "id": "7e88a952-99c8-487f-9f2c-14d6824fceb3",
+      "comment": "",
+      "command": "mouseMoveAt",
+      "target": "css=.row",
+      "targets": [
+        ["css=.row", "css:finder"],
+        ["xpath=//div/div/div", "xpath:position"]
+      ],
+      "value": "1027.2777786254883,17.998275756835938"
+    }, {
+      "id": "ce27a3c8-eee0-4494-9b99-29099ac21789",
+      "comment": "",
+      "command": "mouseUpAt",
+      "target": "css=.row",
+      "targets": [
+        ["css=.row", "css:finder"],
+        ["xpath=//div/div/div", "xpath:position"]
+      ],
+      "value": "1027.2777786254883,17.998275756835938"
+    }, {
+      "id": "e5e2c3b9-dfe8-49c7-9783-0560cec6fbf5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.row",
+      "targets": [
+        ["css=.row", "css:finder"],
+        ["xpath=//div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7e7afcb4-2eb6-48f5-bda7-726d204b6e0e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.content",
+      "targets": [
+        ["css=.content", "css:finder"],
+        ["xpath=//body/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3b5b91ad-0a42-492b-a95f-f1b5a3675d79",
+      "comment": "",
+      "command": "assertChecked",
+      "target": "css=.star:nth-child(5)",
+      "targets": [
+        ["css=.star:nth-child(5)", "css:finder"],
+        ["xpath=(//button[@name='rating_value'])[5]", "xpath:attributes"],
+        ["xpath=//button[5]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "833fa079-045b-403e-bd56-e86625f51d6d",
+    "name": "uklanjanje_zvezdica",
+    "commands": [{
+      "id": "cbd8d77f-6af0-455d-8a95-05feafa9f0ce",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "37568404-2115-4b69-96ba-80bbfa092250",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1424x850",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c947a69b-14fb-4222-a637-a863f551204a",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izlozbe",
+      "targets": [
+        ["linkText=Izlozbe", "linkText"],
+        ["css=.nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Izlozbe')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/exhibitions/')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izlozbe')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "389e2ade-40c7-4c2e-afd6-7b773c04fb3e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-6:nth-child(1) .card-img-top",
+      "targets": [
+        ["css=.col-md-6:nth-child(1) .card-img-top", "css:finder"],
+        ["xpath=//img[@alt='Morski pejzaž']", "xpath:img"],
+        ["xpath=//a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c1903624-1195-4b06-b7a6-36116c375675",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-4:nth-child(2) .card-img-top",
+      "targets": [
+        ["css=.col-md-4:nth-child(2) .card-img-top", "css:finder"],
+        ["xpath=//img[@alt='Romanticni zalazak']", "xpath:img"],
+        ["xpath=//div[@id='paintingsContainer']/div[2]/a/div/img", "xpath:idRelative"],
+        ["xpath=//div[2]/a/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7062aa0f-dec3-4af6-adf2-d576c927e69c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.star:nth-child(5)",
+      "targets": [
+        ["css=.star:nth-child(5)", "css:finder"],
+        ["xpath=(//button[@name='rating_value'])[5]", "xpath:attributes"],
+        ["xpath=//button[5]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2015e5b9-f6f6-4244-8505-fb2d02eb59af",
+      "comment": "",
+      "command": "mouseDownAt",
+      "target": "id=commentsList",
+      "targets": [
+        ["id=commentsList", "id"],
+        ["css=#commentsList", "css:finder"],
+        ["xpath=//div[@id='commentsList']", "xpath:attributes"],
+        ["xpath=//div[3]/div/div[2]", "xpath:position"]
+      ],
+      "value": "173.13372802734375,52.175384521484375"
+    }, {
+      "id": "e768af04-5471-4b13-b1af-b125e380b662",
+      "comment": "",
+      "command": "mouseMoveAt",
+      "target": "id=commentsList",
+      "targets": [
+        ["id=commentsList", "id"],
+        ["css=#commentsList", "css:finder"],
+        ["xpath=//div[@id='commentsList']", "xpath:attributes"],
+        ["xpath=//div[3]/div/div[2]", "xpath:position"]
+      ],
+      "value": "173.13372802734375,52.175384521484375"
+    }, {
+      "id": "aadd94ae-b461-4a0a-abc8-5d2d6f5035b5",
+      "comment": "",
+      "command": "mouseUpAt",
+      "target": "id=commentsList",
+      "targets": [
+        ["id=commentsList", "id"],
+        ["css=#commentsList", "css:finder"],
+        ["xpath=//div[@id='commentsList']", "xpath:attributes"],
+        ["xpath=//div[3]/div/div[2]", "xpath:position"]
+      ],
+      "value": "173.13372802734375,52.175384521484375"
+    }, {
+      "id": "a9467df9-400b-40cb-9e52-293da45d3084",
+      "comment": "",
+      "command": "click",
+      "target": "id=commentsList",
+      "targets": [
+        ["id=commentsList", "id"],
+        ["css=#commentsList", "css:finder"],
+        ["xpath=//div[@id='commentsList']", "xpath:attributes"],
+        ["xpath=//div[3]/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "30ccecba-6a53-48de-9526-8a14f6db92bb",
+      "comment": "",
+      "command": "assertNotChecked",
+      "target": "name=rating_value",
+      "targets": [
+        ["name=rating_value", "name"],
+        ["css=.hovered", "css:finder"],
+        ["xpath=//button[@name='rating_value']", "xpath:attributes"],
+        ["xpath=//form/div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'☆')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7fa57871-ec83-43c8-9a25-a06f24940d73",
+      "comment": "",
+      "command": "assertNotChecked",
+      "target": "css=.star:nth-child(2)",
+      "targets": [
+        ["css=.star:nth-child(2)", "css:finder"],
+        ["xpath=(//button[@name='rating_value'])[2]", "xpath:attributes"],
+        ["xpath=//button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e91a4097-55be-407e-bae5-8c3f5784d382",
+      "comment": "",
+      "command": "assertNotChecked",
+      "target": "css=.star:nth-child(3)",
+      "targets": [
+        ["css=.star:nth-child(3)", "css:finder"],
+        ["xpath=(//button[@name='rating_value'])[3]", "xpath:attributes"],
+        ["xpath=//button[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "74a4dc97-d2d6-4520-a056-5ead3b0afbc0",
+      "comment": "",
+      "command": "assertNotChecked",
+      "target": "css=.star:nth-child(4)",
+      "targets": [
+        ["css=.star:nth-child(4)", "css:finder"],
+        ["xpath=(//button[@name='rating_value'])[4]", "xpath:attributes"],
+        ["xpath=//button[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "88a1e99b-344e-46ab-907a-260d9aee11be",
+      "comment": "",
+      "command": "assertNotChecked",
+      "target": "css=.star:nth-child(5)",
+      "targets": [
+        ["css=.star:nth-child(5)", "css:finder"],
+        ["xpath=(//button[@name='rating_value'])[5]", "xpath:attributes"],
+        ["xpath=//button[5]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "33b1cdd8-861c-4700-9c67-630e0da722c3",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["454e4f72-90d2-42c7-8136-7f3ee78a3f46"]
+  }],
+  "urls": ["http://127.0.0.1:8000/"],
+  "plugins": []
+}
