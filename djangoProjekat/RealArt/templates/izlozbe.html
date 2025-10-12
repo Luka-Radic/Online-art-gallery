@@ -46,29 +46,32 @@
             {% for item in izlozbe_sa_slikom %}
                 <div class="col-md-6 col-lg-4" data-status="{{ item.izlozba.status }}">
                     <div class="card shadow-sm h-100">
-                        <img src="{{ item.slika }}" class="card-img-top" alt="{{ item.izlozba.name }}">
-                        <div class="card-body">
-                            <h5 class="card-title text-danger">{{ item.izlozba.name }}</h5>
-                            <p class="card-text">Tema: {{ item.izlozba.theme }}</p>
-                            <p class="text-muted">
-                                {% load tz %}
-                                {% now "Y-m-d" as today %}
-                                {% if item.izlozba.status == "active" %}
-                                    Aktivna{% if item.izlozba.end_date %} do {{ item.izlozba.end_date }}{% endif %}
-                                {% else %}
-                                    {% if item.izlozba.start_date|date:"Y-m-d" > today %}
-                                        Počinje: {{ item.izlozba.start_date }}
+                        <a href="{% url 'exhibition' item.izlozba.id %}" class="clickable-card no-link-style">
+                            <img src="{{ item.slika }}" class="card-img-top" alt="{{ item.izlozba.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title text-danger">{{ item.izlozba.name }}</h5>
+                                <p class="card-text">Tema: {{ item.izlozba.theme }}</p>
+                                <p class="text-muted">
+                                    {% load tz %}
+                                    {% now "Y-m-d" as today %}
+                                    {% if item.izlozba.status == "active" %}
+                                        Aktivna{% if item.izlozba.end_date %} do {{ item.izlozba.end_date }}{% endif %}
                                     {% else %}
-                                        Zatvorena{% if item.izlozba.end_date %} od {{ item.izlozba.end_date }}{% endif %}
+                                        {% if item.izlozba.start_date|date:"Y-m-d" > today %}
+                                            Počinje: {{ item.izlozba.start_date }}
+                                        {% else %}
+                                            Zatvorena{% if item.izlozba.end_date %} od {{ item.izlozba.end_date }}{% endif %}
+                                        {% endif %}
                                     {% endif %}
-                                {% endif %}
-                            </p>
-                            <p class="small">{{ item.broj_radova }} radova · {{ item.broj_umetnika }} umetnika</p>
-                            <a href="{% url 'exhibition' item.izlozba.id %}" class="btn btn-outline-danger w-100">Pogledaj
-                                izložbu</a>
-                        </div>
+                                </p>
+                                <p class="small">{{ item.broj_radova }} radova · {{ item.broj_umetnika }} umetnika</p>
+                                <a href="{% url 'exhibition' item.izlozba.id %}" class="btn btn-outline-danger w-100">Pogledaj
+                                    izložbu</a>
+                            </div>
+                        </a>
                     </div>
                 </div>
+
             {% endfor %}
         </div>
     </div>

@@ -51,23 +51,25 @@
                      data-timestamp="{{ painting.upload_date|date:'U' }}"
                      data-rating="{{ painting.avg_rating|default:0 }}">
 
-                    <div class="card h-100 d-flex flex-column position-relative">
-                        <img src="{{ painting.image_url }}" alt="{{ painting.title }}" class="card-img-top img-fluid">
-                        <div class="card-body d-flex flex-column">
-                            <h4 class="card-title">{{ painting.title }}</h4>
+                    <a href="{% url 'image_detail' painting.id %}" class="clickable-card no-link-style">
+                        <div class="card h-100 d-flex flex-column position-relative">
+                            <img src="{{ painting.image_url }}" alt="{{ painting.title }}" class="card-img-top img-fluid">
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="card-title">{{ painting.title }}</h4>
 
-                            <div class="d-flex align-items-center mt-3">
-                                <img src="{{ painting.artist.pfp_url_getter }}" alt="{{ painting.artist.username }}"
-                                     class="rounded-circle me-2 no-hover-link no-hover"
-                                     style="width:40px; height:40px; object-fit:cover;">
+                                <div class="d-flex align-items-center mt-3">
+                                    <img src="{{ painting.artist.pfp_url_getter }}" alt="{{ painting.artist.username }}"
+                                         class="rounded-circle me-2 no-hover-link no-hover"
+                                         style="width:40px; height:40px; object-fit:cover;">
 
-                                <p class="fw-bold text-dark text-decoration-none no-hover no-hover-link">
-                                    {{ painting.artist.username }}
-                                </p>
-                                <a href="{% url 'image_detail' painting.id %}" class="stretched-link"></a>
+                                    <p class="fw-bold text-dark text-decoration-none no-hover no-hover-link">
+                                        {{ painting.artist.username }}
+                                    </p>
+    {#                                <a href="{% url 'image_detail' painting.id %}" class="stretched-link"></a>#}
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             {% endfor %}
         </div>

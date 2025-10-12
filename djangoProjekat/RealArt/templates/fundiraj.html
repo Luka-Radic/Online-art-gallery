@@ -6,7 +6,7 @@
 <div class="container display-flex text-center text-success">
     {{ message }}
 </div>
-<div class="modal-dialog modal-dialog-centered">
+<div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">Podrži umetnika🪙</h5>
@@ -58,20 +58,12 @@
             <input type="text" class="form-control" id="cardHolder" placeholder="npr. Ana Petrović" required>
         </div>
 
-        <div class="mb-3">
-            <label for="email" class="form-label">Email (za potvrdu plaćanja)</label>
-            <input type="email" class="form-control" id="email" placeholder="tvoj@email.com" name="email">
-        </div>
-
         <button type="submit" class="btn btn-secondary w-100">Potvrdi plaćanje</button>
         <div class="mt-5"></div>
     </form>
 </div>
 
 <script>
-    {#document.getElementById("fund-btn").addEventListener("click", function() {#}
-    {#    document.getElementById("pay-info").classList.remove("hidden");#}
-    {# );#}
 
     const fundBtn = document.getElementById("fund-btn");
     const payInfo = document.getElementById("pay-info");

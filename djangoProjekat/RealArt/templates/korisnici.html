@@ -21,9 +21,7 @@
 
     {% if filtered is not None %}
         <div class="container fluid mt-4 ">
-        {% if filtered|length == 0 %}
-            <h5 class="text-danger"> Nema rezultata pretrage. </h5>
-        {% endif %}
+
             <div class="row">
                 {% for f in filtered %}
                 <div class="col-sm-3">
@@ -47,6 +45,8 @@
                         </div>
                     </div>
                 </div>
+                {% empty %}
+                    <h5 class="text-danger"> Nema rezultata pretrage. </h5>
                 {% endfor %}
             </div>
         </div>
@@ -58,25 +58,26 @@
         <div class="row">
             {% for user in users %}
             <div class="col-sm-3">
-                <div class="card m-3">
-                    {% if user.pfp_url is not None %}
-                        <img src="{{ user.pfp_url }}" alt="slika korisnika" class="card-img-top img-fluid">
-                    {% else %}
-                        <img src="{% static 'img/default_pfp.png' %}" alt="slika korisnika" class="card-img-top img-fluid">
-                    {% endif %}
-                    <div class="card-body">
-                        <h4 class="card-title">{{ user.first_name }} {{ user.last_name }}</h4>
-                        <p>username: {{ user.username }}</p>
-                        <p class="card-text">
-                            {% if user.is_regular_user %} Umetnik {% else %} Žiri {% endif %}
-                        </p>
-                        {% if user.username == request.user.username %}
-                            <a href="{% url 'my_page' %}" class="btn btn-secondary">Pogledaj svoj profil</a>
+                {% if user.username == request.user.username %}
+                    <a href="{% url 'my_page' %}" class="clickable-card no-link-style">
+                {% else %}
+                    <a href="{% url 'artist' user.id %}" class="clickable-card no-link-style">
+                {% endif %}
+                    <div class="card m-3">
+                        {% if user.pfp_url is not None %}
+                            <img src="{{ user.pfp_url }}" alt="slika korisnika" class="card-img-top img-fluid">
                         {% else %}
-                            <a href="{% url 'artist' user.id %}" class="btn btn-secondary">Pogledaj profil</a>
+                            <img src="{% static 'img/default_pfp.png' %}" alt="slika korisnika" class="card-img-top img-fluid">
                         {% endif %}
+                        <div class="card-body">
+                            <h4 class="card-title">{{ user.first_name }} {{ user.last_name }}</h4>
+                            <p>username: {{ user.username }}</p>
+                            <p class="card-text">
+                                {% if user.is_regular_user %} Umetnik {% else %} Žiri {% endif %}
+                            </p>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             {% endfor %}
         </div>

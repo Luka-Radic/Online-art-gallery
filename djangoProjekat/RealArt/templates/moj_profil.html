@@ -7,8 +7,6 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-5 user-img-container">
-{#                <h1>{{ me.first_name }} {{ me.last_name }} </h1>#}
-{#                <p>username: {{ me.username }}</p>#}
                 {% if me.pfp_url is not None %}
                     <img src="{{ me.pfp_url }}" alt="Slika korisnika" class="img-fluid user-img">
                 {% else %}
@@ -19,7 +17,6 @@
             <div class="col-sm-7 user-description">
                 <div class="col-sm-1 edit">
                     <a href="{% url 'edit_profile' %}"><img src="{% static 'img/edit_profile_icon.png' %}" class="img-fluid logo mt-4"></a>
-{#                    <a href="#"><img src="{% static 'img/settings_icon.png' %}" class="img-fluid logo mt-4"></a>#}
                 </div>
                 <h1>{{ me.first_name }} {{ me.last_name }}</h1>
                 <p>username: {{ me.username }}</p>

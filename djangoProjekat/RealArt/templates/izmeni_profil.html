@@ -63,10 +63,26 @@
                 </div>
                 <textarea name="bio" class="form-control border-0 bg-transparent p-0" rows="3" readonly>{{ me.bio }}</textarea>
 
-                <br><br>
                 <button type="submit" class="btn btn-danger mt-3">Sačuvaj izmene</button>
                 <a href="{% url 'my_page' %}" class="btn btn-light mt-3">Otkaži</a>
             </form>
+        </div>
+
+        <div class="container gallery-container pb-5">
+            <div class="row">
+                <h4 id="radovi">Pregled radova: </h4>
+                {% for painting in paintings %}
+                    <div class="col-sm-2">
+                        <a href="{% url 'image_detail' painting.id %}" class="text-dark">
+                            <img src="{{ painting.image_url }}" class="img-fluid painting" alt={{ painting.title }} name={{ painting.title }}>
+                            <label for={{ painting.title }}>{{ painting.title }}</label>
+                            <a class="btn btn-danger change-btn mt-2" href="{% url 'delete_painting' painting.id %}"
+                                onclick="return confirm('Jeste li sigurni da želite da obrišete sliku? Akcija je trajna.');"> Obriši sliku
+                            </a>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>

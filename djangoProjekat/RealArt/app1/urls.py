@@ -24,6 +24,7 @@ urlpatterns = [
     path("save_profile_edits/", save_profile_edits, name="save_profile_edits"),
     path('fund/<int:artist_id>/', fund, name="fund"),
     path('pay/<int:artist_id>/', pay, name='pay'),
+    path('delete_painting/<int:id>', delete_painting, name='delete_painting'),
 
     path("fund/success/<int:funding_id>/", fund_success, name="fund_success"),
     path("fund/cancel/<int:funding_id>/", fund_cancel, name="fund_cancel"),

@@ -23,6 +23,26 @@
     background-color: white;
 }
 
+.clickable-card {
+  text-decoration: none !important;
+  color: inherit;
+  display: block;
+}
+
+.no-link-style,
+.no-link-style:link,
+.no-link-style:visited,
+.no-link-style:hover,
+.no-link-style:active,
+.no-link-style:focus {
+  text-decoration: none !important;
+  color: inherit !important;
+  outline: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
 
 /*---------Stranice Umetnika i Zirija (Mina)----------- */
 .user-img-container {

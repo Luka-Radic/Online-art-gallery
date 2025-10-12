@@ -271,12 +271,13 @@ def pay(request, artist_id):
     On GET request, it simply renders the funding page.
     '''
     if request.method == "POST":
-        email = request.POST.get("email")
+        # email = request.POST.get("email")
         artist = User.objects.filter(id=artist_id).first()
         if artist is None:
             return redirect("homepage")
 
-        donor = User.objects.filter(email=email).first()
+        donor = User.objects.filter(username=request.user.username).first()
+        # donor = User.objects.filter(email=email).first()
         if donor is None:
             return redirect("homepage")
 
@@ -375,7 +376,8 @@ def edit_profile(request):
     It fetches the user's current information and passes it to the template for editing.
     '''
     user = User.objects.get(username = request.user.username)
-    return render(request, "izmeni_profil.html", {"me": user})
+    paintings = Painting.objects.filter(artist_id=user.id)
+    return render(request, "izmeni_profil.html", {"me": user, "paintings": paintings})
 
 def save_profile_edits(request):
     '''
@@ -420,6 +422,14 @@ def save_profile_edits(request):
         return redirect("my_page")
 
     return redirect("my_page")
+
+
+def delete_painting(request, id):
+    painting = Painting.objects.filter(id=id).first()
+    if painting:
+        painting.delete()
+    return redirect("edit_profile")
+
 
 
 def delete_picture(user):
