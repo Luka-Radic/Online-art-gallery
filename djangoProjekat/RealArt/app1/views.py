@@ -435,8 +435,17 @@ def save_profile_edits(request):
 
 
 def delete_painting(request, id):
+    '''
+    Deleted a painting from the database, and static directory.
+    '''
     painting = Painting.objects.filter(id=id).first()
     if painting:
+        relative_path = painting.image_url.replace('/static/', '')
+        file_path = os.path.join(settings.BASE_DIR, 'static', relative_path)
+
+        if os.path.exists(file_path):
+            os.remove(file_path)
+
         painting.delete()
     return redirect("edit_profile")
 

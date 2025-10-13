@@ -6,6 +6,9 @@ from django.utils import timezone
 # Create your models here.
 
 class Comment(models.Model):
+    '''
+    Model for comments on paintings.
+    '''
     text = models.TextField()
     author = models.ForeignKey('User', on_delete=models.CASCADE)
     painting = models.ForeignKey('Painting', on_delete=models.CASCADE)
@@ -16,6 +19,9 @@ class Comment(models.Model):
 
 
 class Exhibition(models.Model):
+    '''
+    Model for exhibitions. Users post paintings on exhibitions.
+    '''
     name = models.CharField(max_length=100)
     theme = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
@@ -34,6 +40,9 @@ class Exhibition(models.Model):
 
 
 class Funding(models.Model):
+    '''
+    Model for funding on paintings. Artists can support each other by funding.
+    '''
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     donor = models.ForeignKey('User', on_delete=models.SET_NULL, blank=True, null=True,)
     artist = models.ForeignKey('User', on_delete=models.SET_NULL, blank=True, null=True, related_name='funding_artist_set')
@@ -45,6 +54,9 @@ class Funding(models.Model):
 
 
 class Juryrequest(models.Model):
+    '''
+    Model for user documents for applying to become a jury.
+    '''
     applicant = models.ForeignKey('User',  on_delete=models.CASCADE)
     document_url = models.CharField(max_length=255, blank=True, null=True)
     status = models.CharField(max_length=8, blank=True, null=True)
@@ -55,6 +67,9 @@ class Juryrequest(models.Model):
 
 
 class Painting(models.Model):
+    '''
+    Model for paintings on exhibitions. They are also displayed on users profiles and in gallery.
+    '''
     title = models.CharField(max_length=100, blank=True, null=True)
     image_url = models.CharField(max_length=255)
     artist = models.ForeignKey('User',  on_delete=models.CASCADE)
@@ -62,12 +77,18 @@ class Painting(models.Model):
     image_desc = models.TextField(blank=True, null=True)
     upload_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
 
+    def __str__(self):
+        return self.title
+
     class Meta:
         managed = True
         db_table = 'painting'
 
 
 class Participation(models.Model):
+    '''
+    Model for keeping participations of Paintings in exhibitions.
+    '''
     pk = models.CompositePrimaryKey('painting_id', 'exhibition_id')
     painting = models.ForeignKey(Painting, on_delete=models.CASCADE)
     exhibition = models.ForeignKey(Exhibition, on_delete=models.CASCADE)
@@ -78,6 +99,9 @@ class Participation(models.Model):
 
 
 class Rating(models.Model):
+    '''
+    Model for ratings on paintings.
+    '''
     score = models.IntegerField()
     author = models.ForeignKey('User', on_delete=models.CASCADE)
     painting = models.ForeignKey(Painting, on_delete=models.CASCADE)
@@ -89,6 +113,9 @@ class Rating(models.Model):
 
 
 class User(models.Model):
+    '''
+    Model for users in system. They can be regular, jury, or admin. They post paintings, and create comments and ratings.
+    '''
     username = models.CharField(unique=True, max_length=50)
     password_hash = models.CharField(max_length=255)
     email = models.CharField(unique=True, max_length=100)

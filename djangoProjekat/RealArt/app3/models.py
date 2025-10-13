@@ -82,6 +82,9 @@ class Painting(models.Model):
     avg_rating = models.FloatField(blank=True, null=True)
     image_desc = models.TextField(blank=True, null=True)
 
+    def __str__(self):
+        return self.title
+
     class Meta:
         managed = False
         db_table = 'painting'

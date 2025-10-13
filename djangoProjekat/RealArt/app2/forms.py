@@ -13,7 +13,7 @@ class Theme(models.TextChoices):
 
 class ExhibitionForm(forms.ModelForm):
     name = models.CharField(max_length=120)
-    theme = models.CharField(choices=Theme.choices)
+    theme = models.CharField(choices=Theme.choices, default=Theme.SLOBODNA)
     description = models.TextField(blank=True, null=True)
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
