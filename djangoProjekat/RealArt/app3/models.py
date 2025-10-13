@@ -55,6 +55,9 @@ class Exhibition(models.Model):
     def is_active(self):
         return self.start_date >= datetime.date.today() >= self.end_date
 
+    def is_finished(self):
+        return self.end_date and self.end_date < date.today()
+
     class Meta:
         managed = False
         db_table = 'exhibition'

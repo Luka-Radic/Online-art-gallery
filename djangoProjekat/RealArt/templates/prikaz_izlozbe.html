@@ -24,7 +24,7 @@
         </div>
 
         <!--Prikaz pobednika izlozbe-->
-        {% if izlozba.winner_painting is not None %}
+        {% if izlozba.winner_painting is not None and izlozba.is_finished %}
             <h3 class="text-center mb-4">Pobednička slika</h3>
             <div class="row mt-4 mb-4 justify-content-center">
 
@@ -96,7 +96,7 @@
                                         {{ painting.artist.username }}
                                     </p>
                                 </div>
-                                {% if request.user.is_authenticated and request.user.get_role == "jury" and izlozba.winner_painting is None %}
+                                {% if request.user.is_authenticated and request.user.get_role == "jury" and izlozba.winner_painting is None and izlozba.is_finished %}
                                     <div class="mt-auto text-center">
                                         <form method="post" action="{% url 'chooseWinner' izlozba.id %}">
                                             {% csrf_token %}
