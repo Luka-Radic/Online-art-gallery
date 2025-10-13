@@ -1,0 +1,36 @@
+{% extends "template.html" %}
+{% load static %}
+
+{% block optionalInclude %}
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">O nama</h2>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <p class="lead text-justify">
+                    RealArt je platforma posvećena promociji digitalne umetnosti i povezivanju umetnika, žirija i
+                    publike kroz interaktivne izložbe. Naša misija je da stvorimo prostor u kojem kreativnost,
+                    transparentnost i zajedništvo dolaze do izražaja.
+                </p>
+
+                <p class="text-justify">
+                    Svaka izložba na RealArt-u ima svoj karakter — od tematskih izazova do slobodnih formi. Umetnici
+                    mogu da postavljaju svoje radove, dok žiri bira pobednike na osnovu kvaliteta, originalnosti i
+                    utiska. Posetioci mogu da istražuju, komentarišu i učestvuju u dijalogu.
+                </p>
+
+                <p class="text-justify">
+                    Verujemo u snagu zajednice. RealArt je mesto gde se ideje susreću, gde se talenat prepoznaje, i gde
+                    se umetnost vrednuje. Hvala što ste deo naše priče.
+                </p>
+
+                <div class="text-center mt-4">
+                    <button class="btn btn-light back-button" onclick="history.back()">⟸ Nazad</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

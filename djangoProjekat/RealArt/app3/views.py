@@ -2,6 +2,7 @@ import os
 import time
 
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.sites import requests
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -9,11 +10,13 @@ from django.utils import timezone
 
 from RealArt import settings
 from app3.models import *
+
+
 def pocetna(request):
     return render(request, 'pocetna.html')
 
-def adminUs(request):
 
+def adminUs(request):
     if request.method == "POST":
         akcija = request.POST['akcija']
         if akcija == "prihvati":
@@ -35,25 +38,26 @@ def adminUs(request):
     paintings = Painting.objects.all()
     comments = Comment.objects.all()
     context = {
-        'requests' : requests,
-        'paintings' : paintings,
-        'comments' : comments
+        'requests': requests,
+        'paintings': paintings,
+        'comments': comments
     }
 
     return render(request, 'admin_stranica.html', context)
 
-def exhibition(request, exhibition_id):
 
+def exhibition(request, exhibition_id):
     izlozba = Exhibition.objects.get(id=exhibition_id)
     painting_ids = Participation.objects.filter(exhibition_id=exhibition_id).values_list('painting_id', flat=True)
     paintings = Painting.objects.filter(id__in=painting_ids)
 
     context = {
-        'izlozba' : izlozba,
-        'paintings' : paintings,
-        'users' : User.objects.all()
+        'izlozba': izlozba,
+        'paintings': paintings,
+        'users': User.objects.all()
     }
     return render(request, 'prikaz_izlozbe.html', context)
+
 
 def addPicture(request, exhibition_id):
     izlozba = Exhibition.objects.get(id=exhibition_id)
@@ -93,20 +97,36 @@ def addPicture(request, exhibition_id):
                 painting=new_painting,
                 exhibition=izlozba
             )
-            return redirect('exhibition', exhibition_id = exhibition_id)
+            return redirect('exhibition', exhibition_id=exhibition_id)
 
     return render(request, 'dodaj_sliku.html')
 
+@login_required
+def chooseWinner(request, exhibition_id):
+        exhibition = Exhibition.objects.get(id=exhibition_id)
+
+        if request.method == "POST":
+            paintingId = request.POST['painting_id']
+            painting = Painting.objects.get(id=paintingId)
+
+            exhibition.winner_painting = painting
+            exhibition.save()
+
+        return redirect("exhibition", exhibition_id=exhibition.id)
 def gallery(request):
     data = []
     paintings = Painting.objects.all()
     for painting in paintings:
         themes = Participation.objects.filter(painting=painting).values_list('exhibition__theme', flat=True).distinct()
         data.append({
-            'painting' : painting,
-            'themes' : themes
+            'painting': painting,
+            'themes': themes
         })
     context = {
-        'paintings' : data
+        'paintings': data
     }
     return render(request, 'galerija.html', context)
+
+def about(request):
+
+    return render(request, 'o_nama.html')
