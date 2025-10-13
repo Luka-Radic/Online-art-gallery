@@ -1,7 +1,7 @@
+import os.path
 import unittest
 from datetime import date, timedelta
 import time
-from telnetlib import EC
 
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.test import TestCase
@@ -13,17 +13,13 @@ from selenium.webdriver.edge.service import Service as EdgeService
 from selenium.webdriver.edge.webdriver import WebDriver
 from selenium.webdriver.common.keys import Keys
 import logging
-
-from selenium.webdriver.support.wait import WebDriverWait
-
 logging.basicConfig(level=logging.DEBUG)
 
-from django.contrib.auth.models import User as DjangoUser
+from RealArt import settings
 
+from django.contrib.auth.models import User as DjangoUser
 from app1.models import User as AppUser, Painting, Exhibition, Participation, Comment, Rating
 
-
-# from app2.models import Painting, Exhibition
 
 
 def create_exhibition(user, name):
@@ -305,9 +301,9 @@ class UnitTestsGuest(TestCase):
 class WebdriverUITest(StaticLiveServerTestCase):
 
     def setUp(self):
-
+        #  r"C:\Users\Mina\Desktop\PSIgerrit\project_RealArt\djangoProjekat\RealArt\app1\edgedriver_win64\msedgedriver.exe"
         self.service = EdgeService(
-            executable_path=r"C:\Users\Mina\Desktop\PSIgerrit\project_RealArt\djangoProjekat\RealArt\app1\edgedriver_win64\msedgedriver.exe")
+            executable_path=os.path.join(settings.BASE_DIR, 'app1\edgedriver_win64\msedgedriver.exe') )
         self.browser = webdriver.Edge(service=self.service)
         self.browser.implicitly_wait(5)
         self.app_url = self.live_server_url + "/exhibitions/"

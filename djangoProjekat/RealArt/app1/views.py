@@ -328,8 +328,6 @@ def pay(request, artist_id):
 
         approval_url = next((link["href"] for link in order_json["links"] if link["rel"] == "approve"), None)
 
-        # funding.payment_id = order_json.get("id")
-        # #todo kolona paypalov id ali ne mora realno
         funding.save()
 
         #preusmerim korisnika na paypal stranicu za placanje:
