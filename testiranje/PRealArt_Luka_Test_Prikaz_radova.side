@@ -1,0 +1,249 @@
+{
+  "id": "d2276f38-b07e-4406-8022-f9118265703f",
+  "version": "2.0",
+  "name": "Prikaz radova",
+  "url": "http://127.0.0.1:8000",
+  "tests": [{
+    "id": "914decb6-0574-4223-b15b-b73e920eb032",
+    "name": "Prikaz radova i slika u galeriji",
+    "commands": [{
+      "id": "191734f9-03f2-4de5-9958-53cc9ffb3cb5",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ea207453-7993-4395-aad5-3c18accf67e0",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "2062x1118",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d60037f2-3f94-4edc-a4af-b3bfb6dd5d1d",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Radovi",
+      "targets": [
+        ["linkText=Radovi", "linkText"],
+        ["css=.nav-item:nth-child(6) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Radovi')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/gallery')]", "xpath:href"],
+        ["xpath=//li[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Radovi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4cb18750-6efc-479c-b8fa-91d10f2ebb25",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-4:nth-child(1) .card-img-top",
+      "targets": [
+        ["css=.col-md-4:nth-child(1) .card-img-top", "css:finder"],
+        ["xpath=//img[@alt='mona']", "xpath:img"],
+        ["xpath=//div[@id='galleryContainer']/div/a/div/img", "xpath:idRelative"],
+        ["xpath=//a/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2c9a3f62-44b3-4ba4-8f63-741ca34f796e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.back-button",
+      "targets": [
+        ["css=.back-button", "css:finder"],
+        ["xpath=//button[@onclick='history.back()']", "xpath:attributes"],
+        ["xpath=//body/div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'⟸ Nazad')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2926b248-4838-4a2e-bed0-0b083e5afcc3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-4:nth-child(2) .card-img-top",
+      "targets": [
+        ["css=.col-md-4:nth-child(2) .card-img-top", "css:finder"],
+        ["xpath=//img[@alt='Graf']", "xpath:img"],
+        ["xpath=//div[@id='galleryContainer']/div[2]/a/div/img", "xpath:idRelative"],
+        ["xpath=//div[2]/a/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b7a62d16-d09d-41b3-93bb-ce1cd69847a2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.back-button",
+      "targets": [
+        ["css=.back-button", "css:finder"],
+        ["xpath=//button[@onclick='history.back()']", "xpath:attributes"],
+        ["xpath=//body/div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'⟸ Nazad')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "1be10ea7-da5f-4b41-90ad-d7427cce3758",
+    "name": "Trazenje slike u galeriji",
+    "commands": [{
+      "id": "fb2b4a1a-b748-4f31-8dc6-9d4f71ddc6d0",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1d8935ee-fff6-4c7f-9bc4-56fb9871d3fd",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "2062x1118",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8d44f416-3de8-41e5-a983-1f7dc77ad964",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Radovi",
+      "targets": [
+        ["linkText=Radovi", "linkText"],
+        ["css=.nav-item:nth-child(6) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Radovi')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/gallery')]", "xpath:href"],
+        ["xpath=//li[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Radovi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "169c48e5-ad93-4d93-a236-ae29cb63d2f9",
+      "comment": "",
+      "command": "click",
+      "target": "id=gallerySearchInput",
+      "targets": [
+        ["id=gallerySearchInput", "id"],
+        ["css=#gallerySearchInput", "css:finder"],
+        ["xpath=//input[@id='gallerySearchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "de5ebaa9-6067-487b-9c4d-66d709907caf",
+      "comment": "",
+      "command": "type",
+      "target": "id=gallerySearchInput",
+      "targets": [
+        ["id=gallerySearchInput", "id"],
+        ["css=#gallerySearchInput", "css:finder"],
+        ["xpath=//input[@id='gallerySearchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Sloboda"
+    }, {
+      "id": "a8657bee-bd05-4edb-8a1a-dbf1cfc685b2",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=gallerySearchInput",
+      "targets": [
+        ["id=gallerySearchInput", "id"],
+        ["css=#gallerySearchInput", "css:finder"],
+        ["xpath=//input[@id='gallerySearchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "d3095626-cafd-4371-88c7-3977e877aca9",
+      "comment": "",
+      "command": "type",
+      "target": "id=gallerySearchInput",
+      "targets": [
+        ["id=gallerySearchInput", "id"],
+        ["css=#gallerySearchInput", "css:finder"],
+        ["xpath=//input[@id='gallerySearchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Graf"
+    }, {
+      "id": "12524045-f374-4bc4-a9dc-7fe1f02a0288",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=gallerySearchInput",
+      "targets": [
+        ["id=gallerySearchInput", "id"],
+        ["css=#gallerySearchInput", "css:finder"],
+        ["xpath=//input[@id='gallerySearchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "042145c0-8fc3-431b-a8d9-393c54d509a7",
+      "comment": "",
+      "command": "type",
+      "target": "id=gallerySearchInput",
+      "targets": [
+        ["id=gallerySearchInput", "id"],
+        ["css=#gallerySearchInput", "css:finder"],
+        ["xpath=//input[@id='gallerySearchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Arh"
+    }, {
+      "id": "f76cc854-fd4e-4678-b556-c3153596cfce",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=gallerySearchInput",
+      "targets": [
+        ["id=gallerySearchInput", "id"],
+        ["css=#gallerySearchInput", "css:finder"],
+        ["xpath=//input[@id='gallerySearchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "fa49988f-db09-4423-9a69-0a6079620994",
+      "comment": "",
+      "command": "type",
+      "target": "id=gallerySearchInput",
+      "targets": [
+        ["id=gallerySearchInput", "id"],
+        ["css=#gallerySearchInput", "css:finder"],
+        ["xpath=//input[@id='gallerySearchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Arh1"
+    }, {
+      "id": "810b3060-19dc-4f0a-b584-61d81aa750eb",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=gallerySearchInput",
+      "targets": [
+        ["id=gallerySearchInput", "id"],
+        ["css=#gallerySearchInput", "css:finder"],
+        ["xpath=//input[@id='gallerySearchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "153c9136-1c19-4471-b813-9ae7085f4c9c",
+      "comment": "",
+      "command": "type",
+      "target": "id=gallerySearchInput",
+      "targets": [
+        ["id=gallerySearchInput", "id"],
+        ["css=#gallerySearchInput", "css:finder"],
+        ["xpath=//input[@id='gallerySearchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "ce77b94f-ded6-440d-a68d-db95aebb819a",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://127.0.0.1:8000/"],
+  "plugins": []
+}

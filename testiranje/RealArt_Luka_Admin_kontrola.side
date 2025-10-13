@@ -1,0 +1,223 @@
+{
+  "id": "da05cc53-b34d-44e1-bb66-c21cc57cc154",
+  "version": "2.0",
+  "name": "Admin_kontrola",
+  "url": "http://127.0.0.1:8000",
+  "tests": [{
+    "id": "9a7c45f7-cc02-4731-b6da-c8979c5dbecd",
+    "name": "Admin prihvatanje zirija",
+    "commands": [{
+      "id": "afde8feb-e04d-4b3f-96d4-e7e4c012063b",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "56491cd7-0fc3-406b-8ad6-dd3864d66f9f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "2062x1118",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c8e6fd31-dfa5-4d82-bc04-e6abf86c6429",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Moj Profil",
+      "targets": [
+        ["linkText=Moj Profil", "linkText"],
+        ["css=li:nth-child(5) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Moj Profil')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/adminUs/')]", "xpath:href"],
+        ["xpath=//li[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Moj Profil')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "33894dd3-3727-4b86-9554-d9a679e6cc71",
+      "comment": "",
+      "command": "click",
+      "target": "css=.request-box:nth-child(1) .btn-outline-success",
+      "targets": [
+        ["css=.request-box:nth-child(1) .btn-outline-success", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'✔')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "1a143f4f-6aca-4f36-8020-3ab1b4732785",
+    "name": "Admin odbijanje zirija",
+    "commands": [{
+      "id": "e4c5c200-02e0-457a-a028-908a14317808",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f39cef85-fa82-43de-88f2-c426adec02f7",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "2062x1118",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "050b40ac-24c2-4456-b8f6-5ca09c932839",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Moj Profil",
+      "targets": [
+        ["linkText=Moj Profil", "linkText"],
+        ["css=li:nth-child(5) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Moj Profil')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/adminUs/')]", "xpath:href"],
+        ["xpath=//li[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Moj Profil')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0839bcaa-8920-42f9-816a-3bc5290ac20d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.gap-2 .btn-outline-danger",
+      "targets": [
+        ["css=.gap-2 .btn-outline-danger", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//form[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'✖')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "9e3987b0-db6f-4a52-a61d-4bdb07ce745b",
+    "name": "Admin brisanje slike",
+    "commands": [{
+      "id": "346270ec-609f-445f-8e07-fedc3967ffac",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2aaa6a35-9965-4f17-9923-dc36a88930a5",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "2062x1118",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d35048c3-7853-4b1f-b636-8684a7c79a86",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Moj Profil",
+      "targets": [
+        ["linkText=Moj Profil", "linkText"],
+        ["css=li:nth-child(5) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Moj Profil')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/adminUs/')]", "xpath:href"],
+        ["xpath=//li[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Moj Profil')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e5fc5456-8ff1-4fe5-aa95-8802c690d0ba",
+      "comment": "",
+      "command": "chooseOkOnNextConfirmation",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "11ee061c-fb46-4e12-ab53-2dc8d29fa00e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-4:nth-child(7) .btn",
+      "targets": [
+        ["css=.col-md-4:nth-child(7) .btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[7]", "xpath:attributes"],
+        ["xpath=//div[7]/div/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a8df0f80-8c9a-4074-93f9-fa18d09a1175",
+      "comment": "",
+      "command": "assertConfirmation",
+      "target": "Da li ste sigurni da želite da obrišete ovu fotografiju?",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1bc2ab32-c24e-4ed3-a8a5-3def47104a9f",
+      "comment": "",
+      "command": "webdriverChooseOkOnVisibleConfirmation",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "f9e2fe49-19b3-4971-8b07-2ebf474ab948",
+    "name": "Admin brisanje komentara",
+    "commands": [{
+      "id": "99ed9f4e-e336-4419-827c-b77c3208a97b",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b2dc39d0-104d-46b4-8e20-0cae71c60b8d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "2062x1118",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "08c2e3e5-a32f-437b-99c4-ca8af198ef93",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Moj Profil",
+      "targets": [
+        ["linkText=Moj Profil", "linkText"],
+        ["css=li:nth-child(5) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Moj Profil')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/adminUs/')]", "xpath:href"],
+        ["xpath=//li[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Moj Profil')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "eacbbec2-e16c-48ea-9498-c19ea68fcb8c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.comment-box:nth-child(14) .btn",
+      "targets": [
+        ["css=.comment-box:nth-child(14) .btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[21]", "xpath:attributes"],
+        ["xpath=//div[14]/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1e14cc9a-ac76-4926-99bf-226d6b5dbca9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.comment-box:nth-child(14) .btn",
+      "targets": [
+        ["css=.comment-box:nth-child(14) .btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[21]", "xpath:attributes"],
+        ["xpath=//div[14]/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "8b7d7088-63ae-486e-8fe1-33293dd0db36",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://127.0.0.1:8000/"],
+  "plugins": []
+}

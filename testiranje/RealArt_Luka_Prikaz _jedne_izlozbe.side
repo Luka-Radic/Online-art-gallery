@@ -1,0 +1,971 @@
+{
+  "id": "06309950-9b65-4239-a85c-ab30c320d2b1",
+  "version": "2.0",
+  "name": "Prikaz jedne izlozbe",
+  "url": "http://127.0.0.1:8000",
+  "tests": [{
+    "id": "01154ba2-a88c-4720-aa9f-306f2d011f04",
+    "name": "Prikaz izlozbe, slideshow i prikaz slike unutar izlozbe",
+    "commands": [{
+      "id": "d3be38f5-98d2-4146-b80c-e10d999b1aca",
+      "comment": "",
+      "command": "open",
+      "target": "/exhibitions/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "270e66c8-d83f-47c2-b28c-bbaf76911268",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "2062x1118",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b5cbdee3-fd3c-46fc-bc81-4f210ff54157",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-6:nth-child(1) .btn",
+      "targets": [
+        ["css=.col-md-6:nth-child(1) .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Pogledaj\n                                    izložbu')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, '/exhibition/1/')])[3]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "01956b1c-3caf-4ee9-ab4e-7bcf8f650a74",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-4:nth-child(2) .card-img-top",
+      "targets": [
+        ["css=.col-md-4:nth-child(2) .card-img-top", "css:finder"],
+        ["xpath=//img[@alt='Graf']", "xpath:img"],
+        ["xpath=//div[@id='paintingsContainer']/div[2]/a/div/img", "xpath:idRelative"],
+        ["xpath=//div[2]/a/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8ff0d88f-69bc-4827-beb8-a6e4d79bbe2e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.back-button",
+      "targets": [
+        ["css=.back-button", "css:finder"],
+        ["xpath=//button[@onclick='history.back()']", "xpath:attributes"],
+        ["xpath=//body/div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'⟸ Nazad')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "60ebc4e1-5013-4563-bf61-e7f0c80b3ef0",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-secondary",
+      "targets": [
+        ["css=.btn-secondary", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Pogledaj slajdšou')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c561717e-d977-40ac-a9aa-4993499999f9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.carousel-control-next-icon",
+      "targets": [
+        ["css=.carousel-control-next-icon", "css:finder"],
+        ["xpath=//div[@id='galleryModal']/div/div/button[2]/span", "xpath:idRelative"],
+        ["xpath=//button[2]/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2548ca1e-3ddc-428f-90f2-7e164fff0518",
+      "comment": "",
+      "command": "click",
+      "target": "css=.carousel-control-next-icon",
+      "targets": [
+        ["css=.carousel-control-next-icon", "css:finder"],
+        ["xpath=//div[@id='galleryModal']/div/div/button[2]/span", "xpath:idRelative"],
+        ["xpath=//button[2]/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d69d2dd4-b912-47cb-b492-14accde47f7f",
+      "comment": "",
+      "command": "click",
+      "target": "id=galleryModal",
+      "targets": [
+        ["id=galleryModal", "id"],
+        ["css=#galleryModal", "css:finder"],
+        ["xpath=//div[@id='galleryModal']", "xpath:attributes"],
+        ["xpath=//body/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b64d1c43-c174-4466-8a5f-84887b09a21c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-light",
+      "targets": [
+        ["css=.btn-light", "css:finder"],
+        ["xpath=//button[@onclick='history.back()']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'⟸ Nazad')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "20ff3dea-2b0e-4ec5-9ddc-65a415137d98",
+    "name": "Dugme dodaj izlozbu, bez naziva",
+    "commands": [{
+      "id": "63c550b8-67f8-48c9-bf1d-d430dbc15e9e",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b3347210-cabd-4b2c-9463-5ede38de4009",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "2062x1118",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b322bfaa-bb53-4f86-83b6-c0e8c42dd93d",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izlozbe",
+      "targets": [
+        ["linkText=Izlozbe", "linkText"],
+        ["css=.nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Izlozbe')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/exhibitions/')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izlozbe')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "83cba902-0528-405a-98cd-d3110315b174",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-6:nth-child(1) .btn",
+      "targets": [
+        ["css=.col-md-6:nth-child(1) .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Pogledaj\n                                    izložbu')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, '/exhibition/1/')])[3]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "52a760e6-8063-4d2a-a453-0c96a1ef853e",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Dodaj sliku",
+      "targets": [
+        ["linkText=Dodaj sliku", "linkText"],
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//a[contains(text(),'Dodaj sliku')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/addPicture/1/')]", "xpath:href"],
+        ["xpath=//div/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Dodaj sliku')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7ea18189-02a3-44a8-bdc9-8045ab8190da",
+      "comment": "",
+      "command": "click",
+      "target": "name=image",
+      "targets": [
+        ["name=image", "name"],
+        ["css=.mb-3:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='image']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3c0ea496-9a33-4983-ad75-14f5b1299f6e",
+      "comment": "",
+      "command": "type",
+      "target": "name=image",
+      "targets": [
+        ["name=image", "name"],
+        ["css=.mb-3:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='image']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "C:\\fakepath\\ChatGPT Image Sep 16, 2025, 10_44_02 PM.png"
+    }, {
+      "id": "f10f9098-4d51-415c-a40f-aa3755a605e0",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Dodaj sliku')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "55e8e390-1836-4944-b175-b94556bb8e68",
+    "name": "Dugme dodaj izlozbu sa nazivom bez opisa",
+    "commands": [{
+      "id": "a9b653e6-e723-4d65-aafc-716f4c44b37f",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "98771fc6-65cd-499d-8a6a-1bf645f5ff6d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "2062x1118",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1ce4584a-0bc1-4834-afa3-cb5e03dec308",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izlozbe",
+      "targets": [
+        ["linkText=Izlozbe", "linkText"],
+        ["css=.nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Izlozbe')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/exhibitions/')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izlozbe')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "de97db9c-e494-45af-98e4-49553c920f68",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-6:nth-child(1) .btn",
+      "targets": [
+        ["css=.col-md-6:nth-child(1) .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Pogledaj\n                                    izložbu')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, '/exhibition/1/')])[3]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fb1f0a93-df33-4ac2-a44c-9a441a86ed28",
+      "comment": "",
+      "command": "mouseDownAt",
+      "target": "linkText=Dodaj sliku",
+      "targets": [
+        ["linkText=Dodaj sliku", "linkText"],
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//a[contains(text(),'Dodaj sliku')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/addPicture/1/')]", "xpath:href"],
+        ["xpath=//div/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Dodaj sliku')]", "xpath:innerText"]
+      ],
+      "value": "29.63330078125,27.166671752929688"
+    }, {
+      "id": "bed64c0c-74f8-462a-bec9-4e05cb21ec2d",
+      "comment": "",
+      "command": "mouseMoveAt",
+      "target": "linkText=Dodaj sliku",
+      "targets": [
+        ["linkText=Dodaj sliku", "linkText"],
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//a[contains(text(),'Dodaj sliku')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/addPicture/1/')]", "xpath:href"],
+        ["xpath=//div/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Dodaj sliku')]", "xpath:innerText"]
+      ],
+      "value": "29.63330078125,27.166671752929688"
+    }, {
+      "id": "35a91ebb-ef40-46be-b914-48d0dda5d763",
+      "comment": "",
+      "command": "mouseUpAt",
+      "target": "linkText=Dodaj sliku",
+      "targets": [
+        ["linkText=Dodaj sliku", "linkText"],
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//a[contains(text(),'Dodaj sliku')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/addPicture/1/')]", "xpath:href"],
+        ["xpath=//div/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Dodaj sliku')]", "xpath:innerText"]
+      ],
+      "value": "29.63330078125,27.166671752929688"
+    }, {
+      "id": "04dce1fe-f3f0-4e0f-ac8f-27a62165ec72",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Dodaj sliku",
+      "targets": [
+        ["linkText=Dodaj sliku", "linkText"],
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//a[contains(text(),'Dodaj sliku')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/addPicture/1/')]", "xpath:href"],
+        ["xpath=//div/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Dodaj sliku')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7f019b1d-3aa6-4563-baf8-95d4f4799b3a",
+      "comment": "",
+      "command": "click",
+      "target": "name=image",
+      "targets": [
+        ["name=image", "name"],
+        ["css=.mb-3:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='image']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8e650474-4a06-4ca9-98bb-0820bca13dc6",
+      "comment": "",
+      "command": "type",
+      "target": "name=image",
+      "targets": [
+        ["name=image", "name"],
+        ["css=.mb-3:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='image']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "C:\\fakepath\\ChatGPT Image Sep 16, 2025, 10_44_02 PM.png"
+    }, {
+      "id": "80dad66a-6107-4f5a-a080-fee01266785d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.upload-form",
+      "targets": [
+        ["css=.upload-form", "css:finder"],
+        ["xpath=//form", "xpath:position"],
+        ["xpath=//form[contains(.,'Dodaj sliku')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "24f49644-90f6-4b02-83e1-5c319f94d1d1",
+      "comment": "",
+      "command": "click",
+      "target": "name=title",
+      "targets": [
+        ["name=title", "name"],
+        ["css=.mb-3:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='title']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e54bd0f2-eb23-4864-af4a-0febe0e22c45",
+      "comment": "",
+      "command": "type",
+      "target": "name=title",
+      "targets": [
+        ["name=title", "name"],
+        ["css=.mb-3:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='title']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "BookArena"
+    }, {
+      "id": "dc62276c-6d0a-4409-a384-a52758e5b95e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Dodaj sliku')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7422a144-1ac4-431d-a67b-eea31d991c57",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-4:nth-child(3) .card-img-top",
+      "targets": [
+        ["css=.col-md-4:nth-child(3) .card-img-top", "css:finder"],
+        ["xpath=//img[@alt='BookArena']", "xpath:img"],
+        ["xpath=//div[@id='paintingsContainer']/div[3]/a/div/img", "xpath:idRelative"],
+        ["xpath=//div[3]/a/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "272389a6-cbca-4bb0-9b86-62c6fda57815",
+      "comment": "",
+      "command": "click",
+      "target": "css=.back-button",
+      "targets": [
+        ["css=.back-button", "css:finder"],
+        ["xpath=//button[@onclick='history.back()']", "xpath:attributes"],
+        ["xpath=//body/div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'⟸ Nazad')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "d0d93422-e0d1-42c1-8345-88cded9cafa9",
+    "name": "Dugme dodaj sliku sa nazivom i opisom",
+    "commands": [{
+      "id": "0bd25782-0e33-48b7-8a39-6c3d605943ea",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "67aa962c-31bb-471a-a09f-56643e5e3199",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "2062x1118",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d0486d03-3f08-4b2a-b61e-c932454dbcf0",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izlozbe",
+      "targets": [
+        ["linkText=Izlozbe", "linkText"],
+        ["css=.nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Izlozbe')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/exhibitions/')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izlozbe')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "340a756f-f5f4-4943-8975-24e20b961205",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-6:nth-child(1) .btn",
+      "targets": [
+        ["css=.col-md-6:nth-child(1) .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Pogledaj\n                                    izložbu')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, '/exhibition/1/')])[3]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2b0b7746-b8b5-4541-b56e-49c84012eebd",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Dodaj sliku",
+      "targets": [
+        ["linkText=Dodaj sliku", "linkText"],
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//a[contains(text(),'Dodaj sliku')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/addPicture/1/')]", "xpath:href"],
+        ["xpath=//div/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Dodaj sliku')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2d5561e4-301a-4cb6-bcfd-e63d6118b710",
+      "comment": "",
+      "command": "click",
+      "target": "name=image",
+      "targets": [
+        ["name=image", "name"],
+        ["css=.mb-3:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='image']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7f67a422-bfde-4fe8-919b-15e360984a52",
+      "comment": "",
+      "command": "type",
+      "target": "name=image",
+      "targets": [
+        ["name=image", "name"],
+        ["css=.mb-3:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='image']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "C:\\fakepath\\ChatGPT Image Sep 16, 2025, 10_44_02 PM.png"
+    }, {
+      "id": "238457cd-bf26-41d9-ad2b-d73b1a1a1c03",
+      "comment": "",
+      "command": "click",
+      "target": "name=title",
+      "targets": [
+        ["name=title", "name"],
+        ["css=.mb-3:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='title']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "416d7492-f586-4ff7-8cb4-8f6710b5bffe",
+      "comment": "",
+      "command": "type",
+      "target": "name=title",
+      "targets": [
+        ["name=title", "name"],
+        ["css=.mb-3:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='title']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "BookArena"
+    }, {
+      "id": "3c60934a-15be-41cc-836c-0e7f83e7acb7",
+      "comment": "",
+      "command": "click",
+      "target": "name=description",
+      "targets": [
+        ["name=description", "name"],
+        ["css=.mb-3:nth-child(4) > .form-control", "css:finder"],
+        ["xpath=//textarea[@name='description']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a0bb2e88-49b9-4ee6-ab96-ba05d97e3290",
+      "comment": "",
+      "command": "type",
+      "target": "name=description",
+      "targets": [
+        ["name=description", "name"],
+        ["css=.mb-3:nth-child(4) > .form-control", "css:finder"],
+        ["xpath=//textarea[@name='description']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Najbolja aplikacija na ovim prostorima\\n"
+    }, {
+      "id": "8a0e2a68-8582-4a0b-a6aa-ddf1b243aa18",
+      "comment": "",
+      "command": "click",
+      "target": "css=.upload-form",
+      "targets": [
+        ["css=.upload-form", "css:finder"],
+        ["xpath=//form", "xpath:position"],
+        ["xpath=//form[contains(.,'Dodaj sliku')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b7417fc0-7325-49a7-9251-680213b79667",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Dodaj sliku')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "66dbf5df-6c7e-43b8-a261-2277d7c959de",
+    "name": "Pretrazivanje slike u izlozbi po nazivu",
+    "commands": [{
+      "id": "b4998b3b-15c9-4a7b-bd5c-abc869741336",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0dd61f9c-8bc6-44e6-a706-d08329a740a4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "2062x1118",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "04afc6da-a0dc-4581-b3be-06d4d9b4ef0d",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izlozbe",
+      "targets": [
+        ["linkText=Izlozbe", "linkText"],
+        ["css=.nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Izlozbe')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/exhibitions/')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izlozbe')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "fb610bad-fe54-492a-94e6-e988f1d02d61",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-6:nth-child(1) .card-img-top",
+      "targets": [
+        ["css=.col-md-6:nth-child(1) .card-img-top", "css:finder"],
+        ["xpath=//img[@alt='Lepa jesen']", "xpath:img"],
+        ["xpath=//a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "de54261c-4a9a-483d-a0ff-5e62b358563e",
+      "comment": "",
+      "command": "click",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3366f269-43c7-4988-8427-f58d52bf4a85",
+      "comment": "",
+      "command": "type",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Graf"
+    }, {
+      "id": "f0293072-f12f-4101-a7cf-881b70c4db6b",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "14e13b45-8ea5-44b9-9384-ca11054456e1",
+      "comment": "",
+      "command": "type",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Book"
+    }, {
+      "id": "52b8cd22-8734-4eec-bc95-135127363dfa",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "9e5a9d06-79c1-4bee-bc63-ba8d665beeef",
+      "comment": "",
+      "command": "type",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "badb65b4-72c1-43b2-a535-f774614193e6",
+    "name": "Pretrazivanje slike u izlozbi po umetniku",
+    "commands": [{
+      "id": "d84e8267-a946-40eb-a4ad-89f6722167c0",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bc4c88e8-2934-45b1-b1d6-b9e8d45ce750",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "2062x1118",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2fef4ae1-b654-4a78-8679-e4305f99db8f",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izlozbe",
+      "targets": [
+        ["linkText=Izlozbe", "linkText"],
+        ["css=.nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Izlozbe')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/exhibitions/')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izlozbe')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "64749773-7382-4fb5-86d9-e7821f97dd4e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-6:nth-child(1) .card-img-top",
+      "targets": [
+        ["css=.col-md-6:nth-child(1) .card-img-top", "css:finder"],
+        ["xpath=//img[@alt='Lepa jesen']", "xpath:img"],
+        ["xpath=//a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1ae82f25-4481-47bf-9a7d-2b2598df3c75",
+      "comment": "",
+      "command": "click",
+      "target": "id=searchFilter",
+      "targets": [
+        ["id=searchFilter", "id"],
+        ["css=#searchFilter", "css:finder"],
+        ["xpath=//select[@id='searchFilter']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "98d0561a-82f7-4754-bf55-511c78803994",
+      "comment": "",
+      "command": "select",
+      "target": "id=searchFilter",
+      "targets": [],
+      "value": "label=Umetnik"
+    }, {
+      "id": "1fca79e4-2289-4e2a-8aee-bd2b842b9515",
+      "comment": "",
+      "command": "click",
+      "target": "css=option:nth-child(2)",
+      "targets": [
+        ["css=option:nth-child(2)", "css:finder"],
+        ["xpath=//option[@value='artist']", "xpath:attributes"],
+        ["xpath=//select[@id='searchFilter']/option[2]", "xpath:idRelative"],
+        ["xpath=//option[2]", "xpath:position"],
+        ["xpath=//option[contains(.,'Umetnik')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "01eee593-4099-42f8-822f-57ca93f9da99",
+      "comment": "",
+      "command": "click",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "47a7cb17-5037-4294-9859-15b619b726cc",
+      "comment": "",
+      "command": "type",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "stefke"
+    }, {
+      "id": "9e1f023e-06bd-4772-96eb-a8363fa3a4ba",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "55069418-ac00-42b3-8c8a-75b131bcec00",
+      "comment": "",
+      "command": "type",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "lur17"
+    }, {
+      "id": "ae865f64-71dd-4e8d-b015-b9c320943664",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "55c5363f-42ff-4050-9451-67de5ed96870",
+      "comment": "",
+      "command": "type",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "867ce5c7-e66f-4ff9-8187-97f642ecc19a",
+    "name": "Filtriranje slika u izlozbi po umetniku, ceni i novini",
+    "commands": [{
+      "id": "318a4bca-12d3-4fa5-8a03-b852a8c8912e",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "80ff07fd-8adc-4c7b-8fe9-bd1c8401a5c0",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "2062x1118",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "35b9aa42-bba2-4851-aa87-425f69b8f151",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izlozbe",
+      "targets": [
+        ["linkText=Izlozbe", "linkText"],
+        ["css=.nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Izlozbe')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/exhibitions/')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izlozbe')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8828bc79-0ec7-4be4-bac4-ac5823327120",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-6:nth-child(1) .card-img-top",
+      "targets": [
+        ["css=.col-md-6:nth-child(1) .card-img-top", "css:finder"],
+        ["xpath=//img[@alt='Lepa jesen']", "xpath:img"],
+        ["xpath=//a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "81a61974-a528-4044-9c6f-59117ddddba5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-container",
+      "targets": [
+        ["css=.search-container", "css:finder"],
+        ["xpath=//div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8d16bbc7-06a9-49aa-875f-3f7c69dd5794",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-container",
+      "targets": [
+        ["css=.search-container", "css:finder"],
+        ["xpath=//div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1f0f5d8f-e62c-4a00-87b1-93ead5564116",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-button",
+      "targets": [
+        ["css=.search-button", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//div[2]/div/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "27ae5ad2-adc8-457c-9f96-13c503d4e40e",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Sortiraj po umetniku",
+      "targets": [
+        ["linkText=Sortiraj po umetniku", "linkText"],
+        ["css=li:nth-child(1) > .dropdown-item", "css:finder"],
+        ["xpath=//a[contains(text(),'Sortiraj po umetniku')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '#')]", "xpath:href"],
+        ["xpath=//div[2]/div/ul/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Sortiraj po umetniku')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2b502aa3-7357-4122-86b5-57f8bc73d300",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-button",
+      "targets": [
+        ["css=.search-button", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//div[2]/div/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e49bbbee-ebde-4416-bc05-a4f3a2877018",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Sortiraj po oceni",
+      "targets": [
+        ["linkText=Sortiraj po oceni", "linkText"],
+        ["css=li:nth-child(2) > .dropdown-item", "css:finder"],
+        ["xpath=//a[contains(text(),'Sortiraj po oceni')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, '#')])[2]", "xpath:href"],
+        ["xpath=//div[2]/div/ul/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Sortiraj po oceni')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3c1f4930-e542-4f5e-93dd-2b09b116185d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-button",
+      "targets": [
+        ["css=.search-button", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//div[2]/div/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "96e8068e-bb75-4c56-a945-c2c1b9bdc06a",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Najnovije",
+      "targets": [
+        ["linkText=Najnovije", "linkText"],
+        ["css=li:nth-child(3) > .dropdown-item", "css:finder"],
+        ["xpath=//a[contains(text(),'Najnovije')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, '#')])[3]", "xpath:href"],
+        ["xpath=//div[2]/div/ul/li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Najnovije')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "80c07e47-2792-4927-b8ca-c90e9e13a594",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://127.0.0.1:8000/"],
+  "plugins": []
+}
