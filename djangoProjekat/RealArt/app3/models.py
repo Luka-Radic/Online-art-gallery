@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date
 from django.db.models import Avg
 from django.contrib.auth.models import User as DjangoUser
 from django.db import models
