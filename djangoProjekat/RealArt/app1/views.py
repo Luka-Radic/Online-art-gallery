@@ -256,8 +256,8 @@ def add_jury_doc(request):
             # !! ne sme ipak ovde da se poziva jer admin treba prvo da review novi pa onda tek da se zamene i obrise stari
             # ranko u amdinu kad reviewuje, nek obrise stari ako valja novi i onda ce kad se dohvati first biti dohvacen taj novi
             # delete_user_doc(user)
-            # if user.get_qualification_url() != "/static/user_docs/default_doc.txt":
-            #     delete_user_doc(user)
+            if user.get_qualification_url() != "/static/user_docs/default_doc.txt":
+                Juryrequest.objects.filter(applicant=user).delete()
 
             with open(path, 'wb+') as destination:
                 for chunk in cv.chunks():
@@ -265,6 +265,8 @@ def add_jury_doc(request):
 
             cv_url = f'/static/user_docs/{filename}'
             Juryrequest.objects.create(document_url=cv_url, applicant=user, status=Status.PENDING).save()
+            user.role = Role.REGISTERED
+            user.save()
     return render(request, 'moj_profil.html', {"me": user})
 
 

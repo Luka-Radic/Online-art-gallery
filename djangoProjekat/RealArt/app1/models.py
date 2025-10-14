@@ -150,10 +150,16 @@ class User(models.Model):
 
 
     def get_qualification_url(self):
-        qualifications = Juryrequest.objects.filter(applicant_id=self.id).first()
+        qualifications = Juryrequest.objects.filter(applicant_id=self.id).last()
         if qualifications:
             return qualifications.document_url
         return '/static/user_docs/default_doc.txt'
+
+    def get_qualification_name(self):
+        qualifications = Juryrequest.objects.filter(applicant_id=self.id).last()
+        if qualifications:
+            return qualifications.document_url.split('/').pop()
+        return ""
 
 
     def is_regular_user(self):

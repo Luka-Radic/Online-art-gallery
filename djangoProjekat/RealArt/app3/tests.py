@@ -440,7 +440,7 @@ class UnitTestRegistered(TestCase):
 class WebdriverUITest(StaticLiveServerTestCase):
     def setUp(self):
         self.service = EdgeService(
-            executable_path=r"C:\Fajlovi\gerrit\project_RealArt\djangoProjekat\RealArt\app3\edgedriver_win64\msedgedriver.exe")
+            executable_path=os.path.join(settings.BASE_DIR, "app3\edgedriver_win64\msedgedriver.exe"))
         self.browser = webdriver.Edge(service=self.service)
         self.browser.implicitly_wait(5)
         self.app_url = self.live_server_url

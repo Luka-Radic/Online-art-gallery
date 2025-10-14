@@ -27,7 +27,7 @@
 
                 <div class="mb-3">
                     <label for="customAmount" class="form-label">Ili unesite svoju sumu (€)</label>
-                    <input type="number" step="any" min="0.01" class="form-control" placeholder="Npr. 3.50">
+                    <input type="number" step="any" min="0.01" max="1000.00" class="form-control" placeholder="Npr. 3.50">
                 </div>
 
 
@@ -35,7 +35,11 @@
 
 
                 <div class="d-flex justify-content-end">
-                    <button onclick="window.location.href='{% url 'artist' artist_id %}'" type="button" class="btn back-button" data-bs-dismiss="modal">⟸Otkaži</button>
+                    {% if message %}
+                        <a href='{% url 'artist' artist_id %}' class="btn back-button" >⟸Nazad</a>
+                    {% else %}
+                        <a href='{% url 'artist' artist_id %}' class="btn back-button">⟸Otkaži</a>
+                    {% endif %}
                     <div class="alert"></div>
                     <button type="button" class="btn btn-warning" id="fund-btn">Fundiraj</button>
                 </div>
@@ -71,20 +75,24 @@
     const customInput = document.querySelector("input[type='number']");
     const alertBox = document.querySelector(".alert");
 
-    // Kad klikneš neku od ponuđenih suma
     document.querySelectorAll(".amount-btn").forEach(btn => {
         btn.addEventListener("click", () => {
             const amount = btn.getAttribute("data-amount");
             amountFakeInput.value = amount;
-            customInput.value = ""; // ako se klikne ponuđena suma, prazni custom input
-            alertBox.classList.add("d-none"); // sakrij poruku o grešci
+            customInput.value = ""; // ako se klikne ponuđena suma da isprazni input
+            alertBox.classList.add("d-none");
         });
     });
 
-    // Kad uneseš custom sumu ručno
     customInput.addEventListener("input", () => {
         amountFakeInput.value = customInput.value;
-        alertBox.classList.add("d-none"); // sakrij poruku ako je korisnik uneo nešto
+        alertBox.classList.add("d-none"); // da sakrije dalje ako je izmeni nesto
+        if (parseFloat(customInput.value) > 1000) {
+            customInput.value = 1000;
+        }
+        if (payInfo.classList.contains("hidden") === false) {
+            payInfo.classList.add("hidden")
+         }
 
     });
 
@@ -95,10 +103,13 @@
         if (!amount || parseFloat(amount) <= 0) {
             alertBox.textContent = "Molimo izaberite ili unesite iznos koji želite da donirate.";
             alertBox.classList.remove("d-none");
-            return; // prekini — ne otvaraj formu
+            if (!payInfo.classList.contains("hidden")) {
+                payInfo.classList.add("hidden")
+            }
+            return;
         }
 
-        payInfo.classList.remove("hidden"); // prikaži formu za plaćanje
+        payInfo.classList.remove("hidden");
 
 
     });

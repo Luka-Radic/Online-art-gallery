@@ -26,7 +26,11 @@ def adminUs(request):
         akcija = request.POST['akcija']
         if akcija == "prihvati":
             request_id = request.POST['request_id']
-            Juryrequest.objects.filter(id=request_id).update(status=Status.APPROVED)
+            doc = Juryrequest.objects.filter(id=request_id).first()
+            doc.status = Status.APPROVED
+            doc.save()
+            doc.applicant.role = Role.JURY
+            doc.applicant.save()
         if akcija == "odbij":
             request_id = request.POST['request_id']
             Juryrequest.objects.filter(id=request_id).update(status=Status.REJECTED)
