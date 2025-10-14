@@ -7,18 +7,7 @@ from .models import Exhibition, Painting, Participation, User, Comment, Rating
 from django.contrib.auth.models import User as DjangoUser
 from django.db.models import Avg
 
-#def add_exhibition(request):
-    #if request.method == 'POST':
-        #form = ExhibitionForm(request.POST)
-        #if form.is_valid():
-            #form.save()
-            #return redirect('izlozbe_lista')  # kasnije ćemo dodati ovaj prikaz
-   # else:
-        #form = ExhibitionForm()
-    #return render(request, 'izlozbe.html', {'form': form})
-
-
-#Ovde se prave izlzobe, stavlja se njivo status adekvatno
+"""View za azuriranje statusa izlozbi, pravljenje novih izlozbi za jury i admin"""
 def exhibitions(request):
     # Automatsko ažuriranje statusa svih izložbi
     today = date.today()
@@ -28,7 +17,6 @@ def exhibitions(request):
             iz.status = new_status
             iz.save()
 
-    # Kreiranje nove izložbe
     if request.method == 'POST':
         form = ExhibitionForm(request.POST)
         if form.is_valid():
@@ -56,7 +44,7 @@ def exhibitions(request):
     return render(request, 'izlozbe.html', {'form': form, 'izlozbe_sa_slikom': izlozbe_sa_slikom})
 
 
-#ovde je sve sto ima veze sa slikom, dodavanje komentara, dodavanje ocene korisnika i atomatsko azuriranje prosecne ocene
+"""Ovde je sve sto ima veze sa slikom, dodavanje komentara, dodavanje ocene korisnika i atomatsko azuriranje prosecne ocene"""""
 def image_detail(request, painting_id):
     painting = get_object_or_404(Painting, id=painting_id)
 
@@ -76,7 +64,6 @@ def image_detail(request, painting_id):
             )
             return redirect('image_detail', painting_id=painting.id)
 
-        # Dodavanje/azuriranje ocene
         rating_value = request.POST.get('rating_value')
         if rating_value:
             rating_value = int(rating_value)
@@ -97,21 +84,17 @@ def image_detail(request, painting_id):
                 )
             return redirect('image_detail', painting_id=painting.id)
 
-    # komentari
     comments = Comment.objects.filter(painting=painting).order_by('-created_at')
 
-    # Prosečna ocena
     avg_rating = Rating.objects.filter(painting=painting).aggregate(Avg('score'))['score__avg']
     avg_rating = round(avg_rating or 0, 2)
 
-    # Korisnikova ocena
     user_rating = None
     if app2_user:
         existing_rating = Rating.objects.filter(painting=painting, author=app2_user).first()
         if existing_rating:
             user_rating = existing_rating.score
 
-    # Zvezdice
     stars = [1, 2, 3, 4, 5]
 
     return render(request, 'slika.html', {
