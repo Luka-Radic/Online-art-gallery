@@ -144,7 +144,7 @@ class User(models.Model):
                 num += 1
 
         if num != 0:
-            return avg/num
+            return round(avg/num, 2)
         else:
             return 0
 
