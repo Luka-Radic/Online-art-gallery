@@ -4,6 +4,7 @@ from django.db import models
 import app2
 from .models import Exhibition, User, Painting
 
+"""Enum za teme, kasnije je promenjeno da moze da bude tema bilo sta"""
 class Theme(models.TextChoices):
     PRIRODA = ('priroda', 'Priroda')
     PORTRET = ('portret', 'Portret')
@@ -11,6 +12,7 @@ class Theme(models.TextChoices):
     SLOBODNA = ('slobodna', 'Slobodna tema')
 
 
+"""Forma za pravljenje izlozbe"""
 class ExhibitionForm(forms.ModelForm):
     name = models.CharField(max_length=120)
     theme = models.CharField(choices=Theme.choices, default=Theme.SLOBODNA)
@@ -27,21 +29,3 @@ class ExhibitionForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'rows': 3}),
         }
 
-#class ExhibitionFormFront(forms.ModelForm):
-   #THEME_CHOICES = [
-       #('priroda', 'Priroda'),
-        #('portret', 'Portret'),
-        #('arhitektura', 'Arhitektura'),
-        #('slobodna', 'Slobodna tema'),
-    #]
-
-    #theme = forms.ChoiceField(choices=THEME_CHOICES, required=True)
-
-    #class Meta:
-        #model = Exhibition
-        #fields = ['name', 'theme', 'description', 'start_date', 'end_date']
-        #widgets = {
-            #'start_date': forms.DateInput(attrs={'type': 'date'}),
-            #'end_date': forms.DateInput(attrs={'type': 'date'}),
-            #'description': forms.Textarea(attrs={'rows': 3}),
-        #}
