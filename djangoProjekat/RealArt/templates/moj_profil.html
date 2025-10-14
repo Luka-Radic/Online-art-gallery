@@ -27,7 +27,8 @@
 
                 {% if me.is_regular_user %}
                     <div>Zelis da konkurises za zirija?
-                        <a href="{% url "become_judge" %}" class="text-danger"> Prijava</a>
+                        <a href="{% url "become_judge" %}" class="text-danger"> Prijava</a> &nbsp
+                        <a href="{{ me.get_qualification_url }}" target="_blank" class="text-dark"> {{ me.get_qualification_name }}</a>
                     </div>
                 {% endif %}
                 {% if me.is_jury %}
