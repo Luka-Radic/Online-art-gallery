@@ -16,6 +16,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options
 from django.contrib.sessions.backends.db import SessionStore
+from django.conf import settings
+import os
 import time
 
 class JuryStatus:
@@ -292,8 +294,13 @@ class WebdriverUITest(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+
+        # relativna putanja do geckodriver-a u app2/webdrivers folderu
+        gecko_path = os.path.join(settings.BASE_DIR, 'app2', 'webdriver', 'geckodriver.exe')
+
         options = Options()
-        service = Service(executable_path=r"C:/WebDrivers/geckodriver.exe")
+        service = Service(executable_path=gecko_path)
+
         cls.browser = webdriver.Firefox(service=service, options=options)
         cls.browser.implicitly_wait(5)
 
