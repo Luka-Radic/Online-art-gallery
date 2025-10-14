@@ -17,6 +17,11 @@ def pocetna(request):
 
 
 def adminUs(request):
+    """
+    Renders the admin page in which there are three functionalities. First is that admin user can approve jury requests from artist,
+    which are only registered users. Second is that admin user can delete paintings from application. The third one is that admin
+    user can delete commments from paintings on the application.
+    """
     if request.method == "POST":
         akcija = request.POST['akcija']
         if akcija == "prihvati":
@@ -47,6 +52,10 @@ def adminUs(request):
 
 
 def exhibition(request, exhibition_id):
+    """
+    Renders a exhibition look page. It gives search bar, grid with all paintings which joined the exhibition, and later
+    when its decided who is the winner, it shows the winner painting. Filters are done in JS because responsiveness.
+    """
     izlozba = Exhibition.objects.get(id=exhibition_id)
     painting_ids = Participation.objects.filter(exhibition_id=exhibition_id).values_list('painting_id', flat=True)
     paintings = Painting.objects.filter(id__in=painting_ids)
@@ -60,6 +69,11 @@ def exhibition(request, exhibition_id):
 
 
 def addPicture(request, exhibition_id):
+    """
+    This view is used for adding a painting on exhibition. Clicking on the exhibition add painting button, user is redirected to
+    this view and needs to fill a form which is made from title, image and image description which is optional. After filling the
+    form users gets redirected back to exhibition page.
+    """
     izlozba = Exhibition.objects.get(id=exhibition_id)
     painting_ids = Participation.objects.filter(exhibition_id=exhibition_id).values_list('painting_id', flat=True)
     paintings = Painting.objects.filter(id__in=painting_ids)
@@ -103,17 +117,23 @@ def addPicture(request, exhibition_id):
 
 @login_required
 def chooseWinner(request, exhibition_id):
-        exhibition = Exhibition.objects.get(id=exhibition_id)
+    """
+    This view renders a form for choosing the winner after exhibition is done.
+    """
+    exhibition = Exhibition.objects.get(id=exhibition_id)
 
-        if request.method == "POST":
-            paintingId = request.POST['painting_id']
-            painting = Painting.objects.get(id=paintingId)
+    if request.method == "POST":
+        paintingId = request.POST['painting_id']
+        painting = Painting.objects.get(id=paintingId)
 
-            exhibition.winner_painting = painting
-            exhibition.save()
+        exhibition.winner_painting = painting
+        exhibition.save()
 
-        return redirect("exhibition", exhibition_id=exhibition.id)
+    return redirect("exhibition", exhibition_id=exhibition.id)
 def gallery(request):
+    """
+    Renders a gallery of all paintings published on the application.
+    """
     data = []
     paintings = Painting.objects.all()
     for painting in paintings:
@@ -128,5 +148,7 @@ def gallery(request):
     return render(request, 'galerija.html', context)
 
 def about(request):
-
+    """
+    Renders about us page.
+    """
     return render(request, 'o_nama.html')
