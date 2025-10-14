@@ -1,3 +1,5 @@
+from selenium.webdriver.support import expected_conditions as EC
+
 from django.db import transaction, IntegrityError
 from django.test import TestCase
 import unittest
@@ -9,6 +11,15 @@ from django.utils import timezone
 from django.contrib.auth.models import User as DjangoUser
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.views.generic import detail
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.edge.service import Service as EdgeService
+from selenium.webdriver.edge.webdriver import WebDriver
+from selenium.webdriver.common.keys import Keys
+import logging
+from selenium.webdriver.support.wait import WebDriverWait
+#logging.basicConfig(level=logging.DEBUG)
+import os
 
 from app1.models import User as AppUser, Exhibition, Participation
 from app1.views import *
@@ -426,3 +437,102 @@ class UnitTestRegistered(TestCase):
         user = User.objects.filter(id=self.user_artist_2.id).first()
         self.assertNotEqual(old_username, user.username)
 
+class WebdriverUITest(StaticLiveServerTestCase):
+    def setUp(self):
+        self.service = EdgeService(
+            executable_path=r"C:\Fajlovi\gerrit\project_RealArt\djangoProjekat\RealArt\app3\edgedriver_win64\msedgedriver.exe")
+        self.browser = webdriver.Edge(service=self.service)
+        self.browser.implicitly_wait(5)
+        self.app_url = self.live_server_url
+
+        # Kreiramo test korisnika (koji će moći da se prijavi)
+        self.app_user = AppUser.objects.create(username="mikaperic", password_hash="Test12345", email="mika@gmail",first_name="mika", last_name="peric", role="registered")
+        self.django_user = DjangoUser.objects.create_user(username="mikaperic", password="Test12345")
+
+    def tearDown(self):
+        self.browser.quit()
+
+    def login(self):
+        """Login usera"""
+        self.browser.get(self.live_server_url + "/login/")
+        time.sleep(1)
+        self.browser.find_element(By.NAME, "username").send_keys("mikaperic")
+        self.browser.find_element(By.NAME, "password").send_keys("Test12345")
+        self.browser.find_element(By.XPATH, "//button[text()='Prijavi se']").click()
+        time.sleep(2)
+
+    def test_signup_artists_my_page_logout(self):
+        """Test se signupuje pogleda sve korisnike, udje u Moj Profil i izloguje se"""
+        self.browser.get(self.app_url + "/signup/")
+        time.sleep(2)
+
+        self.browser.find_element(By.NAME, "ime").send_keys("TestUserIme")
+        time.sleep(1)
+        self.browser.find_element(By.NAME, "prezime").send_keys("TestUserPrezime")
+        time.sleep(1)
+        self.browser.find_element(By.NAME, "korisnickoIme").send_keys("testUser")
+        time.sleep(1)
+        self.browser.find_element(By.NAME, "lozinka").send_keys("Test12345")
+        time.sleep(1)
+        self.browser.find_element(By.NAME, "potvrdaLozinke").send_keys("Test12345")
+        time.sleep(1)
+        self.browser.find_element(By.NAME, "email").send_keys("testmail@gmail.com")
+        time.sleep(1)
+        self.browser.find_element(By.NAME, "opis").send_keys("TestBio")
+        time.sleep(1)
+        self.browser.find_element(By.XPATH, "//button[text()='Prijavi se']").click()
+
+        WebDriverWait(self.browser, 10).until(
+            EC.presence_of_element_located((By.LINK_TEXT, "Moj Profil"))
+        )
+
+        self.browser.get(self.app_url + "/users/")
+        time.sleep(2)
+        self.browser.get(self.app_url + "/my_page/")
+        time.sleep(2)
+
+        self.browser.find_element(By.XPATH, "//a[text()='Log out']").click()
+
+        time.sleep(2)
+        print("Test se uspesno zavrsio!")
+
+    def test_login_my_page_edit_profile_save_changes_delete_account(self):
+        """Test radi log in, ulazi u Moj Profil, edituje profil, stavlja novo first_name, sacuva izmene i na kraju obrise profil"""
+        self.login()
+
+        WebDriverWait(self.browser, 10).until(
+            EC.presence_of_element_located((By.LINK_TEXT, "Moj Profil"))
+        )
+
+        self.browser.get(self.app_url + "/my_page/")
+        time.sleep(2)
+
+        self.browser.find_element(By.CSS_SELECTOR, "a[href='/edit_profile/'] img.logo").click()
+        time.sleep(2)
+
+        edit_icon = self.browser.find_element(By.CSS_SELECTOR, "img.edit-icon[data-target='first_name']").click()
+        time.sleep(2)
+
+        WebDriverWait(self.browser, 10).until(
+            lambda driver: driver.find_element(By.NAME, "first_name").get_attribute("readonly") is None
+        )
+
+        self.browser.find_element(By.NAME, "first_name").send_keys("Mare")
+        time.sleep(2)
+
+        self.browser.find_element(By.XPATH, "//button[text()='Sačuvaj izmene']").click()
+        time.sleep(2)
+
+        self.browser.find_element(By.CSS_SELECTOR, "a[href='/edit_profile/'] img.logo").click()
+        time.sleep(2)
+
+        self.browser.find_element(By.LINK_TEXT, "Obrisi moj profil").click()
+        WebDriverWait(self.browser, 5).until(EC.alert_is_present())
+        self.browser.switch_to.alert.accept()
+
+        WebDriverWait(self.browser, 5).until(
+            EC.presence_of_element_located((By.TAG_NAME, "body"))
+        )
+
+        user = User.objects.filter(username="mikaperic").first()
+        self.assertEqual(user, None)
