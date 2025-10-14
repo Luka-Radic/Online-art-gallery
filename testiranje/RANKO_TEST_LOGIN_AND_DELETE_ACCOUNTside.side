@@ -1,0 +1,184 @@
+{
+  "id": "02e1c4cc-191c-4a64-8fa2-8098cc00a79b",
+  "version": "2.0",
+  "name": "RealArt",
+  "url": "http://127.0.0.1:8000",
+  "tests": [{
+    "id": "96e720f5-568c-4928-b413-cf9c495754e1",
+    "name": "TEST_LOGIN_AND_DELETE_ACCOUNT",
+    "commands": [{
+      "id": "579cba3f-400f-4323-a690-2b8541e4b5d4",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "83a629fd-a2a8-4385-b5b2-369dfdc12d5e",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1550x830",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bcdba066-9c53-4f7a-98ad-a75f51b7534b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Log in",
+      "targets": [
+        ["linkText=Log in", "linkText"],
+        ["css=.fs-5:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'Log in')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/login/')]", "xpath:href"],
+        ["xpath=//div[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Log in')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7b4d0193-2075-499b-9e9a-fd7e3ce60f98",
+      "comment": "",
+      "command": "click",
+      "target": "css=form",
+      "targets": [
+        ["css=form", "css:finder"],
+        ["xpath=//form[@action='/login/']", "xpath:attributes"],
+        ["xpath=//form", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b093bbc7-ed5d-49c9-a523-d40bfd9b97ff",
+      "comment": "",
+      "command": "click",
+      "target": "id=korisnickoIme",
+      "targets": [
+        ["id=korisnickoIme", "id"],
+        ["name=username", "name"],
+        ["css=#korisnickoIme", "css:finder"],
+        ["xpath=//input[@id='korisnickoIme']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7ad5ccd7-0193-4090-b3e5-1b55c110e78d",
+      "comment": "",
+      "command": "type",
+      "target": "id=korisnickoIme",
+      "targets": [
+        ["id=korisnickoIme", "id"],
+        ["name=username", "name"],
+        ["css=#korisnickoIme", "css:finder"],
+        ["xpath=//input[@id='korisnickoIme']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "detllicpera"
+    }, {
+      "id": "2c6da454-74d5-4d14-bb7f-bf9e02a92cdf",
+      "comment": "",
+      "command": "click",
+      "target": "id=lozinka",
+      "targets": [
+        ["id=lozinka", "id"],
+        ["name=password", "name"],
+        ["css=#lozinka", "css:finder"],
+        ["xpath=//input[@id='lozinka']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8a3147c1-44bc-4d23-8f21-d5ea8f5abad6",
+      "comment": "",
+      "command": "type",
+      "target": "id=lozinka",
+      "targets": [
+        ["id=lozinka", "id"],
+        ["name=password", "name"],
+        ["css=#lozinka", "css:finder"],
+        ["xpath=//input[@id='lozinka']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "pera1234"
+    }, {
+      "id": "a61f3e1d-f112-4d7d-8ea9-d54320cde527",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prijavi se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "fdfeed7a-71b7-4524-8630-a1116c087812",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Moj Profil",
+      "targets": [
+        ["linkText=Moj Profil", "linkText"],
+        ["css=li:nth-child(5) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Moj Profil')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/my_page/')]", "xpath:href"],
+        ["xpath=//li[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Moj Profil')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b25c3aac-c53e-4cb6-b8a5-21ef7ada2378",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mt-4",
+      "targets": [
+        ["css=.mt-4", "css:finder"],
+        ["xpath=//a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3fb8796c-0f91-4dac-941f-aea06e2b0d2d",
+      "comment": "",
+      "command": "chooseOkOnNextConfirmation",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "200faace-b0ea-4ce8-a52d-15c59eb7a4cb",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Obrisi moj profil",
+      "targets": [
+        ["linkText=Obrisi moj profil", "linkText"],
+        ["css=.mt-2", "css:finder"],
+        ["xpath=//a[contains(text(),'Obrisi moj profil')]", "xpath:link"],
+        ["xpath=//a[@onclick=\"return confirm('Jeste li sigurni da želite da obrišete profil? Akcija je trajna.');\"]", "xpath:attributes"],
+        ["xpath=//a[contains(@href, '/delete_profile/')]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Obrisi moj profil')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d6e2e0f6-1181-44d6-974a-e4a71831f87a",
+      "comment": "",
+      "command": "assertConfirmation",
+      "target": "Jeste li sigurni da želite da obrišete profil? Akcija je trajna.",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2125bac0-d93a-4c69-891c-36a0d77ca146",
+      "comment": "",
+      "command": "webdriverChooseOkOnVisibleConfirmation",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "8adbb8e8-5ebb-4790-811a-81256f2f9d6e",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["96e720f5-568c-4928-b413-cf9c495754e1"]
+  }],
+  "urls": ["http://127.0.0.1:8000/"],
+  "plugins": []
+}
