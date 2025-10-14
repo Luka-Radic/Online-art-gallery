@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'RealArt.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'realart2',
+        'NAME': 'realart',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': '127.0.0.1',

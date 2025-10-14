@@ -6,9 +6,12 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import RequestFactory
 from django.contrib.auth.models import User as DjangoUser
 from unittest.mock import Mock
-from app3.views import addPicture
+from app3.views import addPicture, exhibition
 from app1.models import User as AppUser, User, Painting, Exhibition, Participation , Comment, Juryrequest # <-- User
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from django.test import TestCase, Client
+from django.urls import reverse
+from django.contrib.auth import get_user_model
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -284,6 +287,24 @@ class GalleryViewTest(TestCase):
         self.assertIn(self.exhibition.theme, themes_list)
 
 
+class ChooseWinnerButtonTest(TestCase):
+
+    def setUp(self):
+        self.client = Client()
+        self.jury_user = create_user_with_role("jury", "jury_creator")
+
+        session = self.client.session
+        session['user_id'] = self.jury_user.id
+        session.save()
+
+        self.exhibition = create_exhibition(self.jury_user, "Moja izložba")
+        self.exhibition.status = "closed"  # završena
+        self.exhibition.save()
+
+    def test_user_is_jury_and_creator(self):
+        """Testiramo da li je user jury i kreator izložbe"""
+        self.assertEqual(self.jury_user.role, "jury", "User nije jury!")
+        self.assertEqual(self.exhibition.created_by, self.jury_user, "User nije kreator izložbe!")
 
 
 
@@ -379,3 +400,4 @@ class WebdriverUITest(StaticLiveServerTestCase):
             self.assertTrue(image_element.is_displayed(), "Slika iz izložbe nije prikazana")
         except:
             self.fail("Slika iz izložbe nije pronađena na stranici")
+
