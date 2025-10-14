@@ -136,11 +136,11 @@ class AddPictureViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'dodaj_sliku.html')
 
+
     """Provera da se dodate slike prikazuju na stranici"""
     def test_add_picture_post_creates_painting_and_participation(self):
         url = reverse('addPicture', args=[self.exhibition.id])
         test_image = SimpleUploadedFile("test.jpg", b'test image content', content_type="image/jpeg")
-
 
         request = self.factory.post(url, {
             'title': 'Nova Slika',
@@ -148,19 +148,23 @@ class AddPictureViewTest(TestCase):
             'image': test_image
         })
 
-
         request.user = Mock(is_authenticated=True, username=self.user.username)
-
-
         request.session = self.client.session
 
-
         response = addPicture(request, self.exhibition.id)
-
 
         painting = Painting.objects.get(title='Nova Slika')
         self.assertEqual(painting.artist, self.user)
         self.assertTrue(Participation.objects.filter(painting=painting, exhibition=self.exhibition).exists())
+
+        import os
+        from django.conf import settings
+
+        if painting.image_url:
+            relative_path = painting.image_url.replace('/static/', '')
+            file_path = os.path.join(settings.BASE_DIR, 'static', relative_path)
+            if os.path.exists(file_path):
+                os.remove(file_path)
 
     """Provera da li guest vidi dugme za dodavanje slike u izlozbu"""
     def test_guest_user_does_not_see_add_picture_button(self):
