@@ -17,8 +17,8 @@ DjangoUser.get_role = get_role
 class Comment(models.Model):
     text = models.TextField()
     created_at = models.DateTimeField(default=timezone.now, blank=True, null=True)
-    author = models.ForeignKey('User', models.DO_NOTHING)
-    painting = models.ForeignKey('Painting', models.DO_NOTHING)
+    author = models.ForeignKey('User', on_delete=models.CASCADE)
+    painting = models.ForeignKey('Painting', on_delete=models.CASCADE)
 
     class Meta:
         managed = False
@@ -33,7 +33,7 @@ class Exhibition(models.Model):
     end_date = models.DateField()
     status = models.CharField(max_length=6)
     created_by = models.ForeignKey('app2.User', models.DO_NOTHING, db_column='created_by')
-    winner_painting = models.ForeignKey('Painting', models.DO_NOTHING, blank=True, null=True)
+    winner_painting = models.ForeignKey('Painting', on_delete=models.SET_NULL, blank=True, null=True)
 
     def is_active(self):
         return self.start_date >= datetime.date.today() >= self.end_date
@@ -45,8 +45,8 @@ class Exhibition(models.Model):
 
 class Funding(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    donor = models.ForeignKey('app2.User', models.DO_NOTHING)
-    artist = models.ForeignKey('app2.User', models.DO_NOTHING, related_name='funding_artist_set')
+    donor = models.ForeignKey('app2.User', on_delete=models.SET_NULL, blank=True, null=True)
+    artist = models.ForeignKey('app2.User', on_delete=models.SET_NULL, blank=True, null=True, related_name='funding_artist_set')
     # date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
@@ -55,7 +55,7 @@ class Funding(models.Model):
 
 
 class Juryrequest(models.Model):
-    applicant = models.ForeignKey('app2.User', models.DO_NOTHING)
+    applicant = models.ForeignKey('app2.User', on_delete=models.CASCADE)
     document_url = models.CharField(max_length=255, blank=True, null=True)
     status = models.CharField(max_length=8, blank=True, null=True)
     # created_at = models.DateTimeField(blank=True, null=True)
@@ -83,8 +83,8 @@ class Painting(models.Model):
 
 class Participation(models.Model):
     pk = models.CompositePrimaryKey('painting_id', 'exhibition_id')
-    painting = models.ForeignKey(Painting, models.DO_NOTHING)
-    exhibition = models.ForeignKey(Exhibition, models.DO_NOTHING)
+    painting = models.ForeignKey(Painting, on_delete=models.CASCADE)
+    exhibition = models.ForeignKey(Exhibition, on_delete=models.CASCADE)
 
     class Meta:
         managed = False
@@ -94,8 +94,8 @@ class Participation(models.Model):
 class Rating(models.Model):
     score = models.IntegerField()
     # created_at = models.DateTimeField(blank=True, null=True)
-    author = models.ForeignKey('app2.User', models.DO_NOTHING)
-    painting = models.ForeignKey(Painting, models.DO_NOTHING)
+    author = models.ForeignKey('app2.User', on_delete=models.CASCADE)
+    painting = models.ForeignKey(Painting, on_delete=models.CASCADE)
 
     class Meta:
         managed = False

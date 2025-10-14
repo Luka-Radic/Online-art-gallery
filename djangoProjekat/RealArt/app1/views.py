@@ -256,6 +256,8 @@ def add_jury_doc(request):
             # !! ne sme ipak ovde da se poziva jer admin treba prvo da review novi pa onda tek da se zamene i obrise stari
             # ranko u amdinu kad reviewuje, nek obrise stari ako valja novi i onda ce kad se dohvati first biti dohvacen taj novi
             # delete_user_doc(user)
+            # if user.get_qualification_url() != "/static/user_docs/default_doc.txt":
+            #     delete_user_doc(user)
 
             with open(path, 'wb+') as destination:
                 for chunk in cv.chunks():
@@ -372,6 +374,18 @@ def delete_profile(request):
     username = request.user.username
 
     user = User.objects.filter(username=username).first()
+    if user is None:
+        redirect("homepage")
+    paintings = Painting.objects.filter(artist=user)
+    for p in paintings:
+        relative_path = p.image_url.replace('/static/', '')
+        file_path = os.path.join(settings.BASE_DIR, 'static', relative_path)
+
+        if os.path.exists(file_path):
+            os.remove(file_path)
+
+        p.delete()
+
     if user.pfp_url is not None:
         delete_picture(user)
     user.delete()
@@ -422,8 +436,8 @@ def save_profile_edits(request):
                 #TODO vratiti poruku o zauzetosti emaila
                 return redirect("edit_profile")
             me.email = email
-        if bio:
-            me.bio = bio
+        # if bio:
+        me.bio = bio
 
         me.save()
         request.user.save()
