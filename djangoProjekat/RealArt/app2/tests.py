@@ -67,7 +67,7 @@ def create_participation(painting, exhibition):
 
 
 """Test klasa za prikaz jedne izlozbe"""
-class ExhibitionPageTest(TestCase):
+class UnitExhibitionPageTest(TestCase):
 
     """Setupovanje stranice pirkaz jedne izlozbe"""
     def setUp(self):
@@ -116,7 +116,7 @@ class ExhibitionPageTest(TestCase):
 
 
 
-class AddPictureViewTest(TestCase):
+class UnitAddPictureViewTest(TestCase):
 
     """Setupovanje za dodavanje slike u izlozbu"""
     def setUp(self):
@@ -177,7 +177,7 @@ class AddPictureViewTest(TestCase):
 
 
 
-class AdminUsViewTest(TestCase):
+class UnitAdminUsViewTest(TestCase):
 
     def setUp(self):
         self.client = Client()
@@ -239,7 +239,7 @@ class AdminUsViewTest(TestCase):
         self.assertFalse(Comment.objects.filter(id=comment.id).exists())
 
 
-class GalleryViewTest(TestCase):
+class UnitGalleryViewTest(TestCase):
 
     def setUp(self):
         self.client = Client()
@@ -293,7 +293,7 @@ class GalleryViewTest(TestCase):
         self.assertIn(self.exhibition.theme, themes_list)
 
 
-class ChooseWinnerButtonTest(TestCase):
+class UnitChooseWinnerButtonTest(TestCase):
 
     def setUp(self):
         self.client = Client()
